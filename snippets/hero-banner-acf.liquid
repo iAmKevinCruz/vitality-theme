@@ -1,0 +1,48 @@
+<section class="hero-banner" id="section-{{ sectionId }}">
+    {% if hero_img_mob != blank %}
+    <style> 
+      @media only screen and (max-width: 768px){
+          #section-{{ sectionId }} .hero-banner__bg .desktop{
+              display: none;
+          }
+          #section-{{ sectionId }} .hero-banner__bg .mobile{
+              display: block;
+          }
+      }
+    </style>
+    {% endif %}
+    <div class="container-max">
+        <div class="hero-banner__bg {% if hero_desktop_bg_height != blank %}hero-banner__bg--desktop-{{ hero_desktop_bg_height }}{% endif %}">
+            {%- if hero_video != blank -%}
+            <video class="video" crossorigin="anonymous" autoplay playsinline muted loop poster="{{ hero_img.cloudinary_src}}" preload="none" type="video/mp4" src="{{ hero_video.src }}"></video>
+            {%- else -%}
+            {% if hero_img != blank %}
+              <div class="desktop">
+                  {% include 'responsive-image-acf' with image: hero_img, image_class: "",
+                wrapper_class: "", max_width: 1440, max_height: 720 %}
+              </div>
+            {% endif %}
+            {% if hero_img_mob != blank %}
+              <div class="mobile">
+                  {% include 'responsive-image-acf' with image: hero_img_mob, image_class: "",
+                wrapper_class: "", max_width: 768, max_height: 480 %}
+              </div>
+            {% endif %}
+            {%- endif -%}
+        </div>
+        <div class="hero-banner__cover" style="opacity: {{ hero_cover_opacity }}%; background-color: {{ hero_cover_color }};"></div>
+        <div class="hero-banner__content" style="align-items: {{ vertical_alignment }}; text-align: {{ text_align }}; justify-content: {{ horizontal_alignment }}">
+            <div class="hero-banner__body" style="color: {{ hero_text_color }};">
+                {% if hero_pre_title != blank %}<h3 class="hero-banner__pretitle h5">{{ hero_pre_title }}</h3>{% endif %}
+                {%- if hero_title_tag != blank -%}
+                {%- assign h_tag = hero_title_tag -%}
+                {%- else -%}
+                {%- assign h_tag = 'h2' -%}
+                {%- endif -%}
+                {% if hero_title != blank %}<{{ h_tag }} class="hero-banner__title h1" {% if hero_text_color != blank %}style="-webkit-text-stroke: 1px {{ hero_text_color }};"{% endif %}>{{ hero_title }}</{{ h_tag }}>{% endif %}
+                {% if hero_text != blank %}<div class="hero-banner__text">{{ hero_text }}</div>{% endif %}
+                {% if hero_b_text != blank %}<div><a href="{{ hero_b_url }}" class="hero-banner__link secondary-button" style="--sec-color: {% if  hero_text_color != blank %}{{ hero_text_color }}{% else %}#fff{% endif %}">{{ hero_b_text }}</a></div>{% endif %}
+            </div>
+        </div>
+    </div>
+    </section>

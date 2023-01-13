@@ -1,0 +1,54 @@
+{% comment %}
+<div class="account-app-layout__widget account-app-layout__widget--mini">
+	<div class="account-app-widget-header">
+		<span class="account-app-widget-header__part h5">{{ 'customer.account.preferences' | t }}</span>
+		<span class="account-app-widget-header__part"><a href="#" class="small">{{ 'customer.account.edit' | t }}</a></span>
+	</div>
+</div>
+{% endcomment %}
+
+<div class="account-app-layout__widget account-app-layout__widget--mini">
+	<div class="account-app-widget-header">
+		<span class="account-app-widget-header__part h5">{{ 'customer.account.contact' | t }}</span>
+		{% comment %}
+		<span class="account-app-widget-header__part">
+			{% if customer.default_address %}
+				<a href="#addresses/{{ customer.default_address.id }}" class="small">{{ 'customer.account.edit' | t }}</a>
+			{% else %}
+				<a href="#addresses" class="small">{{ 'customer.account.edit' | t }}</a>
+			{% endif %}
+		</span>
+		{% endcomment %}
+	</div>
+	<div class="account-app-contacts">
+		<div class="account-app-contacts__block">
+			<div class="account-app-contacts__label">{{ 'customer.account.email' | t }}:</div>
+			<div class="account-app-contacts__value">{{ customer.email }}</div>
+		</div>
+		{% if customer.default_address.phone != blank %}
+			<div class="account-app-contacts__block">
+				<div class="account-app-contacts__label">{{ 'customer.account.phone' | t }}:</div>
+				<div class="account-app-contacts__value">{{ customer.default_address.phone }}</div>
+			</div>
+		{% endif %}
+	</div>
+</div>
+
+<div class="account-app-layout__widget account-app-layout__widget--mini">
+	<div class="account-app-widget-header">
+		<span class="account-app-widget-header__part h5">{{ 'customer.account.address' | t }}</span>
+		<span class="account-app-widget-header__part">
+			{% if customer.default_address %}
+				<a href="#addresses/{{ customer.default_address.id }}" class="small">{{ 'customer.account.edit' | t }}</a>
+			{% else %}
+				<a href="#addresses" class="small">{{ 'customer.account.edit' | t }}</a>
+			{% endif %}
+		</span>
+	</div>
+
+	{% if customer.default_address %}
+		{% render 'address', address: customer.default_address %}
+	{% else %}
+		<p>{{ 'customer.addresses.no_default' | t }}</p>
+	{% endif %}
+</div>

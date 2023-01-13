@@ -1,0 +1,131 @@
+import {WishlistApp} from "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.10.3";
+import "{{ 'wishlist-king-components.js' | asset_url }}";
+
+export const createApp = ({settings, config, locale}) => {
+  if (window.WishlistKing) {
+    return;
+  }
+
+  const app = new WishlistApp({
+    config,
+    settings,
+    locale,
+    stylesheets: [
+      "https://cdn.jsdelivr.net/npm/@appmate/wishlist@4.10.3/components/themes/default.css",
+      "{{ 'wishlist-king-custom.css' | asset_url }}",
+    ]
+  });
+
+  initComponents(app);
+
+  return app;
+};
+
+const initComponents = (app) => {
+  const {watch, createComponent, createElement} = app.utils.dom;
+  const {getProductHandleFromUrl, getVariantIdFromUrl} = app.utils.url;
+
+  // Header link
+  watch({
+    selector: ".header__quickaccess-item.miniCart"
+  }, (target) => {
+    target.insertBefore(createComponent("wishlist-link", {
+      layout: "icon-only",
+      badgeLayout: "text-only",
+      badgeFloating: false,
+      badgeParentheses: false,
+      badgeHiddenIfEmpty: false,
+      icon: "wishlist"
+    }));
+  });
+  
+  watch({
+    selector: ".mob-main__cart-button"
+  }, (target) => {
+    target.insertBefore(createComponent("wishlist-link", {
+      layout: "icon-only",
+      badgeLayout: "text-and-pill",
+      badgeFloating: "top-end",
+      badgeParentheses: false,
+      badgeHiddenIfEmpty: false,
+      icon: "wishlist",
+      floating: {
+        reference: target.element,
+        position: {
+          placement: "left",
+          inset: false
+        },
+        offset: 0
+      }
+    }));
+  });
+
+  watch({
+    selector: `.product-details__atc`,
+    pageType: ["product"]
+  }, (target) => {
+    target.append(createComponent("wishlist-button", {
+      productHandle: getProductHandleFromUrl(document.location.href),
+      variantId: getVariantIdFromUrl(document.location.href),
+      layout: "icon-and-text",
+      icon: "wishlist",
+    }));
+  });
+  
+  // Product collection
+  watch({
+    selector: `.product-card__link[href*="/products/"]`,
+    pageType: [
+      "home", "product", "collection"
+    ],
+    skipHidden: false
+  }, (target) => {
+    target.insertAfter(createComponent("wishlist-button", {
+      productHandle: getProductHandleFromUrl(target.element.href),
+      variantId: getVariantIdFromUrl(target.element.href),
+      layout: "icon-only",
+      icon: "wishlist",
+      floating: {
+        reference: target.element,
+        position: {
+          placement: "top-end",
+          inset: true
+        },
+        offset: 0
+      }
+    }));
+  });
+  
+  watch({
+    selector: `.boost-pfs-filter-product-item-image-link[href*="/products/"]`,
+    pageType: [
+      "home", "product", "collection"
+    ],
+    skipHidden: false
+  }, (target) => {
+    console.log(target);
+    target.insertAfter(createComponent("wishlist-button", {
+      productHandle: getProductHandleFromUrl(target.element.href),
+      variantId: getVariantIdFromUrl(target.element.href),
+      layout: "icon-only",
+      icon: "wishlist",
+      floating: {
+        reference: target.element,
+        position: {
+          placement: "top-end",
+          inset: true
+        },
+        offset: 0
+      }
+    }));
+  });
+
+  // Wishlist page
+  watch({
+    selector: "#wishlist-page"
+  }, (target) => {
+    target.replace(createComponent("wishlist-page", {
+      wishlistId: app.utils.url.getWishlistIdFromUrl(window.location.pathname)
+    }));
+  });
+};

@@ -1,0 +1,39 @@
+<!-- /templates/page.size.liquid -->
+<div class="size-page">
+    {% assign categories = 'Women,Men' | split: ','%}
+
+	<div class="container-max">
+		<h1 class="h2 size-page__title">{{ page.title }}</h1>
+	</div>
+
+    <div class="size-page__nav">
+        <div class="container-max">
+            <ul>
+                {% for category in categories %} 
+                <li><a href="#{{category}}" data-tab-nav="{{category}}">{{category}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="container container-min">
+        <div class="size-page__category" data-tab-tab="{{categories[0]}}">
+            {% render 'size-womens-bra' %}
+            {% render 'size-womens-hoodies' %}
+            {% render 'size-womens-tops' %}
+            {% render 'size-womens-bottoms' %}
+            {% render 'size-womens-bodysuits' %}
+            {% render 'size-womens-dresses' %}
+            {% render 'size-womens-intimates' %}
+            {% render 'size-womens-cloudflare' %}
+        </div>
+        
+        <div class="size-page__category hide" data-tab-tab="{{categories[1]}}">
+            {% render 'size-mens-tops' %}
+            {% render 'size-mens-hoodies' %}
+            {% render 'size-mens-bottoms' %}
+        </div>
+   
+    </div>
+
+</div>

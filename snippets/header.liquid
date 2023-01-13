@@ -1,0 +1,255 @@
+{%- assign infobar = section.blocks | where: "type", "infobar" -%}
+<div class="header-infobar" style="background-color: {{ section.settings.infobar_bg }}; color: {{ section.settings.infobar_textcolor }}">
+	<div class="infobar-swiper swiper-container ">
+		<div class="swiper-wrapper">
+		{%- for item in infobar -%}
+			<div class="swiper-slide infobar__item">
+				{{- item.settings.infobar_text -}}
+				{%- if item.settings.infobar_count_show -%}
+				{%- render 'infobar-timer', end_date: item.settings.infobar_countdown -%}
+				{%- endif -%}
+			</div>
+		{%- endfor -%}
+		</div>
+	</div>
+</div>
+<div class="header__desktop">
+	{%- assign menu = section.blocks | where: "type", "menu" -%}
+	{% if section.settings.nav_show %}
+	<div class="header-top" style="background-color: {{ section.settings.infobar_bg }}">
+		<div class="container-max">
+			<div class="grid-container">
+				<div class="grid-item">
+					{% comment %}
+					<ul class="header-top__logos">
+						{% if section.settings.nav_logo1 or section.settings.main_logo %}
+						<li class="header-top__logo-item {% unless isVitality %}header-top__logo-item--active {% endunless %}">
+							<a class="header-top__logo-link" href="{{ routes.root_url }}">
+								{% if section.settings.nav_logo1 %}
+									<img src="{{ section.settings.nav_logo1 }}" alt="Vitality" loading="lazy" height="20" width="197">
+								{% else %}
+									<img src="{{ section.settings.main_logo }}" alt="Vitality" loading="lazy" height="20" width="197">
+								{% endif %}
+							</a>
+						</li>
+						{% endif %}
+						{% if section.settings.nav_logo2 %}
+						<li class="header-top__logo-item secondary-logo {% if isVitality %}header-top__logo-item--active {% endif %}">
+							<a class="header-top__logo-link" href="{{ section.settings.nav_logo2_url }}">
+								<img src="{{ section.settings.nav_logo2 }}" alt="Vitality" loading="lazy" height="28" width="64">
+							</a>
+						</li>
+						{% endif %}
+					</ul>
+					{% endcomment %}
+				</div>
+				<div class="grid-item text-center">
+
+					<div class="header-top__infobar" style="color: {{ section.settings.infobar_textcolor }}">
+						<div class="infobar-swiper swiper-container ">
+							<div class="swiper-wrapper">
+							{%- for item in infobar -%}
+								<div class="swiper-slide infobar__item">
+									{{- item.settings.infobar_text -}}
+									{%- if item.settings.infobar_count_show -%}
+									{%- render 'infobar-timer', end_date: item.settings.infobar_countdown -%}
+									{%- endif -%}
+								</div>
+							{%- endfor -%}
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="grid-item text-right">
+					<div class="header-top__lang">{{ section.settings.lang_picker }}</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	{% endif %}
+	<div class="container-max">
+		<div class="grid-container">
+			<div class="grid-item">
+				<div class="header__main-logo">
+					<a href="{{ routes.root_url }}">
+						<img src="{{ section.settings.main_logo }}" alt="Vitality" loading="lazy" height="20" width="197">
+					</a>
+					
+				</div>
+			</div>
+			<div class="grid-item text-center">
+				<nav class="header__nav" role="navigation">
+					<ul>
+						
+						{% for block in menu %}
+						{% assign menuItem = linklists[block.settings.menuitem].links[0] %}
+							<li class="header__nav-item"menu {% if menuItem.links != blank  %}data-mainmenu-hassub{% endif %}>
+								<a class="header__nav-link" href="{{ menuItem.url }}">{{ menuItem.title }}</a>
+								{% if menuItem.links != blank %}
+									{% if block.settings.f_image %}
+										{% render 'menu-item-mega', block: block, menuItem: menuItem %}
+									{% else %}
+										{% render 'menu-item-simple', block: block, menuItem: menuItem %}
+									{% endif%}
+								{% endif %}
+							</li>
+						{% endfor %}
+					</ul>
+				</nav>
+			</div>
+			<div class="grid-item text-right">
+				<div class="header__quickaccess">
+					{% if section.settings.search_icon %}
+					<div class="header__quickaccess-item">
+						<button class="searchlink" data-toggle-searchbar>{%- render 'icon-search' -%}</button>
+						<div class="searchform" data-searchbar>
+							{%- render 'boost-search-widget' -%}
+						</div>
+					</div>
+					{% endif %}
+					{% if section.settings.gift_icon %}
+					<a class="header__quickaccess-item rewards" href="{% if customer %}/account#rewards{% else %}/pages/rewards{% endif %}" >{%- render 'icon-gift' -%}</a>
+					{% endif %}
+					{% if section.settings.wish_icon %}
+					
+					<a class="header__quickaccess-item wishlist" href="{% if customer %}/account#wishlist{% else %}/account#wishlist{% endif %}"><!-- include 'wishlist-link' --></a>
+					{% endif %}
+					{% if section.settings.user_icon %}
+					<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__quickaccess-item account">{%- render 'icon-account' -%}</a>
+					{% endif %}
+					{% if template != 'cart' %}
+						{% if section.settings.cart_icon %}
+						<button class="header__quickaccess-item miniCart" data-minicart-open>
+							{% render 'icon-bag' %}
+						</button>
+						<span class="cart-total" data-minicart-totalCount>{{ cart.item_count }}</span>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="header__mobile">
+	<div class="grid-container mob-main">
+		<div class="grid-item">
+			<button class="mob-main__hamburger" data-open-drawer>
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<line y1="4.5" x2="16" y2="4.5" stroke="black"/>
+				<line y1="8.5" x2="16" y2="8.5" stroke="black"/>
+				<line y1="12.5" x2="16" y2="12.5" stroke="black"/>
+				</svg>
+			</button>
+			<button class="mob-main__searchlink" data-toggle-searchbar-mob>{%- render 'icon-search' -%}</button>
+			<div class="mob-main__searchform" data-searchbar-mob>
+				{%- render 'boost-search-widget' -%}
+			</div>
+		</div>
+		<div class="grid-item text-center">
+			<a href="{{ routes.root_url }}" class="mob-main__logo">
+				{{ section.settings.main_logo | img_tag }}
+			</a>
+		</div>
+		<div class="grid-item text-right">
+			{% if template != 'cart' %}
+			<button class="mob-main__cart-button miniCart" data-minicart-open>
+				<span class="cart-total" data-minicart-totalCount>{{ cart.item_count }}</span>
+			</button>
+			{% endif %}
+		</div>
+	</div>
+	<div class="mob-drawer" data-drawer>
+		<div class="mob-drawer__top">
+			<ul class="mobtop">
+				<li class="mobtop__item">
+					{% if section.settings.nav_show %}
+						{% if section.settings.nav_logo1 or section.settings.main_logo %}
+						<a class="mobtop__link" href="{{ routes.root_url }}">{{ section.settings.nav_logo2 | img_tag }}</a>
+						{% endif %}
+					{% endif%}
+				</li>
+				{%comment%}
+				<li class="mobtop__item">
+					{% if section.settings.nav_show %}
+						{% if section.settings.nav_logo1 or section.settings.main_logo %}
+						<a class="mobtop__link" href="{{ routes.root_url }}">{{ section.settings.nav_logo1 | img_tag }}</a>
+						{% endif %}
+					{% endif%}
+				</li>
+				<li class="mobtop__item">
+					{% if section.settings.nav_show %}
+						{% if section.settings.nav_logo2 %}
+						<a class="mobtop__link" href="{{ section.settings.nav_logo2_url }}">{{ section.settings.nav_logo2 | img_tag }}</a>
+						{% endif%}
+					{% endif%}
+				</li>
+				{%endcomment%}
+				<li class="mobtop__item"><button class="close-button" data-close-drawer></button></li>
+			</ul>
+		</div>
+		{% if section.settings.search_icon %}
+		<div class="mob-drawer__search">
+			{%- render 'boost-search-widget' -%}
+		</div>
+		{% endif %}
+		<div class="mob-drawer__menu" data-drawer-menuwrap>
+			<nav>
+				<ul class="mobmenu ul" data-drawer-menu>
+					{% for block in menu %}
+						{% assign menuItemMob = linklists[block.settings.menuitem].links[0] %}
+						<li class="mobmenu__item {% if menuItemMob.links != blank %}hasSub{% endif %}" >
+								{% if menuItemMob.links != blank %}
+									<div class="mobmenu__hasSubCover">
+										<a href="{{ menuItemMob.url }}" class="mobmenu__link mainmenu-item">{{ menuItemMob.title }}</a>
+										<button data-drawer-itemtoggle class="mobmenu__openSubButton">
+											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M7 12L11 8.00003L7 4.00003" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+										</button>
+									</div>
+								{% else %}
+									<a class="mobmenu__link mainmenu-item" href="{{ menuItemMob.url }}">{{ menuItemMob.title }}</a>
+								{% endif %}
+								
+								{% if menuItemMob.links != blank %}
+									<div class="mobmenu__child ul" data-drawer-child>
+										<button class="back-button mainmenu-item" data-drawer-itemtoggle>
+											<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M9 4L5 8L9 12" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+											</svg>
+											{{ 'general.mobile.all' | t }}</button>
+										<h4 class="parent-title mainmenu-item">{{ menuItemMob.title }}</h4>
+										<ul class="mobmenu__child-menu">
+											{% for child in menuItemMob.links %}
+											<li class="mobmenu__child-item {% if child.links != blank %}hasGrandSub{% endif %}">
+												{% assign childTitle = child.title | split: '::' %}
+												<a class="mobmenu__child-link" href="{{ child.url }}"{% if childTitle[1] == 'sale' %}style="color: red"{% endif %}>{{ childTitle[0] }}</a>
+												{% if child.links != blank %}
+												<ul class="mobmenu__grandChild">
+													{% for grandChild in child.links %}
+													<li class="mobmenu__grandChild-item"><a class="mobmenu__grandChild-link" href="{{ grandChild.url }}">{{ grandChild.title }}</a></li>
+													{% endfor %}
+												</ul>
+												{% endif %}
+											</li>
+											{% endfor %}
+										</ul>
+									</div>
+								{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+		</div>
+		<div class="mob-drawer__bottom">
+			<div class="lang-picker">
+				
+			</div>
+			<div class="account-buttons">
+				<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__quickaccess-item account">{%- render 'icon-account' -%} {{ 'general.mobile.account' | t }}</a>
+				<a class="header__quickaccess-item wishlist {% if request.path == '/account' %}isAccountLink{% endif %}" href="/account#wishlist" >{%- render 'icon-heart' -%} {{ 'general.mobile.wishlist' | t }}</a>
+			</div>
+		</div>
+	</div>
+</div>

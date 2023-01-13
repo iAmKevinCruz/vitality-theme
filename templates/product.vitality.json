@@ -1,0 +1,58 @@
+{
+  "wrapper": "div",
+  "sections": {
+    "main": {
+      "type": "product-template",
+      "blocks": {
+        "c5132dd0-6c6a-4054-81bf-5f5a7f8a4ebf": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "half_image": "shopify:\/\/shop_images\/Rectangle_47_1.jpg",
+            "half_image_p": "1",
+            "half_video": "",
+            "half_title": "Designed by women, for women.",
+            "half_title_tag": "h3",
+            "half_text": "<p>Vitality x Balance is a sister owned and operated company, bringing you luxury lifestyle apparel designed in-house with everybody in mind - every shape, size, and color. <\/p>",
+            "half_b_text": "",
+            "half_b_url": "",
+            "half_text_color": "#4e403b",
+            "half_bg_color": "#f7f5f4"
+          }
+        },
+        "21aa0cbf-3a39-4454-8f4b-ce3138683c0f": {
+          "type": "menu",
+          "disabled": true,
+          "settings": {
+            "half_image": "shopify:\/\/shop_images\/Rectangle_48_4.jpg",
+            "half_image_p": "2",
+            "half_video": "",
+            "half_title": "18k Plated hammered gold",
+            "half_title_tag": "h3",
+            "half_text": "<p>Our signature 18k Plated hammered gold is lux, durable, yet ultra lightweight<\/p>",
+            "half_b_text": "",
+            "half_b_url": "",
+            "half_text_color": "#4e403b",
+            "half_bg_color": "#f7f5f4"
+          }
+        }
+      },
+      "block_order": [
+        "c5132dd0-6c6a-4054-81bf-5f5a7f8a4ebf",
+        "21aa0cbf-3a39-4454-8f4b-ce3138683c0f"
+      ],
+      "settings": {
+        "men_collection": "",
+        "women_collection": "",
+        "related_title": "You Might Also Like",
+        "related_limit": 15,
+        "shipping_page": "return-policy-1",
+        "shipping_text": "<p><strong>RETURNS<\/strong><\/p><p>Items purchased from Vitality are eligible for a<strong> <\/strong>refund or exchange if returned within 60 days of purchase. <strong>*DOES NOT INCLUDE FINAL SALE ITEMS. <\/strong><\/p><p>More info <a href=\"https:\/\/shopvitality.com\/pages\/return-policy\" target=\"_blank\" title=\"https:\/\/shopvitality.com\/pages\/return-policy\">here<\/a><\/p><p><strong>SHIPPING<\/strong><\/p><p><\/p><p><em>Please expect fulfillment delays for orders placed at this time. Current order processing time is 7-12 business days. <\/em><\/p><p><strong>Domestic:<\/strong> <\/p><p>FREE 4-6 day shipping on orders $150 and above  <\/p><p>4-6 day shipping for $5<\/p><p><strong>International: <\/strong><\/p><p>We offer global shipping, with speeds based on your region.<\/p><p>More info <a href=\"https:\/\/shopvitality.com\/pages\/helpdesk \" target=\"_blank\" title=\"https:\/\/shopvitality.com\/pages\/helpdesk \">here<\/a><\/p>",
+        "enable_payment_button": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

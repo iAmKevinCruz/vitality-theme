@@ -1,0 +1,40 @@
+<div class="help-page">
+    {% assign categories = page.metafields.accentuate.faq_category | uniq %}
+
+	<div class="container-max">
+		<h1 class="h2 help-page__title">{{ page.title }}</h1>
+	</div>
+
+    <div class="help-page__nav">
+        <div class="container-max">
+            <ul class="helpul">
+                {% for category in categories %} 
+                <li><a href="#{{category}}" data-href="{{category}}">{{category}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="container container-min">
+        {% for category in categories %} 
+        <div class="help-page__faq-block" id="{{category}}">
+            <h4 class="title">{{ category }}</h4>
+            <ul class="faq-list">
+                {% for question in page.metafields.accentuate.faq_title %} 
+                    {% if page.metafields.accentuate.faq_category[forloop.index0] == category %}
+                        <li class="faq-list__item">
+                            <button data-accordion="trigger" class="h5 faq-list__question">{{ question }}</button>
+                            <div data-accordion="content-container" class="faq-list__wrapper" style="height: 0;">
+                                <div data-accordion="content" class="faq-list__answer">
+                                    {{ page.metafields.accentuate.faq_text[forloop.index0] }}
+                                </div>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %} 
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>

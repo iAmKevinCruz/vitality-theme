@@ -1,0 +1,89 @@
+{%- if product.metafields.accentuate.default_model_itle -%}
+<div class="model-changer">
+    <change-model id="changeModel">
+        <button class="model-button">{{ 'products.modals_title' | t }}</button>
+        <ul class="model-select">
+            <li class="model-option">
+                <a href="#" role="button" data-id="default">
+                    <div class="model-image">
+                        <img src="{{ product.featured_image | img_url: "100x" }}" alt="{{ product.featured_image.alt }}" loading="lazy" width="70" height="120"/>
+                    </div>
+                    
+                    <div class="model-content">
+                        <h3 class="model-title">{{ product.metafields.accentuate.default_model_itle }}</h3>
+                        {{ product.metafields.accentuate.default_model_description }}
+                    </div>
+                </a>
+            </li>
+    
+            {% for model in product.metafields.accentuate.model_itle %}
+            {% assign modelFirstImage = product.metafields.accentuate.model_images[forloop.index0] | where: "media_type", "image" %}
+    
+            <li class="model-option">
+                <a href="#model-{{forloop.index0}}" role="button" data-id="model-{{forloop.index0}}">
+                    <div class="model-image">
+                        <img src="{{ modelFirstImage[0].cloudinary_src | append: 'w_100' }}" alt="{{ model }}" loading="lazy" width="70" height="120"/>
+                    </div>
+                    
+                    <div class="model-content">
+                        <h3 class="model-title">{{ model }}</h3>
+                        {{ product.metafields.accentuate.model_description[forloop.index0] }}
+                    </div>
+                </a>
+            </li>
+            {% endfor %} 
+        </ul>
+        
+        <script type="application/json" id="models-json">
+           {
+            "models": [
+                {
+                    "id": "default",
+                    "title": "{{ product.metafields.accentuate.default_model_itle }}",
+                    "description": "{{ product.metafields.accentuate.default_model_description }}",
+                    "media": [
+                        {%- for media in product.media -%}
+                        {
+                            "type": "{{ media.media_type }}",
+                            {%- if media.media_type == 'video' -%}
+                            "src": "{{ media.sources[1].url }}",
+                            "preview_img": "{{ media.preview_image | img_url: 'x1024'}}",
+                            "mime_type": "{{ media.sources[1].mime_type }}"
+                            {%- else -%}
+                            "src": "{{ media.src | img_url: 'x1024'}}",
+                            "zoom_src": "{{ media.src | img_url: 'x2024'}}"
+                            {%- endif -%},
+                            "alt": "{{ media.alt }}"
+                        }{%- unless forloop.last == true -%},{%- endunless -%}
+                        {%- endfor -%}
+                    ]
+                },
+                {%- for model in product.metafields.accentuate.model_itle -%} 
+                {
+                    "id": "model-{{forloop.index0}}",
+                    "title": "{{ model }}",
+                    "description": "{{ product.metafields.accentuate.model_description[forloop.index0] }}",
+                    "media": [
+                        {%- for media in product.metafields.accentuate.model_images[forloop.index0] -%}
+                        {
+                            "type": "{{ media.media_type }}",
+                            {%- if media.media_type == 'video' -%}
+                            "src": "{{ media.src }}",
+                            "preview_img": "{{ product.metafields.accentuate.model_images[0][0].cloudinary_src | append: 'h_1024' }}",
+                            "mime_type": "{{ media.mime_type }}"
+                            {%- else -%}
+                            "src": "{{ media.cloudinary_src | append: 'h_1024' }}",
+                            "zoom_src": "{{ media.cloudinary_src | append: 'h_2024' }}"
+                            {%- endif -%},
+                            "alt": "{{ media.filename }}"
+                        }{%- unless forloop.last == true -%},{%- endunless -%}
+                        {%- endfor -%}
+                    ]
+                }{%- unless forloop.last == true -%},{%- endunless -%}
+                {%- endfor -%}
+            ]
+           }
+        </script>
+    </change-model>
+</div>
+{%- endif -%}

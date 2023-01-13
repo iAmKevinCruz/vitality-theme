@@ -1,0 +1,21 @@
+{% if shop.metafields.accentuate.wp_sizeshortregularlong %}
+<div class="size-block">
+    <h4 class="title">{{ 'general.sizeguide.womenscloudflarepants' | t }}</h4>
+    <table style="width:100%">
+        <tr>
+        <th>{{ 'general.sizeguide.size' | t }}</th>
+        <th>{{ 'general.sizeguide.short' | t }}</th>
+        <th>{{ 'general.sizeguide.regular' | t }}</th>
+        <th>{{ 'general.sizeguide.long' | t }}</th>
+        </tr>
+        {% for item in shop.metafields.accentuate.wp_sizeshortregularlong %}
+        {% assign sizes = item | split: ','%}
+        <tr>
+            {% for size in sizes %}
+                <td>{{size}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

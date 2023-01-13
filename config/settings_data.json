@@ -1,0 +1,1091 @@
+{
+  "current": {
+    "favicon": "shopify:\/\/shop_images\/favicon_660a2b09-c58e-488e-828e-1f8cf75040f2.jpg",
+    "shipping_note_default": "Please allow up to 10 business days for order processing prior to your order shipping.",
+    "shipping_note_1_name": "",
+    "shipping_note_1_note": "",
+    "gift_card_image": "shopify:\/\/shop_images\/gift-card.jpg",
+    "cart_precheckout_note": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/Vitality_Logo-02.png",
+    "checkout_logo_size": "small",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#202020",
+    "checkout_button_color": "#202020",
+    "app_wk_enabled": true,
+    "app_wk_login_required": false,
+    "app_wk_icon": "heart",
+    "app_wk_col_bg_shape": "square",
+    "app_wk_share_position": "top",
+    "app_wk_products_per_row": "4",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "d175db80-208e-45e0-9b6f-9166fb421a3a": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "men",
+              "f_image": "shopify:\/\/shop_images\/Men-Dropdown.jpg",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "Winter Loungewear",
+              "f_urltext": "Shop Now",
+              "f_url": "shopify:\/\/collections\/cozy-drop"
+            }
+          },
+          "9b08c54b-5ceb-435a-8937-159c21b6fa7c": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "women",
+              "f_image": "shopify:\/\/shop_images\/cloud2-Dropdown.jpg",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "Upgrade available 1.19",
+              "f_title": "Cloud II",
+              "f_urltext": "View Lookbook",
+              "f_url": "shopify:\/\/pages\/cloud-ii-january-2023-lookbook"
+            }
+          },
+          "d82dd80f-b9b2-4091-bea3-409b1e36a5a5": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "sale",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "2f8d869b-01a6-44e2-b255-0bef1ecb857f": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "lookbook",
+              "f_image": "shopify:\/\/shop_images\/Lookbook-Dropdown.jpg",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "Browse the upgrade",
+              "f_title": "Cloud II",
+              "f_urltext": "View Lookbook",
+              "f_url": "shopify:\/\/pages\/cloud-ii-january-2023-lookbook"
+            }
+          },
+          "0ca1dfc8-d0f3-435b-abdb-d0a61e6f1757": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "about",
+              "f_image": "shopify:\/\/shop_images\/About-Us-Dropdown.jpg",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "869f0cd3-a63b-4885-9182-9a48575cd1d5": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "rewards",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "779dfb37-5af9-40b5-9056-17ea80eb5bc1": {
+            "type": "infobar",
+            "settings": {
+              "infobar_text": "<p>New Year Sitewide Sale\/\/ Up To 50% Off<\/p>",
+              "infobar_count_show": true,
+              "infobar_countdown": "January 14, 2023 00:00:00 MST"
+            }
+          },
+          "67074f8c-b684-44c7-ba23-1f6c439fd54c": {
+            "type": "infobar",
+            "settings": {
+              "infobar_text": "<p><a href=\"\/pages\/cloud-ii-january-2023-lookbook\" title=\"Cloud II Lookbook January '23\">Coming Soon \/\/ Cloud II \/\/ Our Signature Fabric, Elevated<\/a><\/p>",
+              "infobar_count_show": true,
+              "infobar_countdown": "January 19, 2023 10:00:00 MST"
+            }
+          },
+          "c09471f8-e19d-4996-ab4e-4dd347a5968b": {
+            "type": "infobar",
+            "settings": {
+              "infobar_text": "<p><a href=\"\/pages\/daydream-january-2023-lookbook\" title=\"Daydream Lookbook January '23\">Coming Soon \/\/ Daydream \/\/ Better Fit, Better Feel<\/a><\/p>",
+              "infobar_count_show": true,
+              "infobar_countdown": "January 19, 2023 10:00:00 MST"
+            }
+          },
+          "498a529e-160d-4fe8-b0af-e5cfbc134dd3": {
+            "type": "infobar",
+            "settings": {
+              "infobar_text": "<p>FREE STANDARD SHIPPING ON ALL US ORDERS OVER $150<\/p>",
+              "infobar_count_show": false,
+              "infobar_countdown": "January 19, 2023 10:00:00 MST"
+            }
+          }
+        },
+        "block_order": [
+          "d175db80-208e-45e0-9b6f-9166fb421a3a",
+          "9b08c54b-5ceb-435a-8937-159c21b6fa7c",
+          "d82dd80f-b9b2-4091-bea3-409b1e36a5a5",
+          "2f8d869b-01a6-44e2-b255-0bef1ecb857f",
+          "0ca1dfc8-d0f3-435b-abdb-d0a61e6f1757",
+          "869f0cd3-a63b-4885-9182-9a48575cd1d5",
+          "779dfb37-5af9-40b5-9056-17ea80eb5bc1",
+          "67074f8c-b684-44c7-ba23-1f6c439fd54c",
+          "c09471f8-e19d-4996-ab4e-4dd347a5968b",
+          "498a529e-160d-4fe8-b0af-e5cfbc134dd3"
+        ],
+        "settings": {
+          "infobar": "",
+          "infobar_bg": "#f4f4f4",
+          "infobar_textcolor": "#000000",
+          "nav_show": true,
+          "nav_logo2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/vitality_header-logo.png?v=1650574526",
+          "nav_logo2_url": "shopify:\/\/pages\/loungewear-intimates-fashion",
+          "main_logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/Vitality_Logo-02.png?v=1650389244",
+          "lang_picker": "lang-widget",
+          "search_icon": true,
+          "gift_icon": false,
+          "wish_icon": false,
+          "user_icon": true,
+          "cart_icon": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1e191479-1f6f-4818-9415-b8c2ceb624e4": {
+            "type": "socials",
+            "settings": {
+              "social_icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-B_11262b3d-59d4-46ad-ad11-664f2fc03e7c.svg?v=1622516812",
+              "social_url": "https:\/\/www.instagram.com\/shopvitality\/",
+              "social_label": "Instagram"
+            }
+          },
+          "7f7dcccc-441c-4715-a984-9a7a512c3b88": {
+            "type": "socials",
+            "settings": {
+              "social_icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-B.svg?v=1622516763",
+              "social_url": "https:\/\/www.facebook.com\/shopvitality",
+              "social_label": "Facebook"
+            }
+          },
+          "5c3f5eeb-9d32-41ba-a3df-f67e078c489f": {
+            "type": "socials",
+            "settings": {
+              "social_icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-B_1e1d4d7a-01f3-45cb-8aa2-b3ebcf826f83.svg?v=1622516783",
+              "social_url": "https:\/\/twitter.com\/shop__vitality",
+              "social_label": "Twitter"
+            }
+          },
+          "6adc0a6a-e3e1-4a7a-96ed-5080de4bb448": {
+            "type": "socials",
+            "settings": {
+              "social_icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-B_a4004282-55c6-4831-bf4d-6907d9ba9d7d.svg?v=1622516830",
+              "social_url": "https:\/\/www.youtube.com\/c\/Vitalityshop",
+              "social_label": "Youtube"
+            }
+          }
+        },
+        "block_order": [
+          "1e191479-1f6f-4818-9415-b8c2ceb624e4",
+          "7f7dcccc-441c-4715-a984-9a7a512c3b88",
+          "5c3f5eeb-9d32-41ba-a3df-f67e078c489f",
+          "6adc0a6a-e3e1-4a7a-96ed-5080de4bb448"
+        ],
+        "settings": {
+          "footermenu": "footer-1",
+          "copy": "Vitality",
+          "nl_title": "Newsletter",
+          "nl_text": "We encourage you to join our journey and community in the pursuit of a purposeful existence.",
+          "nl_form": "<div class=\"klaviyo-form-V8W5e9\"><\/div>"
+        }
+      },
+      "header-vitality": {
+        "type": "header-vitality",
+        "blocks": {
+          "9012105f-2c31-42f7-b481-d804ef40e4e2": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "shop-vitality",
+              "f_image_ord": "1",
+              "f_color": "#f7f5f4",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "78a2ec45-e404-49fe-82be-f4b4b00a8eac": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "lookbook",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "b0e20e9e-24e3-44d6-b8f2-050b2cab619f": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "about",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          },
+          "790974b5-57ad-4a41-a4b0-2ca53429cf7c": {
+            "type": "menu",
+            "settings": {
+              "menuitem": "help-vitality",
+              "f_image_ord": "0",
+              "f_color": "#ffffff",
+              "f_pretitle": "",
+              "f_title": "",
+              "f_urltext": "",
+              "f_url": ""
+            }
+          }
+        },
+        "block_order": [
+          "9012105f-2c31-42f7-b481-d804ef40e4e2",
+          "78a2ec45-e404-49fe-82be-f4b4b00a8eac",
+          "b0e20e9e-24e3-44d6-b8f2-050b2cab619f",
+          "790974b5-57ad-4a41-a4b0-2ca53429cf7c"
+        ],
+        "settings": {
+          "infobar": "<p>Free shipping on all domestic orders over $150<\/p>",
+          "infobar_bg": "#b09e94",
+          "infobar_textcolor": "#ffffff",
+          "nav_show": true,
+          "nav_logo2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/vitality-nav-logo.svg?v=1622768165",
+          "nav_logo1": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/balance-nav-logo.svg?v=1622768165",
+          "nav_logo2_url": "shopify:\/\/pages\/loungewear-intimates-fashion",
+          "main_logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/vitality.svg?v=1625784961",
+          "lang_picker": "lang-widget",
+          "search_icon": true,
+          "gift_icon": true,
+          "wish_icon": true,
+          "user_icon": true,
+          "cart_icon": true
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "blocks": {
+          "90421d91-bd3f-4a5b-b7fd-d992ce89837a": {
+            "type": "menu",
+            "disabled": true,
+            "settings": {
+              "half_image": "shopify:\/\/shop_images\/Rectangle_47.jpg",
+              "half_image_p": "1",
+              "half_video": "",
+              "half_title": "Our Design Philosophy",
+              "half_title_tag": "h3",
+              "half_text": "<p>Balance means taking care of your mind, body and spirit, and living life to the fullest. When you find your balance, you find your peace.<\/p>",
+              "half_b_text": "Shop Now",
+              "half_b_url": "#",
+              "half_text_color": "#000000",
+              "half_bg_color": "#ffffff"
+            }
+          },
+          "1a0f362f-0253-47d7-abce-2faa89aa2ca8": {
+            "type": "menu",
+            "disabled": true,
+            "settings": {
+              "half_image": "shopify:\/\/shop_images\/Rectangle_48.jpg",
+              "half_image_p": "2",
+              "half_video": "",
+              "half_title": "Sustainable Fabric",
+              "half_title_tag": "h3",
+              "half_text": "<p>Balance means taking care of your mind, body and spirit, and living life to the fullest. When you find your balance, you find your peace.<\/p>",
+              "half_b_text": "Shop Now",
+              "half_b_url": "",
+              "half_text_color": "#000000",
+              "half_bg_color": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "90421d91-bd3f-4a5b-b7fd-d992ce89837a",
+          "1a0f362f-0253-47d7-abce-2faa89aa2ca8"
+        ],
+        "settings": {
+          "men_collection": "men",
+          "women_collection": "women",
+          "related_title": "Complete the look",
+          "related_limit": 15,
+          "shipping_page": "return-policy",
+          "shipping_text": "<p><strong>RETURNS<\/strong><\/p><p>Items purchased from Vitality are eligible for a<strong> <\/strong>refund or exchange if returned within 60 days of purchase. <strong>*DOES NOT INCLUDE FINAL SALE ITEMS. <\/strong><\/p><p>More info <a href=\"https:\/\/shopvitality.com\/pages\/return-policy\" target=\"_blank\" title=\"https:\/\/shopvitality.com\/pages\/return-policy\">here<\/a><\/p><p><strong>SHIPPING<\/strong><\/p><p><\/p><p><em>Please expect fulfillment delays for orders placed at this time. Current order processing time is 7-12 business days. <\/em><\/p><p><strong>Domestic:<\/strong> <\/p><p>FREE 4-6 day shipping on orders $150 and above  <\/p><p>4-6 day shipping for $5<\/p><p><strong>International: <\/strong><\/p><p>We offer global shipping, with speeds based on your region.<\/p><p>More info <a href=\"https:\/\/shopvitality.com\/pages\/helpdesk \" target=\"_blank\" title=\"https:\/\/shopvitality.com\/pages\/helpdesk \">here<\/a><\/p>",
+          "enable_payment_button": true
+        }
+      },
+      "162294651883216eba": {
+        "type": "double-image",
+        "blocks": {
+          "94bb004b-3e52-46c0-9884-17da1e91c5f0": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/50-50-Hero.jpg",
+              "double_title": "Shop Women's",
+              "double_subtitle": "",
+              "double_b_text": "",
+              "double_b_url": "https:\/\/shopvitality.com\/collections\/all\/women",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "bc033ae9-9489-4d62-b09b-f2b2ce4bb375": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/50-50-men.jpg",
+              "double_title": "Shop Men's",
+              "double_subtitle": "",
+              "double_b_text": "",
+              "double_b_url": "https:\/\/shopvitality.com\/collections\/all\/men",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "3782f867-fe56-4ab7-a9c1-62b72b3e52d9": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/Shop-aLL.jpg",
+              "double_title": "Shop <br> All",
+              "double_subtitle": "",
+              "double_b_text": "",
+              "double_b_url": "shopify:\/\/collections\/all",
+              "double_text_color": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "94bb004b-3e52-46c0-9884-17da1e91c5f0",
+          "bc033ae9-9489-4d62-b09b-f2b2ce4bb375",
+          "3782f867-fe56-4ab7-a9c1-62b72b3e52d9"
+        ],
+        "settings": {
+        }
+      },
+      "1623107856cc4c9311": {
+        "type": "products-carousel",
+        "disabled": true,
+        "settings": {
+          "carousel_title": "AS SEEN IN NEW YORK FASHION WEEK",
+          "carousel_coll": "the-panorama-collection",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 6,
+          "carousel_mob": 2,
+          "carousel_b_text": "VIEW ALL PANORAMA"
+        }
+      },
+      "collection-template-boost-pfs-filter": {
+        "type": "collection-template-boost-pfs-filter",
+        "settings": {
+          "switch_layout_filter": "switch_layout_filter_vertical",
+          "enable_filter_sticky": true,
+          "toolbar_filter_sticky_mobile": true,
+          "filter_layout": "filter_layout_collapse",
+          "layout_type": "fullwidth",
+          "show_collection_image": true,
+          "show_collection_des": true,
+          "collection_header_bg_color": "#ffffff",
+          "collection_header_text_color": "",
+          "show_toolbar_view_as": false,
+          "show_toolbar_product_count": false,
+          "show_toolbar_sort_by": true,
+          "show_toolbar_view_as_mobile": false,
+          "show_toolbar_product_count_mobile": false,
+          "show_toolbar_sort_by_mobile": true,
+          "view_as_type": "view_as_type_grid_list",
+          "products_per_page": 24,
+          "products_per_row": 4,
+          "products_per_row_mobile": 2,
+          "product_item_type": "grid",
+          "product_item_layout": "no-border",
+          "text_alignment": "left",
+          "show_details_when_hovering": false,
+          "show_vendor": false,
+          "show_price": true,
+          "active_image_swap": true,
+          "show_product_review": false,
+          "show_sold_out_label": false,
+          "show_sale_label": false,
+          "show_sale_percent": false,
+          "product_label_has_border_radius": false,
+          "show_label_by_tag": true,
+          "product_item_label_position": "top_left",
+          "product_label_type": "rectangle",
+          "product_item_label_bg_color": "",
+          "product_item_label_text_color": "",
+          "show_product_label_image": false,
+          "product_item_title_color": "#3d4246",
+          "product_item_title_font": "poppins_n6",
+          "product_item_title_font_size": 14,
+          "product_item_vendor_color": "#969595",
+          "product_item_vendor_font": "poppins_n4",
+          "product_item_vendor_font_size": 12,
+          "product_item_price_color": "#222222",
+          "product_item_old_price_color": "#969595",
+          "product_item_sale_price_color": "#f30000",
+          "product_item_price_font": "poppins_n4",
+          "product_item_price_font_size": 14,
+          "product_item_des_color": "#3a3a3a",
+          "product_item_des_font": "poppins_n4",
+          "product_item_des_font_size": 14,
+          "display_item_swatch": true,
+          "show_item_swatch_tooltip": true,
+          "swatch_color_display_type": "swatch_color_display_type_image_product",
+          "swatch_color_event_change_image": "hover",
+          "swatches_color_shape": "circle",
+          "display_item_swatch_size": false,
+          "equal_height": "auto",
+          "ratio_width_height_other": "",
+          "equal_height_crop_image_position": "center"
+        }
+      },
+      "contact-template": {
+        "type": "contact-template",
+        "settings": {
+          "cover_image": "shopify:\/\/shop_images\/DSC08816-2.jpg",
+          "cover_mobile_image": "shopify:\/\/shop_images\/DSC08782-2.jpg"
+        }
+      },
+      "1624930950ea5c37f1": {
+        "type": "text-block",
+        "disabled": true,
+        "settings": {
+          "textblock_text": "<p>INSPIRED ATHLEISURE DESIGNED TO EMPOWER EVERY<strong>BODY<\/strong> <a href=\"\/pages\/about-new-theme\" title=\"About - New Theme\">About us<\/a><\/p>"
+        }
+      },
+      "search-template-boost-pfs-filter": {
+        "type": "search-template-boost-pfs-filter",
+        "settings": {
+          "switch_layout_filter": "switch_layout_filter_vertical",
+          "enable_filter_sticky": false,
+          "toolbar_filter_sticky_mobile": false,
+          "filter_layout": "filter_layout_collapse",
+          "layout_type": "fullwidth",
+          "show_toolbar_view_as": false,
+          "show_toolbar_product_count": false,
+          "show_toolbar_sort_by": false,
+          "show_toolbar_view_as_mobile": false,
+          "show_toolbar_product_count_mobile": false,
+          "show_toolbar_sort_by_mobile": false,
+          "view_as_type": "view_as_type_grid_list",
+          "products_per_page": 24,
+          "products_per_row": 4,
+          "products_per_row_mobile": 2,
+          "product_item_type": "grid",
+          "product_item_layout": "no-border",
+          "text_alignment": "left",
+          "show_details_when_hovering": false,
+          "show_vendor": false,
+          "show_price": true,
+          "active_image_swap": true,
+          "show_product_review": false,
+          "show_sold_out_label": false,
+          "show_sale_label": false,
+          "show_sale_percent": false,
+          "product_label_has_border_radius": false,
+          "show_label_by_tag": false,
+          "product_item_label_position": "top_left",
+          "product_label_type": "rectangle",
+          "product_item_label_bg_color": "",
+          "product_item_label_text_color": "",
+          "show_product_label_image": false,
+          "product_item_title_color": "#3d4246",
+          "product_item_title_font": "poppins_n6",
+          "product_item_title_font_size": 14,
+          "product_item_vendor_color": "#969595",
+          "product_item_vendor_font": "poppins_n4",
+          "product_item_vendor_font_size": 12,
+          "product_item_price_color": "#222222",
+          "product_item_old_price_color": "#969595",
+          "product_item_sale_price_color": "#f30000",
+          "product_item_price_font": "poppins_n4",
+          "product_item_price_font_size": 14,
+          "product_item_des_color": "#3a3a3a",
+          "product_item_des_font": "poppins_n4",
+          "product_item_des_font_size": 14,
+          "display_item_swatch": true,
+          "show_item_swatch_tooltip": true,
+          "swatch_color_display_type": "swatch_color_display_type_image_product",
+          "swatch_color_event_change_image": "hover",
+          "swatches_color_shape": "circle",
+          "display_item_swatch_size": false,
+          "equal_height": "auto",
+          "ratio_width_height_other": "",
+          "equal_height_crop_image_position": "center"
+        }
+      },
+      "notfound": {
+        "type": "notfound",
+        "settings": {
+          "main_title": "Page not found",
+          "img_left": "shopify:\/\/shop_images\/DSC08763.jpg",
+          "img_right": "shopify:\/\/shop_images\/DSC08816.jpg",
+          "img_404": "shopify:\/\/shop_images\/404_404_404_404_404_404_404_404_404_404_404_404_404_404_404_404_404_404.png",
+          "button_text": "Back to home",
+          "button_url": "\/"
+        }
+      },
+      "text-us-template": {
+        "type": "text-us-template",
+        "settings": {
+          "code_snippet": "<div style=\"“width:\" auto max-width:=\"\" padding:=\"\" margin:=\"\"><div><script type=\"“text\/javascript”\" src=\"%E2%80%9Chttps:\/\/forms.smsbump.com\/155425\/form_34556.js?ver=1650469902%E2%80%9D\"><\/script><\/div><\/div>"
+        }
+      },
+      "careers-template": {
+        "type": "careers-template",
+        "settings": {
+          "cover_image": "shopify:\/\/shop_images\/ivana-cajina-HDd-NQ_AMNQ-unsplash.jpg"
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "featured_article": "balance-blog\/self-care-embracing-your-individuality"
+        }
+      },
+      "loyalty-lion-page-template": {
+        "type": "loyalty-lion-page-template",
+        "blocks": {
+          "6624ffae-6a22-4796-829b-386a04907d16": {
+            "type": "how_it_works",
+            "settings": {
+              "icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-user.svg?v=1625569649",
+              "title": "Sign Up",
+              "description": "Join the club and start shopping"
+            }
+          },
+          "9cc77b7a-8ed2-4a27-b88f-dc4167c411ae": {
+            "type": "how_it_works",
+            "settings": {
+              "icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-coins-up.svg?v=1625569649",
+              "title": "Earn Points",
+              "description": "Earn points on all orders and many other ways"
+            }
+          },
+          "8be5f353-5a73-422e-befd-f0de3b2c270e": {
+            "type": "how_it_works",
+            "settings": {
+              "icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-piggy-bank.svg?v=1625569649",
+              "title": "Save Up",
+              "description": "Place orders and watch your reward balance grow"
+            }
+          },
+          "fcfd84a6-d056-4dce-8980-7c28cc8cb281": {
+            "type": "how_it_works",
+            "settings": {
+              "icon": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-shopping-bag.svg?v=1625569649",
+              "title": "Spend Points",
+              "description": "Every 100 points saves $1 on your next order"
+            }
+          },
+          "de6f2ca8-e710-4cc3-932f-2446a9a00c54": {
+            "type": "benefits",
+            "settings": {
+              "title": "Friend",
+              "description": "Spend $0 - $400"
+            }
+          },
+          "69357ad2-7706-4510-bce7-615a89d653a7": {
+            "type": "benefits",
+            "settings": {
+              "title": "Fam",
+              "description": "Spend $400 — $2,000"
+            }
+          },
+          "03f1af5b-53e7-4e0f-a2af-49468a8aff92": {
+            "type": "benefits",
+            "settings": {
+              "title": "Very important fam (VIF)",
+              "description": "Spend $2,000+"
+            }
+          }
+        },
+        "block_order": [
+          "6624ffae-6a22-4796-829b-386a04907d16",
+          "9cc77b7a-8ed2-4a27-b88f-dc4167c411ae",
+          "8be5f353-5a73-422e-befd-f0de3b2c270e",
+          "fcfd84a6-d056-4dce-8980-7c28cc8cb281",
+          "de6f2ca8-e710-4cc3-932f-2446a9a00c54",
+          "69357ad2-7706-4510-bce7-615a89d653a7",
+          "03f1af5b-53e7-4e0f-a2af-49468a8aff92"
+        ],
+        "settings": {
+          "pretitle": "Loyalty program",
+          "subtitle": "<p>Be a part of Vitality family! Earn points when you shop, redeem rewards, and get exclusive discounts.<\/p>",
+          "cover_image": "shopify:\/\/shop_images\/balance_hero_Desktop.jpg",
+          "cover_image_mobile": "shopify:\/\/shop_images\/balance_hero_mobile.jpg",
+          "how_it_works_title": "How it works",
+          "benefits_title": "Tiers and Benefits",
+          "ways_to_earn_title": "Ways to earn points",
+          "featured_way_to_earn_text": "Post in Vitality",
+          "featured_way_to_earn_image": "shopify:\/\/shop_images\/Untitled-1_97ac1b97-8c06-4e64-9669-eaad812ede9c.jpg",
+          "featured_way_to_earn_subtitle": "A-List Program",
+          "banner_link": "shopify:\/\/pages\/a-list-program",
+          "banner_2_title": "",
+          "banner_2_subtitle": "",
+          "banner_2_link": "",
+          "way_to_earn_purchase_url": "shopify:\/\/collections\/all",
+          "way_to_earn_email_url": "https:\/\/www.shopvitality.com\/pages\/text-us",
+          "way_to_earn_fb_url": "https:\/\/www.facebook.com\/shopvitality",
+          "way_to_earn_insta_url": "https:\/\/www.instagram.com\/shopvitality\/",
+          "way_to_earn_twitter_url": "https:\/\/twitter.com\/shop__vitality",
+          "way_to_earn_tiktok_url": "https:\/\/www.tiktok.com\/t\/ZTRYSsboY\/",
+          "rewards_title": "Redeem exclusive vouchers"
+        }
+      },
+      "password": {
+        "type": "password",
+        "blocks": {
+          "0db99c49-4a55-460e-8e05-b0c48400f2bf": {
+            "type": "social_link",
+            "settings": {
+              "icon_path": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/icon-instagram-white.svg?v=1625666061",
+              "icon_link": "https:\/\/www.instagram.com\/shopvitality\/"
+            }
+          }
+        },
+        "block_order": [
+          "0db99c49-4a55-460e-8e05-b0c48400f2bf"
+        ],
+        "settings": {
+          "logo_path": "https:\/\/cdn.shopify.com\/s\/files\/1\/0005\/7750\/3289\/files\/3_9512b847-d4be-484d-8e34-6e872911af54.png?v=1651783076",
+          "title": "New Year Sitewide Sale",
+          "text": "",
+          "ext_button": "Get Early Access Now",
+          "ext_button_url": "https:\/\/shopvitality.attn.tv\/p\/6Pe\/landing-page",
+          "countdown": "Janurary 2, 2023 10:00:00 MST",
+          "footer_text": "<p>Follow us @shopvitality to stay in the loop<\/p>",
+          "pwd_img": "shopify:\/\/shop_images\/Gym-Rats-1_bc53ac3f-e166-42c1-b920-07610ef642ba.gif"
+        }
+      },
+      "footer-vitality": {
+        "type": "footer-vitality",
+        "settings": {
+          "footermenu": "footer-1",
+          "copy": "Balance Athletica",
+          "nl_title": "Newsletter",
+          "nl_text": "We encourage you to join our journey and community in the pursuit of Balance.",
+          "nl_form": "<div class=\"klaviyo-form-V8W5e9\"><\/div>"
+        }
+      },
+      "contact-template-vitality": {
+        "type": "contact-template-vitality",
+        "settings": {
+          "cover_image": "shopify:\/\/shop_images\/Rectangle_5.jpg",
+          "cover_mobile_image": "shopify:\/\/shop_images\/Rectangle_5.jpg"
+        }
+      },
+      "16363955526a180824": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "Cloud Pant <br> ★★★★★ <br> 14,000+ Reviews",
+          "carousel_coll": "cloud-pant",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 4,
+          "carousel_mob": 2,
+          "carousel_b_text": "VIEW ALL CLOUD PANTS"
+        }
+      },
+      "1636411422d7020e1f": {
+        "type": "double-image",
+        "blocks": {
+          "15fbe7d0-7fcf-4d69-b8c0-14f5d60ae432": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/CLOUD-Fabric-Pics.jpg",
+              "double_title": "Cloud <br> Fabric",
+              "double_subtitle": "<p>Buttery soft, sweat-wicking brushed fabric with a second-skin feel, designed to be worn anywhere, anytime.<br\/><\/p>",
+              "double_b_text": "SHOP NOW",
+              "double_b_url": "shopify:\/\/collections\/the-cloud-line",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "b1b5a14b-110e-4ad4-b783-3417fad8ac27": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/DAYDREAM-Fabric-Pics.jpg",
+              "double_title": "Daydream <br> Fabric",
+              "double_subtitle": "<p>Next-to-naked comfort with shaping power. Recycled fabric with an all-way stretch. Squat proof, sweat-wicking and ready for movement.<\/p>",
+              "double_b_text": "SHOP NOW",
+              "double_b_url": "shopify:\/\/collections\/the-daydream-line",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "6ecbeeae-dda4-4ed8-aa54-4b8b8c68630c": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/ASCEND-Fabric-Pics.jpg",
+              "double_title": "Ascend <br> Fabric",
+              "double_subtitle": "<p>Breathable, flexible, high-performance fabric designed with light compression and a sweat-wicking texture for comfort and ease of movement.<\/p>",
+              "double_b_text": "SHOP NOW",
+              "double_b_url": "shopify:\/\/collections\/the-ascend-line",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "bdbad7e1-adc0-4b20-aaf4-ae9d14c7c19f": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/tenacity-Fabric-Pics.jpg",
+              "double_title": "Tenacity <br> Fabric",
+              "double_subtitle": "<p>Silky soft feel, ultra slick and flexible, sweat wicking, compressive, and designed to move with you.<\/p>",
+              "double_b_text": "SHOP NOW",
+              "double_b_url": "shopify:\/\/collections\/the-tenacity-line",
+              "double_text_color": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "15fbe7d0-7fcf-4d69-b8c0-14f5d60ae432",
+          "b1b5a14b-110e-4ad4-b783-3417fad8ac27",
+          "6ecbeeae-dda4-4ed8-aa54-4b8b8c68630c",
+          "bdbad7e1-adc0-4b20-aaf4-ae9d14c7c19f"
+        ],
+        "settings": {
+        }
+      },
+      "163641283505d7c827": {
+        "type": "double-image",
+        "blocks": {
+          "59c12e91-0c0b-4246-9ddb-bb6a4a747cc1": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/DSC09315-h.jpg",
+              "double_title": "why vitality?",
+              "double_subtitle": "",
+              "double_b_text": "about us",
+              "double_b_url": "shopify:\/\/pages\/about",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "59ce60eb-cf03-4db0-8978-61c4cf0e7b25": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/donations.jpg",
+              "double_title": "$450,000+ in donations",
+              "double_subtitle": "",
+              "double_b_text": "Together we give back",
+              "double_b_url": "shopify:\/\/pages\/giving-back",
+              "double_text_color": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "59c12e91-0c0b-4246-9ddb-bb6a4a747cc1",
+          "59ce60eb-cf03-4db0-8978-61c4cf0e7b25"
+        ],
+        "settings": {
+        }
+      },
+      "1637268143dc01c7c1": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "LIFESTYLE",
+          "carousel_coll": "vitality-all",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 4,
+          "carousel_mob": 2,
+          "carousel_b_text": "View All Lifestyle"
+        }
+      },
+      "163830615809f09da5": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "Get it Before It's Gone",
+          "carousel_coll": "the-cloud-line",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 4,
+          "carousel_mob": 2,
+          "carousel_b_text": "Shop 50% Off Cloud I"
+        }
+      },
+      "163900305976614c62": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "TOPS",
+          "carousel_coll": "womens-tops",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 5,
+          "carousel_mob": 2,
+          "carousel_b_text": "View All Tops"
+        }
+      },
+      "16390032697bf3d0d6": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "Bottoms",
+          "carousel_coll": "womens-bottoms",
+          "carousel_coll_lm": 20,
+          "carousel_desk": 6,
+          "carousel_mob": 2,
+          "carousel_b_text": "View All Bottoms"
+        }
+      },
+      "rewards-faq": {
+        "type": "rewards-faq",
+        "blocks": {
+          "d5879123-60be-4956-a54d-873700b266f2": {
+            "type": "item",
+            "settings": {
+              "title": "What is The Vitality Society?",
+              "text": "<p>The Vitality Society rewards you for shopping with us! This rewards system allows you to earn points and secure more benefits from your Vitality purchases. The more points you acquire, the more discounts you are able to receive on future purchases. <\/p>"
+            }
+          },
+          "5e401dbc-5d2c-4831-852b-730b5f58da20": {
+            "type": "item",
+            "settings": {
+              "title": "How do I earn points?",
+              "text": "<p>There are many ways to earn points! For every $1 you spend on a Vitality purchase, you can earn up to 8 points depending on your tier. Other ways to rack up points include creating an account, referring a friend, following us on Instagram and\/or Twitter, liking us on Facebook, signing up for our mailing list, or writing a product review!<\/p>"
+            }
+          },
+          "2166d2ee-f75f-4bb1-b7e4-cec6e4983e69": {
+            "type": "item",
+            "settings": {
+              "title": "How do I earn more benefits with each level tier?",
+              "text": "<p>The more purchases you make with Vitality, the higher level of tier you can obtain! Each tier (Friend, Fam, or VIF) has benefits included based on your annual spend. <\/p>"
+            }
+          },
+          "f08eb6ad-0b6e-4078-a6a6-f9b2a711f13b": {
+            "type": "item",
+            "settings": {
+              "title": "How do I use my available points?",
+              "text": "<p>Once logged into your account on the Vitality website, you can find your points under the rewards tab. You will be able to see all of your available points in your account. The more points you have in your account, the more savings you can receive! Click on the amount you would like to use to create a discount code. Once the discount code has been created, apply it at checkout. Please note, we recommend taking a screenshot or making note of your code as it will not automatically apply to your order.<\/p>"
+            }
+          },
+          "e294a7bd-8720-4ffb-b652-7590b1136f9d": {
+            "type": "item",
+            "settings": {
+              "title": "Do my points expire?",
+              "text": "<p>No! Your rewards will stay in your account until you use them.<\/p>"
+            }
+          },
+          "0de971bf-43a5-46ed-bda9-2517e41536e4": {
+            "type": "item",
+            "settings": {
+              "title": "How do I join?",
+              "text": "<p>If you have already signed up for a Vitality loyalty account, you are automatically enrolled. Otherwise, Signup at the top of this page! <\/p>"
+            }
+          },
+          "94e6b947-9e7f-4945-9b6c-f0247b458808": {
+            "type": "item",
+            "settings": {
+              "title": "How do I refer a friend?",
+              "text": "<p>Simply visit the refer a friend section in your account to copy your link to send to your friends! When they make a qualifying purchase, you and your friend will receive points after the 30 day pending period.<\/p>"
+            }
+          },
+          "7e1cee5d-3aec-410d-a8a5-bd1390b1f13b": {
+            "type": "item",
+            "settings": {
+              "title": "How many times can I refer a friend?",
+              "text": "<p>As many times as you like!<\/p>"
+            }
+          },
+          "f29f0d8c-b30c-4dc4-ab0d-abea8ff57ef9": {
+            "type": "item",
+            "settings": {
+              "title": "What happens if I refer a friend and they return part of their order or their entire order?",
+              "text": "<p>If your friend returns anything from their order that brings them under the minimum spend amount of $75, neither you or your friend will receive points.<\/p>"
+            }
+          },
+          "3966c5ba-8584-49fe-bb90-7fdea86c52fb": {
+            "type": "item",
+            "settings": {
+              "title": "Can I use more than one discount code per purchase?",
+              "text": "<p>You will not be able to use more than one discount code voucher per purchase. The max amount of points you can use per purchase is 2,500 ($25).<\/p>"
+            }
+          },
+          "eac6c057-c5f8-4584-9583-0281ae5b30ee": {
+            "type": "item",
+            "settings": {
+              "title": "Can I earn points from previous purchases?",
+              "text": "<p>Yes! Any order placed within 30 days prior to signing up with automatically be applied to your account!  Once you are a member you must be signed in prior to placing an order for your points to be applied to your account.<\/p>"
+            }
+          },
+          "4111686f-1c8b-4587-af08-22dc463122c1": {
+            "type": "item",
+            "settings": {
+              "title": "When will my points be available to use?",
+              "text": "<p>There is a 30-day “pending” period for points earned by making a purchase to compensate for potential returns. Points are only available for use when they are approved after this pending period.<\/p>"
+            }
+          },
+          "172dad4a-b60a-48d0-b32e-6d2f5fe91bfd": {
+            "type": "item",
+            "settings": {
+              "title": "What happens to my points if I return items?",
+              "text": "<p>If you issue a return within our 30-day policy, the points will be removed from your account. Points, unfortunately, do not apply to returned items! <\/p>"
+            }
+          },
+          "7c16be23-e985-4011-ba30-20ff1ab7be56": {
+            "type": "item",
+            "settings": {
+              "title": "How can I attain a higher level?",
+              "text": "<p>The level you are in is based on your net year-to-date spend in one calendar year. The more you buy, the closer you can get to attaining a higher tier level!<\/p>"
+            }
+          },
+          "a43a2f3c-98d3-4b69-9bc8-01dd9d57358c": {
+            "type": "item",
+            "settings": {
+              "title": "How long will my status and benefits last?",
+              "text": "<p>Your status and benefits will reset at the beginning of each calendar year, but your points will remain in your account.<\/p>"
+            }
+          },
+          "e61f8de7-db34-48a4-b74b-a2daf8d48625": {
+            "type": "item",
+            "settings": {
+              "title": "How do I know what tier I am in?",
+              "text": "<p>Your current tier is visible in the rewards tab in your account. <\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "d5879123-60be-4956-a54d-873700b266f2",
+          "5e401dbc-5d2c-4831-852b-730b5f58da20",
+          "2166d2ee-f75f-4bb1-b7e4-cec6e4983e69",
+          "f08eb6ad-0b6e-4078-a6a6-f9b2a711f13b",
+          "e294a7bd-8720-4ffb-b652-7590b1136f9d",
+          "0de971bf-43a5-46ed-bda9-2517e41536e4",
+          "94e6b947-9e7f-4945-9b6c-f0247b458808",
+          "7e1cee5d-3aec-410d-a8a5-bd1390b1f13b",
+          "f29f0d8c-b30c-4dc4-ab0d-abea8ff57ef9",
+          "3966c5ba-8584-49fe-bb90-7fdea86c52fb",
+          "eac6c057-c5f8-4584-9583-0281ae5b30ee",
+          "4111686f-1c8b-4587-af08-22dc463122c1",
+          "172dad4a-b60a-48d0-b32e-6d2f5fe91bfd",
+          "7c16be23-e985-4011-ba30-20ff1ab7be56",
+          "a43a2f3c-98d3-4b69-9bc8-01dd9d57358c",
+          "e61f8de7-db34-48a4-b74b-a2daf8d48625"
+        ],
+        "settings": {
+          "heading": "FAQ"
+        }
+      },
+      "1655744203b5edc5e3": {
+        "type": "products-carousel",
+        "settings": {
+          "carousel_title": "Top Sellers",
+          "carousel_coll": "all",
+          "carousel_coll_lm": 15,
+          "carousel_desk": 4,
+          "carousel_mob": 2,
+          "carousel_b_text": "Shop Favorites"
+        }
+      },
+      "product-template-alternate": {
+        "type": "product-template-alternate",
+        "blocks": {
+          "510ffdc6-40a2-4f17-bf79-e53d2fd6ea7a": {
+            "type": "fabric_type",
+            "settings": {
+              "fabric_tag": "prodFabric::daydream",
+              "fabric_icon": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 1080 1080\"><defs><style>.cls-1{fill:#1a1a1a;}<\/style><\/defs><path class=\"cls-1\" d=\"M801.63,280.73c-33.81-33.81-80.46-52.76-131.34-53.35-.82,0-1.63-.01-2.44-.01-48.22,0-97.84,16.42-139.99,46.39-6.5,4.62-10.41,12.05-10.55,20.02l-2.24,132.29c-.23,13.85,10.8,25.27,24.65,25.5,.15,0,.29,0,.43,0,13.65,0,24.84-10.95,25.07-24.66l2.02-119.17c68.44-42.91,150.48-39.98,198.92,8.46,28.18,28.18,41.71,67.97,38.11,112.06-3.73,45.63-25.19,90.16-60.42,125.39l-38.48,38.48h-132.48c-15.04,0-27.22,12.19-27.22,27.22s12.19,27.22,27.22,27.22h78.03l-35.11,35.11h-132.48c-15.04,0-27.22,12.19-27.22,27.22s12.19,27.22,27.22,27.22h69.71c-40.27,25.5-86.33,37.68-130.04,33.36l-65.18-6.45,317-317c10.63-10.63,10.63-27.87,0-38.5-10.63-10.63-27.87-10.63-38.5,0l-317,317-6.45-65.18c-5.93-59.83,19.05-124.06,66.81-171.82l44.44-44.44,30.71,31.21c9.71,9.88,25.59,10,35.47,.29,9.88-9.71,10-25.59,.29-35.47l-48.44-49.24c-4.69-4.77-11.09-7.46-17.78-7.49-6.73-.04-13.11,2.62-17.84,7.35l-62.32,62.32c-58.27,58.27-88.65,137.62-81.26,212.24l10.51,106.1-89.38,89.38c-10.63,10.63-10.63,27.87,0,38.5,5.32,5.32,12.28,7.97,19.25,7.97s13.93-2.66,19.25-7.97l89.38-89.38,106.1,10.51c7.4,.73,14.84,1.09,22.3,1.09,67.84,0,137.44-29.86,189.94-82.36l149.03-149.03c43.63-43.63,70.24-99.3,74.94-156.77,4.82-59.01-13.87-112.85-52.63-151.62Z\"><\/path><\/svg>"
+            }
+          }
+        },
+        "block_order": [
+          "510ffdc6-40a2-4f17-bf79-e53d2fd6ea7a"
+        ],
+        "settings": {
+          "men_collection": "men",
+          "women_collection": "women",
+          "related_title": "Looks Good With",
+          "related_limit": 15,
+          "shipping_page": "return-policy",
+          "shipping_text": "<p><strong>RETURNS<\/strong><\/p><p>Items purchased from Vitality are eligible for a<strong> <\/strong>refund or exchange if returned within 30 days of purchase.<\/p><p>*Does not include final sale items. More info <a href=\"https:\/\/www.shopvitality.com\/pages\/return-policy\" target=\"_blank\" title=\"https:\/\/www.shopvitality.com\/pages\/return-policy\">here<\/a><\/p><p><strong>SHIPPING<\/strong><\/p><p><\/p><p><em>Please expect fulfillment delays at this time. Orders placed may take up to 10 business days to process.<\/em><\/p><p><strong>Domestic:<\/strong> <\/p><p>Free Standard 3-5 Business Day Shipping for orders $150 and above  <\/p><p>Standard 3-5 day shipping for $5<\/p><p><strong>International: <\/strong><\/p><p>We offer global shipping, with speeds based on your region. More info <a href=\"https:\/\/www.shopvitality.com\/pages\/faqs\" target=\"_blank\" title=\"https:\/\/help.shopvitality.com\/en-US\">here<\/a><\/p>",
+          "enable_payment_button": true,
+          "detail_icon_1": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 1080 1080\"><defs><style>.cls-1{fill:#1a1a1a;}<\/style><\/defs><path class=\"cls-1\" d=\"M630.03,475.74c-15.03,0-27.22-12.19-27.22-27.22,0-19.14-15.79-39.1-43.34-54.77-32.78-18.65-76.96-28.92-124.38-28.92s-91.6,10.27-124.38,28.92c-27.54,15.67-43.34,35.63-43.34,54.77,0,15.03-12.19,27.22-27.22,27.22s-27.22-12.19-27.22-27.22c0-39.83,25.16-76.09,70.86-102.09,40.86-23.25,94.59-36.05,151.3-36.05s110.45,12.8,151.3,36.05c45.69,26,70.86,62.25,70.86,102.09,0,15.03-12.19,27.22-27.22,27.22Z\"><\/path><path class=\"cls-1\" d=\"M516.7,828.97c-26.54,0-53.38-.88-82.94-2.32-57.24-2.8-110.37-16.22-149.58-37.8-45.94-25.27-71.25-60.9-71.25-100.31,0-15.04,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22c0,25.17,26.97,43.76,43.04,52.6,32.11,17.66,76.86,28.72,126,31.12,123.7,6.05,198.57,1.64,416.2-37.65,3.6-13.33,7.46-44.31,7.42-88.41-.04-37.12-2.83-65.58-5.77-81.52-201.65,42.54-310.05,41.68-420.5,36.36-57.23-2.76-110.37-16.17-149.61-37.77-45.94-25.28-71.24-60.92-71.24-100.33,0-15.04,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22c0,25.18,26.97,43.79,43.05,52.63,32.12,17.68,76.87,28.72,125.98,31.09,113.96,5.49,217.69,6.08,425.91-39.38,11.26-2.46,22.77,1.46,30.79,10.47,8.13,9.14,13.11,23.84,16.66,49.14,2.51,17.91,4.09,40.22,4.58,64.5,.41,20.27,.79,89.15-11.38,124.44-6.1,17.68-16.18,27.92-29.97,30.43-178.78,32.51-265.73,42.71-356.29,42.71Z\"><\/path><path class=\"cls-1\" d=\"M240.15,732.41c-15.03,0-27.22-12.19-27.22-27.22V437.13c0-15.03,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22v268.06c0,15.03-12.19,27.22-27.22,27.22Z\"><\/path><path class=\"cls-1\" d=\"M630.03,582.53c-15.04,0-27.22-12.19-27.22-27.22v-69.31c-36.31,18.98-74.4,30.38-112.21,33.39-41.73,3.33-83.32-3.79-114.13-19.51-26.35-13.45-40.86-31.35-40.86-50.42,0-11.18,4.18-38.58,42.91-51.49,18.5-6.16,40.17-7.46,55.08-7.46s27.22,12.19,27.22,27.22-12.19,27.22-27.22,27.22c-17.69,0-29.39,2.07-36.45,4.2,8.12,4.8,22.01,10.8,42.85,14.22,32.72,5.35,98.85,6.21,174.05-48.28,8.29-6,19.24-6.85,28.35-2.2,9.11,4.65,14.85,14.02,14.85,24.25v118.17c0,15.04-12.19,27.22-27.22,27.22Z\"><\/path><path class=\"cls-1\" d=\"M420.89,819.13c-15.04,0-27.22-12.19-27.22-27.22v-120.29c0-15.04,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22v120.29c0,15.04-12.19,27.22-27.22,27.22Z\"><\/path><path class=\"cls-1\" d=\"M574.01,819.13c-15.04,0-27.22-12.19-27.22-27.22v-109.3c0-15.04,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22v109.3c0,15.04-12.19,27.22-27.22,27.22Z\"><\/path><path class=\"cls-1\" d=\"M727.14,793.99c-15.04,0-27.22-12.19-27.22-27.22v-101.26c0-15.04,12.19-27.22,27.22-27.22s27.22,12.19,27.22,27.22v101.26c0,15.04-12.19,27.22-27.22,27.22Z\"><\/path><\/svg>",
+          "detail_text_1": "DETAILS",
+          "detail_icon_2": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 1080 1080\"><defs><style>.cls-1{fill:#1a1a1a;}<\/style><\/defs><path class=\"cls-1\" d=\"M789.76,833.14H327.51c-90.18-.05-163.53-73.45-163.53-163.61,0-39.03,13.98-76.83,39.36-106.42,20.4-23.79,47.14-41.15,76.78-50.14,18.26-139.47,137.79-245.95,280.63-245.95,75.61,0,146.69,29.44,200.16,82.91,53.46,53.46,82.91,124.55,82.91,200.16,0,8.66-.4,17.35-1.19,25.98,19.67,8.54,37.24,21.78,50.89,38.58,19.31,23.77,29.94,53.76,29.94,84.44,0,64.38-45.78,118.42-106.49,131.2v2.86h-27.22Zm-229.01-511.68c-120.95,0-221.19,94.48-228.21,215.1l-1.27,21.75-21.5,3.53c-25.23,4.14-48.35,17.17-65.1,36.71-16.92,19.73-26.24,44.94-26.24,70.98,0,60.16,48.94,109.13,109.1,109.16h459.99s2.15,0,2.15,0c43.76-.14,79.35-35.86,79.35-79.61,0-18.48-6.14-35.81-17.76-50.11-11.31-13.92-27.11-23.72-44.48-27.58l-25.42-5.65,4.52-25.65c2.32-13.13,3.49-26.59,3.49-40.01,0-61.07-23.78-118.48-66.96-161.66s-100.59-66.96-161.66-66.96Z\"><\/path><path class=\"cls-1\" d=\"M307.18,831.61c-1.35,0-2.71-.1-4.08-.31-38.36-5.77-73.55-25.14-99.09-54.56-25.81-29.73-40.03-67.8-40.03-107.22,0-90.21,73.39-163.61,163.61-163.61,33.9,0,66.42,10.28,94.05,29.74,26.98,18.99,47.39,45.3,59.01,76.07,5.31,14.06-1.78,29.77-15.84,35.09-14.06,5.31-29.77-1.78-35.09-15.84-7.76-20.53-21.39-38.09-39.42-50.79-18.41-12.96-40.1-19.81-62.71-19.81-60.19,0-109.17,48.97-109.17,109.17,0,26.3,9.48,51.7,26.69,71.52,17.06,19.64,40.52,32.57,66.07,36.42,14.87,2.23,25.11,16.1,22.87,30.97-2.03,13.5-13.64,23.18-26.89,23.18Z\"><\/path><\/svg>",
+          "detail_text_2": "FABRIC",
+          "detail_icon_3": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 1080 1080\"><defs><style>.cls-1{fill:#1a1a1a;}<\/style><\/defs><path class=\"cls-1\" d=\"M553.01,461.43c-6.97,0-13.93-2.66-19.25-7.97-18.97-18.97-38.19-28.31-57.13-27.78-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.75-1.21,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><path class=\"cls-1\" d=\"M628.84,497.26c-1.32,0-2.64-.02-3.96-.07-54.23-1.89-90.86-43.31-92.39-45.07l41.09-35.73-.12-.13c.23,.26,23.27,25.67,53.69,26.53,18.99,.52,38.16-8.81,57.13-27.78,10.63-10.63,27.87-10.63,38.5,0s10.63,27.87,0,38.5c-29.05,29.05-60.63,43.75-93.94,43.75Z\"><\/path><path class=\"cls-1\" d=\"M854.1,461.43c-6.97,0-13.93-2.66-19.25-7.97-18.97-18.97-38.21-28.31-57.13-27.78-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.78-1.2,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><path class=\"cls-1\" d=\"M252.18,406.8c6.97,0,13.93,2.66,19.25,7.97,18.97,18.97,38.21,28.31,57.13,27.78,30.42-.86,53.46-26.27,53.69-26.53l-.12,.13,41.09,35.73c-1.53,1.76-38.15,43.18-92.39,45.07-34.78,1.2-67.71-13.49-97.9-43.68-10.63-10.63-10.63-27.87,0-38.5,5.32-5.32,12.28-7.97,19.25-7.97Z\"><\/path><path class=\"cls-1\" d=\"M252.18,558.77c6.97,0,13.93,2.66,19.25,7.97,18.97,18.97,38.21,28.31,57.13,27.78,30.42-.86,53.46-26.27,53.69-26.53l-.12,.13,41.09,35.73c-1.53,1.76-38.15,43.18-92.39,45.07-34.78,1.2-67.71-13.49-97.9-43.68-10.63-10.63-10.63-27.87,0-38.5,5.32-5.32,12.28-7.97,19.25-7.97Z\"><\/path><path class=\"cls-1\" d=\"M252.18,710.74c6.97,0,13.93,2.66,19.25,7.97,18.97,18.97,38.21,28.31,57.13,27.78,30.42-.86,53.46-26.27,53.69-26.53l-.12,.13,41.09,35.73c-1.53,1.76-38.15,43.18-92.39,45.07-34.78,1.2-67.71-13.49-97.9-43.68-10.63-10.63-10.63-27.87,0-38.5,5.32-5.32,12.28-7.97,19.25-7.97Z\"><\/path><path class=\"cls-1\" d=\"M327.76,649.27c-1.32,0-2.64-.02-3.96-.07-54.23-1.89-90.86-43.31-92.39-45.07l41.09-35.73-.12-.13c.23,.26,23.27,25.67,53.69,26.53,.51,.01,1.02,.02,1.54,.02,18.44,0,37.14-9.35,55.6-27.8,10.63-10.63,27.87-10.63,38.5,0,10.63,10.63,10.63,27.87,0,38.5-29.05,29.05-60.63,43.75-93.94,43.75Z\"><\/path><path class=\"cls-1\" d=\"M553.01,613.44c-6.97,0-13.93-2.66-19.25-7.97-18.46-18.46-37.15-27.8-55.6-27.8-.51,0-1.02,0-1.54,.02-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.77-1.2,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><path class=\"cls-1\" d=\"M628.84,649.27c-1.32,0-2.64-.02-3.96-.07-54.23-1.89-90.86-43.31-92.39-45.07l41.09-35.73-.12-.13c.23,.26,23.27,25.67,53.69,26.53,18.98,.51,38.16-8.82,57.13-27.78,10.63-10.63,27.87-10.63,38.5,0,10.63,10.63,10.63,27.87,0,38.5-29.05,29.05-60.63,43.75-93.94,43.75Z\"><\/path><path class=\"cls-1\" d=\"M854.1,613.44c-6.97,0-13.93-2.66-19.25-7.97-18.97-18.97-38.21-28.33-57.13-27.78-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.77-1.21,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><path class=\"cls-1\" d=\"M327.76,801.29c-1.32,0-2.64-.02-3.96-.07-54.23-1.89-90.86-43.31-92.39-45.07l41.09-35.73-.12-.13c.23,.26,23.27,25.67,53.69,26.53,.51,.01,1.02,.02,1.54,.02,18.44,0,37.14-9.35,55.6-27.8,10.63-10.63,27.87-10.63,38.5,0,10.63,10.63,10.63,27.87,0,38.5-29.05,29.05-60.63,43.75-93.94,43.75Z\"><\/path><path class=\"cls-1\" d=\"M553.01,765.46c-6.97,0-13.93-2.66-19.25-7.97-18.97-18.97-38.19-28.29-57.13-27.78-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.75-1.21,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><path class=\"cls-1\" d=\"M628.84,801.29c-1.32,0-2.64-.02-3.96-.07-54.23-1.89-90.86-43.31-92.39-45.07l41.09-35.73-.12-.13c.23,.26,23.27,25.67,53.69,26.53,18.98,.51,38.16-8.82,57.13-27.78,10.63-10.63,27.87-10.63,38.5,0,10.63,10.63,10.63,27.87,0,38.5-29.05,29.05-60.63,43.75-93.94,43.75Z\"><\/path><path class=\"cls-1\" d=\"M854.1,765.46c-6.97,0-13.93-2.66-19.25-7.97-18.97-18.97-38.21-28.29-57.13-27.78-30.42,.86-53.46,26.27-53.69,26.53l.12-.13-41.09-35.73c1.53-1.76,38.15-43.18,92.39-45.07,34.78-1.2,67.71,13.49,97.9,43.68,10.63,10.63,10.63,27.87,0,38.5-5.32,5.32-12.28,7.97-19.25,7.97Z\"><\/path><\/svg>",
+          "detail_text_3": "TECH",
+          "detail_icon_4": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><svg id=\"Layer_1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 1080 1080\"><defs><style>.cls-1{fill:#1a1a1a;}<\/style><\/defs><path class=\"cls-1\" d=\"M547.73,829.37c-75.11,0-145.72-29.25-198.82-82.36-53.11-53.11-82.36-123.72-82.36-198.82s29.25-145.72,82.36-198.82c53.11-53.11,123.72-82.36,198.82-82.36s145.72,29.25,198.82,82.36c53.11,53.11,82.36,123.72,82.36,198.82s-29.25,145.72-82.36,198.82c-53.11,53.11-123.72,82.36-198.82,82.36Zm0-507.91c-60.56,0-117.5,23.58-160.33,66.41-42.82,42.82-66.41,99.76-66.41,160.33s23.58,117.5,66.41,160.33c42.82,42.83,99.76,66.41,160.33,66.41s117.5-23.58,160.33-66.41c42.82-42.82,66.41-99.76,66.41-160.33s-23.58-117.5-66.41-160.33-99.76-66.41-160.33-66.41Z\"><\/path><path class=\"cls-1\" d=\"M731.41,713.49c-9.01,0-17.82-4.47-23.01-12.64-27.27-42.96-43.91-52.4-60.01-61.53-10.22-5.79-21.8-12.36-33.63-25.12-19.59-21.12-30.78-43.14-33.26-65.43-2.76-24.77,5.53-48.39,23.96-68.32,17.2-18.6,48.3-31.24,95.09-38.65,31.54-5,58.85-5.7,60-5.72,.22,0,.44,0,.66,0,14.73,0,26.85,11.76,27.2,26.57,.36,15.03-11.53,27.5-26.56,27.86-.72,.02-25.59,.72-53.35,5.16-46.78,7.48-60.1,18.54-63.06,21.75-6.31,6.82-23.05,24.93,9.25,59.77,6.1,6.58,11.85,9.84,20.56,14.78,19.86,11.26,44.57,25.27,79.12,79.72,8.06,12.69,4.3,29.51-8.4,37.57-4.52,2.87-9.57,4.24-14.56,4.24Z\"><\/path><path class=\"cls-1\" d=\"M379.5,658.08c-19.66,0-37.85-7.91-51.55-16.23-20.88-12.69-38.01-29.87-48.25-40.13l-1.56-1.56c-10.63-10.63-10.63-27.87,0-38.5,10.63-10.63,27.87-10.63,38.5,0l1.62,1.62c8.5,8.52,22.71,22.78,37.96,32.04,13.18,8.01,23.45,10.2,30.5,6.52,10.11-5.28,11.86-7.16,6.89-35.34-2.89-16.41-6.5-36.83-.2-57.51,9.65-31.7,26.9-43.02,42.11-53.01,13.17-8.65,26.8-17.59,44.43-45.31,11.48-18.04,12.43-36.47,2.91-56.35-8.24-17.22-21.21-28.79-21.34-28.91l.11,.1,35.58-41.2c2.07,1.79,20.65,18.26,33.71,44.4,8.22,16.44,12.55,33.26,12.87,50,.41,21.28-5.62,41.87-17.92,61.2-23.91,37.57-45.05,51.45-60.48,61.59-12.29,8.07-16,10.5-19.91,23.36-2.5,8.21-.44,19.86,1.73,32.2,2.45,13.89,5.23,29.63,2.16,45.55-3.97,20.63-16.58,36.61-37.48,47.52-10.91,5.69-21.87,7.96-32.41,7.96Z\"><\/path><path class=\"cls-1\" d=\"M661.07,802.53c-.2,0-.4,0-.6,0-48.78-1.06-70.63-20.32-88.19-35.8-14.29-12.59-24.61-21.69-53.34-22.94-55.27-2.41-101.01,10.61-117.47,17.83l-11.03-24.89-11.12-24.85c2.38-1.07,59.33-26.08,141.99-22.49,47.95,2.09,69.59,21.17,86.98,36.5,14.74,12.99,24.47,21.58,53.36,22.21,15.03,.33,26.95,12.78,26.62,27.81-.32,14.83-12.45,26.63-27.2,26.63Z\"><\/path><\/svg>",
+          "detail_text_4": "IMPACT"
+        }
+      },
+      "031617d7-97f9-4344-8590-0df0438ffa2a": {
+        "type": "double-image",
+        "blocks": {
+          "d05fdd06-5a69-49c7-9c20-b6426e2bc71a": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/50-hero-lookbook.jpg",
+              "double_title": "",
+              "double_subtitle": "",
+              "double_b_text": "",
+              "double_b_url": "shopify:\/\/pages\/cloud-ii-january-2023-lookbook",
+              "double_text_color": "#ffffff"
+            }
+          },
+          "6cfbce79-5de9-42d7-b173-bb0a90da3a58": {
+            "type": "image_block",
+            "settings": {
+              "double_image": "shopify:\/\/shop_images\/50-daydream-hero_a0a448e4-8725-421c-abdb-16516623d4c5.jpg",
+              "double_title": "",
+              "double_subtitle": "",
+              "double_b_text": "",
+              "double_b_url": "shopify:\/\/pages\/daydream-january-2023-lookbook",
+              "double_text_color": "#ffffff"
+            }
+          }
+        },
+        "block_order": [
+          "d05fdd06-5a69-49c7-9c20-b6426e2bc71a",
+          "6cfbce79-5de9-42d7-b173-bb0a90da3a58"
+        ],
+        "settings": {
+        }
+      },
+      "b4629e42-c11e-4196-9bd7-93050389fb13": {
+        "type": "hero-banner",
+        "settings": {
+          "hero_img": "shopify:\/\/shop_images\/SALE-THIN-Hero_2bce9335-200d-4ad1-9aee-eeb0c9513192.jpg",
+          "hero_img_mob": "shopify:\/\/shop_images\/SALE-THIN-Mobile-Hero_9d7a97e6-ff1c-43ad-bbbe-3b8095df2102.jpg",
+          "hero_video": "",
+          "hero_pre_title": "",
+          "hero_title": "",
+          "hero_title_tag": "h1",
+          "hero_text": "",
+          "hero_b_text": "",
+          "hero_b_url": "shopify:\/\/collections\/all",
+          "hero_text_color": "#000000",
+          "hero_cover_color": "",
+          "hero_cover_opacity": 0,
+          "text_align": "center",
+          "vertical_alignment": "center",
+          "horizontal_alignment": "center"
+        }
+      }
+    },
+    "content_for_index": [
+      "b4629e42-c11e-4196-9bd7-93050389fb13",
+      "031617d7-97f9-4344-8590-0df0438ffa2a",
+      "163830615809f09da5",
+      "1655744203b5edc5e3",
+      "162294651883216eba",
+      "163900305976614c62",
+      "16390032697bf3d0d6",
+      "1636411422d7020e1f",
+      "16363955526a180824",
+      "1637268143dc01c7c1",
+      "1623107856cc4c9311",
+      "163641283505d7c827",
+      "1624930950ea5c37f1"
+    ]
+  }
+}

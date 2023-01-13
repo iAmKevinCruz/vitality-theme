@@ -1,0 +1,74 @@
+<div class="contact-page">
+    <div class="container-max">
+        <div class="grid-container">
+            <div class="grid-item contact-page__image">
+                {% include 'responsive-image' with image: section.settings.cover_image, image_class: "",
+          wrapper_class: "", max_width: 720, max_height: 908 %}
+          {% include 'responsive-image' with image: section.settings.cover_mobile_image, image_class: "",
+          wrapper_class: "mobile", max_width: 768, max_height: 480 %}
+
+          
+                <h1 class="title">{{ page.title }}</h1>
+            </div>
+            <div class="grid-item contact-page__body">
+                <div class="contact">
+                    <div class="contact__content">{{ page.content }}</div>
+                    <div class="contact__form">
+                        {%- assign formId = 'ContactForm' -%}
+                        {% form 'contact', id: formId %}
+                            {% include 'form-status', form_id: formId %}
+
+                            <div class="form-element fname">
+                                <input type="text" required name="contact[fname]" id="{{ formId }}-fname" class="input-full{% if form.errors contains 'fname' %} error{% endif %}" placeholder="First Name" autocorrect="off" autocapitalize="characters"  value="{% if form[fname] %}{{ form[fname] }}{% elsif customer %}{{ customer.first_name }}{% endif %}">
+                                <label for="{{ formId }}-fname">{{ 'contact.form.fname' | t }}</label>
+                            </div>
+
+                            <div class="form-element lname">
+                                <input type="text" required name="contact[lname]" id="{{ formId }}-lname" class="input-full{% if form.errors contains 'lname' %} error{% endif %}" placeholder="Last Name" autocorrect="off" autocapitalize="characters"  value="{% if form[lname] %}{{ form[lname] }}{% elsif customer %}{{ customer.last_name }}{% endif %}">
+                                <label for="{{ formId }}-lname">{{ 'contact.form.lname' | t }}</label>
+                            </div>
+
+                            <div class="form-element">
+                                <input type="email" required name="contact[email]" id="{{ formId }}-email" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="Email Address" autocorrect="off" autocapitalize="characters"  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+                                <label for="{{ formId }}-email">{{ 'contact.form.email' | t }}</label>
+                            </div>
+
+                            <div class="form-element">
+                                <input type="tel" name="contact[phone]" id="{{ formId }}-phone" class="input-full{% if form.errors contains 'phone' %} error{% endif %}" placeholder="Phone" autocorrect="off" autocapitalize="characters"  pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                                <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+                            </div>
+                            
+                            <div class="contact__order">
+                                <div class="form-element">
+                                    <input type="checkbox" id="ContactFormRelatedToPlacedOrder" name="contact[RelatedToPlacedOrder]" value="Yes" />
+                                    <label for="ContactFormRelatedToPlacedOrder">{{ 'contact.form.commentmsg' | t }}</label>
+                                </div>
+                                <div class="form-element orderInput hidden">
+                                    {% if customer.orders %}
+                                        <select id="ContactFormOrderNumber" name="contact[OrderNumber]" class="order-number-input inp">
+                                            <option value="">{{ 'contact.form.selectorder' | t }}</option>
+                                            {% for order in customer.orders %}
+                                                    <option value="{{ order.name }}">{{ order.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    {% else %}
+                                        <input type="tel" name="contact[OrderNumber]" id="{{ formId }}-ordernumber" class="input-full" placeholder="Order Number" autocorrect="off" autocapitalize="characters">
+                                        <label for="{{ formId }}-ordernumber">{{ 'contact.form.ordernum' | t }}</label>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="form-element">
+                                <label style="display:none;" for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
+                                <textarea placeholder="Type a message..." rows="10" id="{{ formId }}-message" name="contact[body]" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                            </div>
+
+                            <input type="submit" class="primary-button" value="Submit">
+
+                        {% endform %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

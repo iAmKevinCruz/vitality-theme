@@ -1,0 +1,206 @@
+{% include 'header' %}
+{% render 'minicart' %}
+
+{% if request.page_type == 'index' %}
+    {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
+    {% assign attr = 'type="application/ld+json"' %}
+    <script {{ attr }}>
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "name": {{ shop.name | json }},
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {{ potential_action_target | json }},
+                "query-input": "required name=search_term_string"
+            },
+            "url": {{ shop.url | append: page.url | json }}
+        };
+    </script>
+{% endif %}
+
+{% schema %}
+{
+  "name": {
+    "en": "Header"
+  },
+  "tag": "header",
+  "class": "header sticky-header",
+  "settings": [
+    {
+		"type": "header",
+		"content": "Infobar settings"
+	},
+	{
+		"type": "richtext",
+		"id": "infobar",
+		"label": "Infobar",
+		"default": "<p>FREE SHIPPING ON ALL DOMESTIC ORDERS OVER $150</p>"
+    },
+	{
+		"type": "color",
+		"id": "infobar_bg",
+		"label": "Infobar Background Color",
+		"default": "#000"
+    },
+	{
+		"type": "color",
+		"id": "infobar_textcolor",
+		"label": "Infobar Text Color",
+		"default": "#fff"
+    },
+	{
+		"type": "header",
+		"content": "Global Navigation"
+	},
+	{
+		"type": "checkbox",
+		"id": "nav_show",
+		"default": true,
+		"label": "Show"
+	 },
+	{
+		"type": "text",
+		"id": "nav_logo2",
+		"label": "Nav Vitality Logo Path (svg)"
+    },
+	{
+		"type": "url",
+		"id": "nav_logo2_url",
+		"label": "Nav Vitality Url"
+    },
+	{
+		"type": "header",
+		"content": "Header settings"
+	},
+	{
+		"type": "text",
+		"id": "main_logo",
+		"label": "Main Logo Path (svg)"
+	},
+	{
+		"type": "textarea",
+		"id": "lang_picker",
+		"label": "Language Picker Widget"
+	},
+	{
+		"type": "header",
+		"content": "Quick access"
+	},
+	{
+		"type": "checkbox",
+		"id": "search_icon",
+		"default": true,
+		"label": "Search"
+	 },
+	 {
+		"type": "checkbox",
+		"id": "gift_icon",
+		"default": true,
+		"label": "Giftbox"
+	 },
+	 {
+		"type": "checkbox",
+		"id": "wish_icon",
+		"default": true,
+		"label": "Wishlist"
+	 },
+	 {
+		"type": "checkbox",
+		"id": "user_icon",
+		"default": true,
+		"label": "Account"
+	 },
+	 {
+		"type": "checkbox",
+		"id": "cart_icon",
+		"default": true,
+		"label": "Cart"
+	 }
+  ],
+  "blocks": [
+  	  {
+		"type": "infobar",
+		"name": "Infobar Item",
+		"settings": [
+			{
+				"type": "richtext",
+				"id": "infobar_text",
+				"label": "Text",
+				"default": "<p>FREE SHIPPING ON ALL DOMESTIC ORDERS OVER $150</p>"
+			},
+			{
+				"type": "checkbox",
+				"id": "infobar_count_show",
+				"default": false,
+				"label": "Show Timer"
+			 },
+			{
+				"type": "text",
+				"id": "infobar_countdown",
+				"label": "Countdown",
+				"info": "November 26, 2021 23:59:00 MDT",
+				"default": "November 26, 2021 23:59:00 MDT"
+			}
+		]
+	  },
+      {
+        "type": "menu",
+        "name": "Menu",
+        "settings": [
+          {
+            "id": "menuitem",
+            "type": "link_list",
+            "label": "Menu Item"
+          },
+		  {
+            "id": "f_image",
+            "type": "image_picker",
+            "label": "Featured block Image"
+          },
+		  {
+            "id": "f_image_ord",
+            "type": "select",
+            "label": "Featured block Image Order",
+			"options": [
+				{
+				"value": "0",
+				"label": "First"
+				},
+				{
+				"value": "1",
+				"label": "Second"
+				}
+			],
+			"default": "0"
+          },
+		  {
+            "id": "f_color",
+            "type": "color",
+            "label": "Featured text Color",
+			"default": "#ffffff"
+          },
+		  {
+            "id": "f_pretitle",
+            "type": "text",
+            "label": "Featured block Pre-Title"
+          },
+		  {
+            "id": "f_title",
+            "type": "text",
+            "label": "Featured block Title"
+          },
+		  {
+            "id": "f_urltext",
+            "type": "text",
+            "label": "Featured block Button Text"
+          },
+		  {
+            "id": "f_url",
+            "type": "url",
+            "label": "Featured block Button Url"
+          }
+        ]
+      }
+    ]
+} {% endschema %}

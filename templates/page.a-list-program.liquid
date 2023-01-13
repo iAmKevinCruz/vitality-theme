@@ -1,0 +1,2049 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<style>
+    *,
+     ::after,
+     ::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    @font-face {
+      font-family: 'Nimbus Sans D OT';
+      src: url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Nimbus-Sans-Regular-Extended.woff2?v=1656588677') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Nimbus-Sans-Regular-Extended.woff?v=1656588632') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  
+    @font-face {
+      font-family: 'Nimbus Sans D OT';
+      src: url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/NimbusSanL-Bol.woff2?v=1656475182') format('woff2'),
+        url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/NimbusSanL-Bol.woff?v=1656475182') format('woff');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  
+  @font-face {
+    font-family: 'Nimbus Sans D OT';
+    src: url('NimbusSansDOT-ReguItal.woff2') format('woff2'),
+      url('NimbusSansDOT-ReguItal.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'NimbusSansExtdDW01';
+    src: url('NimbusSansExtdDW01-Light.woff2') format('woff2'),
+      url('NimbusSansExtdDW01-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nimbus Sans D OT';
+    src: url('NimbusSansDOT-ReguExte.woff2') format('woff2'),
+      url('NimbusSansDOT-ReguExte.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Nimbus Sans D OT';
+    src: url('NimbusSansDOT-ReguExte.woff2') format('woff2'),
+      url('NimbusSansDOT-ReguExte.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+ 
+  
+    .container {
+        max-width: 1250px;
+        margin: 0px auto;
+        padding: 0px 30px;
+    }
+    
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .col-12 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .col-4, .col-3 {
+        flex: 0 0 33.33%;
+        max-width: 33.33%;
+    }
+  
+    .col-2 {
+      flex: 0 0 25%;
+      max-width: 25%;
+    }
+
+  .section-heading, .icon-with-text h2.main-title {
+    color: #000000;
+    font-size: 36px;
+    line-height: 43.2px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Nimbus Sans D OT';
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .container {
+      padding: 0px 30px;
+    }
+  }
+
+    @media only screen and (max-width: 768px) {
+      .col-6, .col-4, .col-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+      
+      .col-2 {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+      
+      .container {
+        padding: 0px 20px;
+      }
+      
+      .section-heading, .icon-with-text h2.main-title {
+        font-size: 24px;
+        line-height: 28.8px;
+      }
+    }
+</style>
+
+<style>
+  .main-section {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(217, 217, 217, 0) 100%, rgba(0, 0, 0, 0) 100%), url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Rectangle_27_4.png?v=1656476684');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 760px;
+  }
+  
+  .main-section .container {
+    height: 100%;
+    max-width: 1350px;
+    position: relative;
+  }
+  
+/*   .main-section .row {
+    align-items: center;
+  } */
+
+  .main-section .col-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main-section .logo-wrapper {
+    width: 120px;
+    height: auto;
+    margin-bottom: 50px;
+  }
+  
+  .main-section .logo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .main-section .main-heading {
+    color: #ffffff;
+    font-size: 60px;
+    line-height: 72px;
+    text-align: center;
+    font-weight: 400;
+    font-family: 'Nimbus Sans D OT';
+    letter-spacing: 0.01em;
+    margin-top: 200px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    text-shadow: 0px 4px 20px rgb(0 0 0 / 15%);
+  }
+  
+  .join-link {
+     font-family: 'Nimbus Sans D OT';
+    text-align: center;
+    background: #ffffff;
+    color: #000000;
+    padding: 10px;
+    max-width: 160px;
+    margin: 0px auto;
+    height: 45px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: 0.01em;
+  }
+
+  .signup-button_lcButtonText__1Qqcl {
+    font-family: 'Nimbus Sans D OT' !important;
+    font-weight: 600;
+  }
+  
+  .signup-button_lcButton__3PS4y {
+    padding: 0px;
+    width: 100%;
+    height: auto;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 19.2px;
+    letter-spacing: 0.01em;
+  }
+  
+  .main-section .col-6 {
+    display: flex;
+  }
+  
+  .main-section .signup-button_lcButton__3PS4y .signup-button_lcButtonText__1Qqcl {
+    margin: 0px;
+  }
+
+  .description-wrapper {
+    margin-top: 225px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: auto;
+    text-align: left;
+    max-width: 395px;
+/*     position: absolute;
+    bottom: 136px;
+    right: 0px; */
+  }
+
+  .main-description {
+    width: 100%;
+    margin: 0px;
+    font-family: 'Nimbus Sans D OT';
+    letter-spacing: 0.01em;
+    text-align: left;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33.6px;
+    color: #ffffff;
+    text-shadow: 0px 4px 20px rgb(0 0 0 / 45%);
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1300px) {
+    .main-section .main-heading {
+      font-size: 50px;
+      line-height: 60px;
+    }
+    
+    .description-wrapper {
+      max-width: 60%;
+    }
+    
+    .main-description {
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .main-section .col-wrapper {
+      height: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .main-section .main-heading,  .description-wrapper {
+      margin-top: 120px;
+    }
+
+    .main-section .col-6 {
+      display: flex;
+      max-width: 100%;
+      flex: 0 0 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .description-wrapper {
+      margin: 0px auto;
+    }
+    
+    .main-section .col-6 {
+      display: block;
+    }
+    
+    .main-section .col-6:last-child {
+      display: flex;
+      margin-bottom: 19px;
+      align-items: flex-end;
+    }
+    
+    .main-section .row {
+      align-items: inherit;
+    }
+    
+    .main-section .row {
+      align-items: inherit;
+    }
+    
+    .main-section .row {
+      height: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .main-section {
+      height: 530px;
+    }
+    
+    .main-section .col-wrapper {
+      max-width: 100%;
+      margin-bottom: 150px;
+    }
+
+    .main-section .col-6 {
+      display: block;
+    }
+    
+    .main-section .col-6:last-child {
+      display: flex;
+      margin-bottom: 19px;
+      align-items: flex-end;
+    }
+   
+
+    .main-section .main-heading {
+      margin-bottom: 15px;
+      color: #ffffff;
+      margin-top: 50px;
+      font-size: 40px;
+      line-height: 48px;
+      font-weight: 700;
+    }
+    
+    .main-description {
+      padding: 0px 6px;
+      line-height: 21.6px;
+      font-size: 18px;
+    }
+
+    .main-section .col-wrapper {
+      justify-content: start;
+    }
+
+    .join-link {
+      height: 45px;
+    }
+  }
+    
+  @media only screen and (max-width: 543px) {
+    .main-section {
+      height: 575px;
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(217, 217, 217, 0) 100%, rgba(0, 0, 0, 0) 100%), url('https://cdn.shopify.com/s/files/1/0005/7750/3289/files/3_171032fc-79ef-45a2-b903-16d38fb2c757.png?v=1656476876');
+    }
+  }
+</style>
+
+<section class="main-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <div class="col-wrapper">
+          <h1 class="main-heading">Join Our <br/> A-List Program</h1>
+          <div class="lc-signup-container join-link" id="lc-signup-container" id="" data-lc-button-text="JOIN NOW" data-lc-button-text-color="#000000" data-lc-button-bg-color="#FFFFFF">
+          </div>
+        </div>
+      </div>
+       <div class="col-6">
+         <div class="description-wrapper">
+           <p class="main-description">Earn rewards and discounts by posting about Vitality on Instagram and TikTok!</p>
+         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reward-section {
+    padding: 100px 0px;
+    background-color: #ffffff;
+  }
+  
+  .notify-modal__body {
+    display: none;
+  }
+  
+  .reward-section .sub-heading {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    color: #000000;
+    text-transform: uppercase;
+    max-width: 425px;
+    margin: 0px auto 10px;
+  }
+
+  .reward-section .section-heading {
+    margin-bottom: 65px;
+  }
+
+  .reward-section .row {
+    margin: 0px -16px;
+  }
+  
+  .reward-section .col-wrapper {
+    margin: 0px 16px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgb(0 0 0 / 6%);
+    border-radius: 10px;
+  }
+  
+  .reward-section .col-4 .col-wrapper {
+    padding: 30px 20px;
+    margin-bottom: 40px;
+    min-height: 350px;
+    text-align: center;
+  }
+
+  .reward-section .col-12 .col-wrapper {
+    padding: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .reward-section .post-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 38.4px;
+    letter-spacing: 0.01em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: 'Nimbus Sans D OT';
+  }
+
+  .credit-text {
+    font-family: 'Nimbus Sans D OT';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.01em;
+    max-width: 200px;
+    margin: 0px auto 10px;
+    min-height: 46px;
+  }
+
+  .reward-section .image-wrapper {
+    position: relative;
+    padding-bottom: 200px;
+    max-width: 200px;
+    height: 100%;
+    margin: 0px auto;
+  }
+  
+  .reward-section .image-wrapper .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  
+  .payout-text {
+    font-family: 'Nimbus Sans D OT';
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.71px;
+    color: #000000;
+  }
+  
+  .reward-section .description-title {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    text-align: center;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  
+  .description-text {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.8px;
+    text-align: center;
+    margin: 0;
+    color: #000000;
+    margin-left: 50px;
+    letter-spacing: 0.02em;
+  }
+  
+  .description-text span {
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    font-family: 'Nimbus Sans D OT';
+  }
+
+  @media only screen and (max-width: 768px) {
+    .reward-section {
+      padding: 80px 0px;
+    }
+    
+    .reward-section .section-heading {
+      margin-bottom: 45px;
+    }
+    
+    .reward-section .row {
+	  margin: 0px;
+    }
+
+    .reward-section .col-4 .col-wrapper {
+      max-width: 335px;
+      min-height: 312px;
+      margin: 0px auto 45px;
+      padding: 28px;
+    }
+
+    .reward-section .sub-heading {
+      font-family: 'Nimbus Sans D OT';
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19.2px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #000000;
+      text-transform: uppercase;
+      max-width: 425px;
+      margin: 0px auto 10px;
+    }
+
+    .reward-section .post-title {
+      font-size: 28px;
+      line-height: 33.6px;
+      margin-bottom: 5px;
+    }
+
+    .credit-text {
+      font-size: 18px;
+      line-height: 21.6px;
+      margin-bottom: 18px;
+      min-height: auto;
+    }
+    
+    .reward-section .image-wrapper {
+      padding-bottom: 180px;
+      max-width: 180px;
+      margin: 0px auto 5px;
+    }
+    
+    .reward-section .col-12 .col-wrapper {
+      padding: 34px 18px;
+      margin: 10px 0 20px;
+    }
+    
+    .reward-section .description-title {
+      margin-bottom: 10px;
+      font-size: 28px;
+      line-height: 33.6px;
+    }
+
+    .description-text {
+      margin-left: 0px;
+      font-size: 18px;
+      line-height: 22.5px;
+    }
+  }
+</style>
+<section class="reward-section">
+  <div class="container">
+    <p class="sub-heading">Tag us @shopvitality ON Instagram & @vitality ON Tiktok</p>
+    <h2 class="section-heading">MONTHLY REWARD LEVELS</h2>
+    <div class="row">
+      <div class="col-4">
+        <div class="col-wrapper">
+          <h3 class="post-title">5 IG posts</h3>
+          <p class="credit-text">1,000 rewards points</p>
+          <div class="image-wrapper">
+            <img class="image" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/High_Resolution_2.jpg?v=1657684226" alt="Reward Image"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="col-wrapper">
+          <h3 class="post-title">10 IG posts</h3>
+          <p class="credit-text">2,500 rewards points</p>
+          <div class="image-wrapper">
+            <img class="image" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/lip-products-scene-mockup-opened_1_3.png?v=1656481248" alt="Reward Image"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="col-wrapper">
+          <h3 class="post-title">BONUS:</h3>
+          <p class="credit-text">Post 3 TikToks and get 1,500 points</p>
+          <div class="image-wrapper">
+            <img class="image" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/makeup-cosmetics-palette-brushes-white-background_1_1.png?v=1656481249" alt="Reward Image"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <h4 class="description-title">Instagram Story:</h4>
+          <p class="description-text">Earn 20 points for every story you tag us in!<br /><span>(You can receive 1 story reward per 24 hours)</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exclusive {
+    margin: 0px 0px 120px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .exclusive .section-heading {
+    margin-bottom: 40px;
+  }
+
+  .exclusive .exclusive-title {
+    line-height: 38.4px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: 'Nimbus Sans D OT';
+    font-size: 32px;
+  }
+
+  .exclusive .first-text {
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 5px;
+/*     font-family: 'Nimbus Sans D OT'; */
+    font-weight: 400;
+  }
+  
+  .second-text {
+    font-size: 16px;
+    line-height: 19px;
+/*     font-family: 'Nimbus Sans D OT'; */
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+  
+  .exclusive .col-wrapper {
+    background: #A7C9A5;
+    color: #fff;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px 7.5px;
+  }
+  
+  .exclusive .col-2:nth-child(1) .col-wrapper {
+    background: #A7C9A5;
+  }
+
+  .exclusive .col-2:nth-child(2) .col-wrapper {
+    background: #E1816C;
+  }
+
+  .exclusive .col-2:nth-child(3) .col-wrapper {
+    background: #B287E2;
+  }
+
+  .exclusive .col-2:nth-child(4) .col-wrapper {
+    background: #7D8DC6;
+  }
+
+  .exclusive  .container {
+    max-width: 1320px;
+    margin: 0px auto;
+    padding: 0px 30px;
+  }
+  
+  @media only screen and (max-width: 991px) {
+    .exclusive .col-wrapper {
+      color: #ffffff;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin: 0px 7.5px;
+      padding: 10px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .exclusive .col-wrapper {
+      margin: 8px;
+      height: 165px;
+    }
+    .exclusive .container {
+      padding: 0px 7px;
+    }
+    .exclusive .first-text { 
+      line-height: 21.6px;
+      margin-bottom: 5px;
+    }
+    .exclusive .second-text {
+      font-size: 15px;
+      line-height: 18px;
+    }
+    .exclusive {
+      margin: 0px 0px 80px;
+    }
+  }
+
+</style>
+
+<setion class="exclusive">
+  <div class="container">
+    <h2 class="section-heading">Redeem Exclusive Vouchers</h2>
+    <div class="row">
+       <div class="col-2">
+          <div class="col-wrapper">
+            <h3 class="exclusive-title">$5</h3>
+            <p class="first-text">500 points</p>
+            <p class="second-text">$35 minimum spend</p>
+         </div>
+      </div>
+       <div class="col-2">
+          <div class="col-wrapper">
+            <h3 class="exclusive-title">$10</h3>
+            <p class="first-text">1,000 points</p>
+            <p class="second-text">$50 minimum spend</p>
+         </div>
+      </div>
+       <div class="col-2">
+          <div class="col-wrapper">
+            <h3 class="exclusive-title">$15</h3>
+            <p class="first-text">1,500 points</p>
+            <p class="second-text">$75 minimum spend</p>
+         </div>
+      </div>
+       <div class="col-2">
+          <div class="col-wrapper">
+            <h3 class="exclusive-title">$25</h3>
+            <p class="first-text">2,500 points</p>
+            <p class="second-text">$75 minimum spend</p>
+         </div>
+      </div>
+    </div>
+  </div>
+</setion>
+
+<style>
+  .how-work-section {
+    background: #EFEFEF;
+    padding: 100px 0px;
+  }
+  
+  .how-work-section .section-heading {
+    color: #000000;
+    margin-bottom: 65px;
+    text-transform: uppercase;
+  }
+  
+  .how-work-section .row {
+    margin: 0px -16px;
+  }
+  
+  .how-work-section .col-wrapper {
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgb(0 0 0 / 6%);
+    border-radius: 10px;
+    height: 100%;
+    margin: 0px 16px;
+    padding: 40px 30px;
+  }
+  
+  .how-work-svg {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    margin: 20px 0px 25px;
+  }
+  
+  .how-work-section .title {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 31.2px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  
+  .how-work-section .description {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    margin: 0;
+    color: #000000;
+  }
+  
+  .how-work-section .join-link {
+    margin-top: 70px;
+  }
+
+  @media only screen and (max-width: 989px) {
+    .how-work-section .col-wrapper {
+      margin: 0px 8px;
+      padding: 18px 17px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .how-work-section {
+      padding: 60px 0px 81px;
+    }
+    
+    .how-work-section .section-heading {
+      margin-bottom: 45px;
+    }
+
+    .how-work-section .row {
+      margin: 0px;
+    }
+
+    .how-work-section .col-4 {
+      margin: 0 0 35px;
+    }
+    
+    .how-work-section .col-4:last-child {
+      margin-bottom: 0;
+    }
+    
+    .how-work-section .col-wrapper {
+      padding: 24px;
+      max-width: 336px;
+      margin: 0px auto;
+      min-height: 300px;
+    }
+    
+    .how-work-svg {
+      margin: 25px 0px 25px 6px;
+    }
+    
+    .how-work-section .title {
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 10px;
+    }
+
+    .how-work-section .description {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    
+    .how-work-section .join-link {
+      margin-top: 50px;
+    }
+    
+  }
+</style>
+<section class="how-work-section">
+  <div class="container">
+    <h2 class="section-heading">HOW IT WORKS</h2>
+    <div class="row">
+      <div class="col-4">
+        <div class="col-wrapper">
+          <div class="svg-wrapper">
+            <svg class="how-work-svg" viewBox="0 0 56 56" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M41.1186 11.4051C42.5899 12.5713 43.5959 14.1049 43.9473 15.7268C44.34 17.5373 43.9061 19.3748 42.7281 20.8938L22.6361 46.8046C21.6205 48.1153 20.0934 48.8797 18.4428 48.9018L10.691 48.9998H10.6692C9.82326 48.9998 9.08881 48.4118 8.89732 47.5788L7.1424 39.9496C6.76911 38.3253 7.13755 36.6421 8.1556 35.3314L10.7928 31.9284C11.4109 31.1297 12.555 30.9876 13.3452 31.6173C14.1354 32.242 14.2736 33.3984 13.6531 34.1971L11.0158 37.6001C10.6813 38.0313 10.5601 38.5825 10.6838 39.1166L12.1066 45.3052L18.3967 45.2268C18.9372 45.2195 19.439 44.9696 19.7735 44.5384L39.8654 18.6276C40.3793 17.9661 40.5562 17.2556 40.3963 16.5108C40.2242 15.7244 39.6861 14.9379 38.8765 14.2985L35.5072 11.6256C34.2031 10.5966 32.3634 10.0674 31.1078 11.6917L28.4536 15.1119L32.6664 18.5271C33.4493 19.1592 33.5753 20.318 32.9475 21.1069C32.5888 21.5626 32.0604 21.7978 31.5271 21.7978C31.1296 21.7978 30.7272 21.6655 30.3927 21.3936L26.2114 18.0053L19.3372 26.8717C18.7167 27.6704 17.575 27.8149 16.7824 27.1828C15.9946 26.5581 15.8564 25.4017 16.4745 24.603L28.2451 9.42305C30.5285 6.4733 34.5279 6.1842 37.7493 8.73461L41.1186 11.4051ZM31.7247 45.3251H47.1821C48.1856 45.3251 49 46.1482 49 47.1625C49 48.1768 48.1856 49 47.1821 49H31.7247C30.7187 49 29.9067 48.1768 29.9067 47.1625C29.9067 46.1482 30.7187 45.3251 31.7247 45.3251Z" fill="black"/>
+            </svg>
+          </div>
+          <h3 class="title">Sign Up</h3>
+			<p class="description">Sign up with your email, Instagram and TikTok username here!</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="col-wrapper">
+          <div class="svg-wrapper">
+            <svg class="how-work-svg" viewBox="0 0 56 56" fill="none">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M41.1553 14.8294C40.964 14.8294 40.789 14.7175 40.6233 14.3702C39.9607 12.9647 39.1487 11.2469 38.661 10.2865C37.5923 8.18408 35.7583 7.01632 33.4787 7H22.5073C20.244 7.01632 18.4077 8.18408 17.339 10.2889C16.8653 11.2212 16.0837 12.8761 15.4327 14.2583L15.295 14.5474C15.2133 14.7199 15.0407 14.8294 14.847 14.8294C9.23301 14.8294 4.66667 19.3909 4.66667 24.9967V38.8327C4.66667 44.4385 9.23301 49 14.847 49H16.5853C17.5513 49 18.3353 48.2168 18.3353 47.2518C18.3353 46.2869 17.5513 45.5037 16.5853 45.5037H14.847C11.1627 45.5037 8.16667 42.5108 8.16667 38.8327V24.9967C8.16667 21.3186 11.1627 18.3257 14.847 18.3257C16.3847 18.3257 17.8033 17.4283 18.459 16.0415L18.5967 15.7501C19.2337 14.3982 19.999 12.7806 20.461 11.8692C20.9393 10.9275 21.581 10.5033 22.5237 10.4963H33.4647C34.4213 10.5033 35.0607 10.9275 35.539 11.8669C36.015 12.8085 36.8107 14.4891 37.5433 16.0415C38.199 17.4283 39.6177 18.3257 41.1553 18.3257C44.8373 18.3257 47.8333 21.3186 47.8333 24.9967V38.8327C47.8333 42.5108 44.8373 45.5037 41.1553 45.5037H24.6867C23.7207 45.5037 22.9367 46.2869 22.9367 47.2518C22.9367 48.2168 23.7207 49 24.6867 49H41.1553C46.767 49 51.3333 44.4385 51.3333 38.8327V24.9967C51.3333 19.3909 46.767 14.8294 41.1553 14.8294ZM28.0019 40.2595C30.4542 40.2595 32.7642 39.2945 34.5072 37.5417C36.2409 35.7982 37.1882 33.5046 37.1672 31.0968C37.1695 28.654 36.2129 26.3488 34.4745 24.6123C32.7385 22.8781 30.4402 21.9248 28.0019 21.9248H27.9972C27.3252 21.9248 26.6532 21.9971 26.0022 22.1462C25.0595 22.3537 24.4645 23.2907 24.6769 24.2324C24.8869 25.1717 25.8202 25.7731 26.7652 25.554C27.1689 25.4654 27.5819 25.4211 27.9995 25.4211H28.0019C29.5069 25.4211 30.9255 26.0132 31.9989 27.0854C33.0769 28.1622 33.6695 29.5841 33.6672 31.1085C33.6789 32.5909 33.0955 33.9987 32.0245 35.0779C30.9442 36.1641 29.5139 36.7632 28.0019 36.7632H27.9972C26.4852 36.7608 25.0642 36.1688 23.9932 35.0942C22.9199 34.0197 22.3319 32.5956 22.3342 31.0805C22.3342 30.5001 22.4252 29.9244 22.6025 29.372C22.8942 28.4536 22.3855 27.47 21.4639 27.1763C20.5375 26.8872 19.5575 27.3907 19.2659 28.3114C18.9812 29.2088 18.8342 30.1365 18.8342 31.0782C18.8295 33.5209 19.7815 35.8261 21.5129 37.5626C23.2442 39.2991 25.5449 40.2571 27.9925 40.2595H28.0019ZM41.9536 25.0883C41.7902 25.2514 41.6036 25.3913 41.3936 25.4845C41.1836 25.5778 40.9502 25.6034 40.7169 25.6034C40.2736 25.6034 39.8302 25.4379 39.4802 25.0883C39.1536 24.762 38.9669 24.3191 38.9669 23.8552C38.9669 23.6431 39.0136 23.41 39.1069 23.2026C39.2002 22.9928 39.3402 22.783 39.4802 22.6199C39.6436 22.4777 39.8536 22.3378 40.0636 22.2446C40.4836 22.0814 40.9736 22.0814 41.3936 22.2446C41.6036 22.3378 41.8136 22.4777 41.9536 22.6199C42.1169 22.783 42.2569 22.9928 42.3502 23.2026C42.4436 23.41 42.4902 23.6431 42.4902 23.8552C42.4902 24.3191 42.3036 24.762 41.9536 25.0883Z" fill="black"/>
+            </svg>
+          </div>
+          <h3 class="title">Post On Instagram And TikTok</h3>
+          <p class="description">Take content in your Vitality pieces and share it to Instagram and TikTok. Don't forget to tag us in every post! Tag @shopvitality on Instagram and mention @vitality on TikTok!</p>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="col-wrapper">
+          <div class="svg-wrapper">
+            <svg class="how-work-svg" viewBox="0 0 56 56" fill="none">
+              <path d="M40.8284 51.1453C40.5414 51.1523 40.2568 51.08 40.0071 50.9353L28.0184 44.6213L17.4624 50.3053C15.7404 51.2386 13.5844 50.5993 12.6511 48.875C12.6394 48.854 12.6278 48.833 12.6161 48.8096C12.2498 48.0886 12.1214 47.2743 12.2474 46.4763L14.3008 34.357L5.71877 25.6676C4.31644 24.221 4.31644 21.9203 5.71877 20.4713C6.26477 19.8973 6.98811 19.5263 7.77211 19.419L19.5391 17.6316L24.7728 6.72796C25.5871 4.95463 27.6848 4.1753 29.4604 4.98963C30.2304 5.34196 30.8464 5.9603 31.1988 6.72796L36.4558 17.669L48.2624 19.4773C49.2168 19.6196 50.0731 20.147 50.6331 20.9333C51.6784 22.436 51.5198 24.466 50.2551 25.789L41.7128 34.3756L42.9028 40.9066C43.0684 41.8866 42.4221 42.8223 41.4444 43.0066C40.4831 43.1793 39.5638 42.54 39.3911 41.5763L38.1801 35.0453C37.9771 33.8483 38.3574 32.6256 39.2068 31.76L47.7701 23.1126L35.9634 21.281C34.7664 21.0873 33.7514 20.294 33.2731 19.181L28.0184 8.28663L22.6984 19.3536C22.2201 20.469 21.2051 21.26 20.0081 21.4536L8.24111 23.241L16.7414 31.8743C17.5884 32.726 17.9688 33.9323 17.7681 35.1153L15.7148 47.2346L26.2684 41.574C27.3138 40.986 28.5901 40.986 29.6354 41.574L41.6078 47.888C42.3381 48.287 42.7091 49.1293 42.5108 49.939C42.3288 50.7486 41.6148 51.325 40.7864 51.339L40.8284 51.1453Z" fill="black"/>
+            </svg>
+          </div>
+          <h3 class="title">Get Rewarded</h3>
+          <p class="description">Complete the levels mentioned above and receive the associated rewards!</p>
+        </div>
+      </div>
+    </div>
+    <div class="lc-signup-container join-link" data-lc-button-text="JOIN NOW" data-lc-button-text-color="#000000" data-lc-button-bg-color="#FFFFFF">
+      <script type="text/javascript" src="https://pub.loudcrowd.com/launch.js?hid=cHJvZ3JhbV9ob3N0OjE2MA"></script>
+    </div>
+  </div>
+</section>
+
+
+  <section class="post-rule-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="col-wrapper">
+            <div class="image-wrapper">
+              <img class="image" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/VanDeVort_ad-16_1_1.png?v=1656484893" alt="post-image">
+            </div>
+          </div>
+        </div>
+        <div class="col-6 align-self-center">
+          <div class="col-wrapper">
+            <h2 class="title">Post Rules</h2>
+            <ul>
+              <li class="description">Posts must be made from accounts that are public.</li>
+              <li class="description">Posts must not be made from accounts with no previous posts.</li>
+              <li class="description">Posts must tag @shopvitality on Instagram and mention @vitality on TikTok. Tags and mentions must be visible and clickable.</li>
+              <li class="description">Posts must visibly display Vitality products and tag appropriate handles.</li>
+              <li class="description">No competing brands can be featured or tagged in posts.</li>
+              <li class="description">Posts must be original content; content that has not been posted previously.</li>
+              <li class="description">Posts must be owned by the creator.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    .post-rule-section {
+      background: #FFFFFF;
+      padding: 80px 64px 0px;
+    }
+
+    .post-rule-section .row {
+      align-items: center;
+    }
+
+    .post-rule-section .main-container {
+      padding: 0px 25px;
+    }
+
+    .post-rule-section .col-6 .col-wrapper {
+      height: 100%;
+    }
+
+    .post-rule-section .image-wrapper {
+      position: relative;
+      padding-bottom: 100.847%;
+      width: 78.1%;
+      height: 100%;
+      margin-left: 20px;
+    }
+
+    .post-rule-section img.image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-rule-section .col-6:last-child .col-wrapper {
+      max-width: 580px;
+      margin: 0px auto;
+      padding: 0px 15px;
+    }
+
+    .post-rule-section h2.title {
+      text-align: left;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 43.2px;
+      text-transform: uppercase;
+      font-family: 'Nimbus Sans D OT';
+      letter-spacing: 0.02em;
+    }
+
+    .post-rule-section ul {
+      margin-left: 30px;
+    }
+
+    .post-rule-section ul li.description {
+      font-family: 'Nimbus Sans D OT';
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: #000000;
+      margin-bottom: 25px;
+      list-style: disc;
+      display: list-item;
+    }
+
+    .post-rule-section ul li.description:last-child {
+      margin-bottom: 0px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      .post-rule-section {
+        background: #FFFFFF;
+        padding: 60px 0px 0px;
+      }
+      
+      .post-rule-section .image-wrapper {
+        margin-left: 0px;
+      }
+
+      .post-rule-section .image-wrapper {
+        width: 100%;
+      }
+    }
+
+    @media only screen and (max-width: 1090px) {
+      .post-rule-section .image-wrapper {
+        /* padding-bottom: 155.8%; */
+      }
+
+      .post-rule-section .col-6:last-child .col-wrapper {
+        padding: 0px 30px;
+      }
+    }
+    
+    @media only screen and (max-width: 991px) {
+      .post-rule-section .row {
+        align-items: inherit;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .post-rule-section {
+        padding: 100px 0px 0px;
+      }
+
+      .post-rule-section .col-6:last-child .col-wrapper, .post-rule-section ul li.description {
+        max-width: 100%;
+      }
+
+      .post-rule-section .image-wrapper {
+        padding-bottom: 119.5%;
+        margin: 0px auto;
+      }
+
+      .post-rule-section .main-container {
+        padding: 0px 20px;
+      }
+
+      .post-rule-section .col-6:first-child {
+        margin-bottom: 40px;
+      }
+
+      .post-rule-section .col-6:last-child .col-wrapper {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .post-rule-section h2.title {
+        margin-bottom: 25px;
+        font-size: 24px;
+        line-height: 28.8px;
+      }
+      
+      .post-rule-section ul li.description {
+        font-size: 20px;
+        line-height: 24px;
+      }
+
+      .post-rule-section ul li.description {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+
+  <section class="terms-condition-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <div class="col-wrapper">
+            <div class="image-wrapper">
+              <img class="image" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Flower_Hill_-_storefront-mockup3_1_1.png?v=1656484893" alt="tc-image">
+            </div>
+          </div>
+        </div>
+        <div class="col-6 align-self-center">
+          <div class="col-wrapper">
+            <h2 class="title">Terms & Conditions</h2>
+            <ul>
+              <li class="description">Post must meet all the post rules criteria above in order to be eligible for rewards.</li>
+              <li class="description">You must be an existing Vitality Rewards member in order to receive rewards points.</li>
+              <li class="description">Vitality has full content rights of A-List content and may use reward member content for marketing purposes with no expiration date.</li>
+              <li class="description">Only one story post per 24 hours is eligible for rewards.</li>
+              <li class="description">Vitality may update the rewards program at any time.</li>
+              <li class="description">Joining the Vitality A-List Program does not mean you are affiliated with Vitality. After purchasing products from Vitality, you are awarded points by sharing & tagging on social media. You will not receive free product or PR packages within the Vitality A-List program.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .terms-condition-section {
+      padding: 100px 64px 120px;
+    }
+
+    .terms-condition-section .row {
+      align-items: center;
+    }
+
+    .terms-condition-section .main-container {
+      padding: 0px 25px;
+    }
+
+    .terms-condition-section .col-6:first-child {
+      order: 2;
+    }
+
+    .terms-condition-section .col-6 .col-wrapper {
+      height: 100%;
+    }
+
+    .terms-condition-section .image-wrapper {
+      position: relative;
+      padding-bottom: 100.847%;
+      width: 84.1%;
+      height: 100%;
+      margin-right: 20px;
+      margin-left: auto;
+    }
+
+    .terms-condition-section img.image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .terms-condition-section .col-6:last-child .col-wrapper {
+      max-width: 540px;
+      margin: 0px auto;
+    }
+
+    .terms-condition-section h2.title {
+      text-align: left;
+      margin-bottom: 40px;
+      font-size: 36px;
+      line-height: 43.2px;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      font-family: 'Nimbus Sans D OT';
+      font-weight: 700;
+    }
+
+    .terms-condition-section ul {
+      margin-left: 30px;
+    }
+
+    .terms-condition-section ul li.description {
+      font-weight: 300;
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 0.01em;
+      color: #000000;
+      margin-bottom: 25px;
+      list-style: disc;
+      display: list-item;
+      font-family: 'Nimbus Sans D OT';
+    }
+
+    .terms-condition-section ul li.description:last-child {
+      margin-bottom: 0px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      .terms-condition-section {
+        padding: 60px 0px 100px;
+      }
+
+      .terms-condition-section .image-wrapper {
+        width: 100%;
+        margin: 0px auto;
+      }
+      .terms-condition-section .image-wrapper {
+        margin-right: 0px;
+      }
+    }
+
+    @media only screen and (max-width: 1090px) {
+      .terms-condition-section .col-6:last-child .col-wrapper {
+        padding: 0px 30px;
+      }
+    }
+    
+    @media only screen and (max-width: 991px) {
+      .terms-condition-section .row {
+        align-items: inherit;
+      }
+     }
+
+    @media only screen and (max-width: 768px) {
+      .terms-condition-section {
+        padding: 80px 0px;
+      }
+      
+      .terms-condition-section .image-wrapper {
+        padding-bottom: 119.5%;
+        margin: 0px auto;
+      }
+      .terms-condition-section .main-container {
+        padding: 0px 20px;
+      }
+
+      .terms-condition-section .col-6:last-child .col-wrapper, .terms-condition-section ul li.description {
+        max-width: 100%;
+      }
+
+      .terms-condition-section .col-6:first-child {
+        margin-bottom: 40px;
+        order: 0;
+      }
+
+      .terms-condition-section .col-6:last-child .col-wrapper {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .terms-condition-section h2.title {
+        margin-bottom: 25px;
+        font-size: 24px;
+        line-height: 28.8px;
+      }
+
+      .terms-condition-section ul li.description {
+        margin-bottom: 20px;
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+</style>
+
+<style>
+  .gallery-section .heading {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 46px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding-top: 40px;
+  }
+    
+    .gallery-section {
+      background-color: #EFEFEF;
+      padding: 25px 0px;
+    }
+
+  .gallery-slider-wrapper {
+    width: 100%;
+    position: relative;
+    padding: 80px 0px 0px;
+  }
+
+  .gallery-slider-wrapper:before {
+    content: '';
+    display: block;
+    padding-bottom: calc(29.5138889% + 70px);
+  }
+
+  .gallery-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gallery-slider .swiper-wrapper {
+    align-items: center;
+    margin-left: -5.20833333%;
+  }
+
+  .gallery-slider .gallery-slide {
+    width: 19.0972222%;
+    height: auto;
+    margin: 0 1.94444444%;
+    transition: width .3s ease;
+    position: relative;
+  }
+
+  .gallery-slider .gallery-slide:before {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  .gallery-slider .gallery-slide img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.06));
+    border-radius: 24px;
+    cursor: grab;
+  }
+
+  .gallery-slider:not(.is-active) .swiper-wrapper {
+    margin-left: 0;
+  }
+
+  .gallery-slider:not(.swiper-initialized) .swiper-wrapper {
+    justify-content: center;
+  }
+
+  .gallery-slider:not(.swiper-initialized) .gallery-slide {
+    max-width: calc(25% - (1.94444444% * 2));
+  }
+
+  .gallery-slider:not(.swiper-initialized) .gallery-slide:nth-child(n+6) {
+    display: none;
+  }
+
+  .gallery-slider.is-active .gallery-slide.swiper-slide-active {
+    width: 29.5138889%;
+  }
+
+  .gallery-slider .swiper-button-next,
+  .gallery-slider .swiper-button-prev {
+    width: 6.94444444%;
+    height: auto;
+    margin-top: calc(-6.94444444% / 2);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .gallery-slider .swiper-button-next:focus,
+  .gallery-slider .swiper-button-prev:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  :-webkit-direct-focus {
+    outline-color: transparent !important;
+    outline-style: none !important;
+    outline-width: 0px !important;
+  }
+
+  .gallery-slider .swiper-button-next:after,
+  .gallery-slider .swiper-button-prev:after {
+    display: none;
+  }
+
+  .gallery-slider .swiper-button-next img,
+  .gallery-slider .swiper-button-prev img {
+    width: 100%;
+    display: block;
+  }
+
+  .gallery-slider .swiper-button-prev img {
+    transform: rotate(180deg);
+  }
+
+  .gallery-slider .swiper-button-prev {
+    left: 9.23611111111%;
+  }
+
+  .gallery-slider .swiper-button-next {
+    right: 9.23611111111%;
+  }
+
+  .gallery-slider:not(.is-active) .swiper-button-prev,
+  .gallery-slider:not(.is-active) .swiper-button-next {
+    display: none;
+  }
+
+  @media only screen and (max-width: 749px) {
+    .gallery-slider-wrapper {
+      padding: 30px 0px;
+    }
+    .gallery-slider-wrapper:before {
+      padding-bottom: calc(60.8% + 70px);
+    }
+    .gallery-slider .swiper-wrapper {
+      margin-left: -10.6666667%;
+    }
+    .gallery-slider .gallery-slide {
+      width: 39.4666667%;
+      margin: 0 4.13333333%;
+    }
+    .gallery-slider:not(.swiper-initialized) .gallery-slide {
+      max-width: calc(50% - (4.13333333% * 2));
+    }
+    .gallery-slider.is-active .gallery-slide.swiper-slide-active {
+      width: 60.8%;
+    }
+    .gallery-slider .swiper-button-next,
+    .gallery-slider .swiper-button-prev {
+      width: 16%;
+      height: auto;
+      margin-top: calc(-16% / 2);
+    }
+    .gallery-slider .swiper-button-prev {
+      left: 3.73333333%;
+    }
+    .gallery-slider .swiper-button-next {
+      right: 3.73333333%;
+    }
+  }
+
+  @media only screen and (max-width: 749px) {
+    .gallery-slider-wrapper {
+      padding: 20px 0px;
+    }
+  }
+  /*  Gallery CSS End  */
+</style>
+
+<section class="gallery-section">
+  <div class="gallery-slider-wrapper">
+    <div class="gallery-slider swiper">
+      <div class="swiper-wrapper">
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/gallary-4.jpg?v=1656496589" />
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/gallary-3.jpg?v=1656496588" />
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/gallary-1.jpg?v=1656496588" />
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/gallary-2.jpg?v=1656496593"/>
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/gallary-5.png?v=1656496589" />
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/UGC_call_me_ebs_NWimage00001.jpg?v=1657690016" />
+        </div>
+        <div class="gallery-slide swiper-slide">
+          <img class="swiper-lazy" src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Dana_Franz_8F3E5100-C4FD-4D22-B8D3-686A93FEBAC8.jpg?v=1657716861" />
+        </div>
+      </div>
+      <div class="swiper-button-prev">
+        <img class="prew-image" src="https://cdn.shopify.com/s/files/1/0288/9840/files/next_1_1.png?v=1655197276" />
+      </div>
+      <div class="swiper-button-next">
+        <img class="next-image" src="https://cdn.shopify.com/s/files/1/0288/9840/files/next_1_1.png?v=1655197276" />
+      </div>
+      
+      
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+  function gallerySlider() {
+    var gallerySlider = new Swiper('.gallery-slider', {
+      loop: true,
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      lazy: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+    var sliderInterval = setInterval(function() {
+      if ($('.gallery-slider').hasClass('swiper-initialized')) {
+        setTimeout(function() {
+          $('.gallery-slider').addClass('is-active');
+        }, 1000);
+        clearInterval(sliderInterval);
+      }
+    }, 500);
+  }
+
+  $(window).on('load', function() {
+    var length = $('.gallery-slider .gallery-slide').length;
+    if (length > 4 && $(window).width() > 767) {
+      gallerySlider();
+    } else if (length > 2 && $(window).width() < 768) {
+      gallerySlider();
+    }
+  });
+</script>
+
+<style>
+    .icon-with-text {
+      position: relative;
+      padding: 80px 0px;
+      margin: 100px 70px 0px;
+      background: #EFEFEF;
+      border-radius: 10px;
+    }
+
+   .icon-with-text h2.main-title {
+     margin-bottom: 71px;
+     text-align: center;
+   }
+
+    .icon-with-text .items {
+      background: #FFFFFF;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      max-width: 375px;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      margin: 0px auto;
+      padding: 30px;
+      margin-bottom: 60px;
+    }
+
+    .icon-with-text h3 {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      font-family: 'Nimbus Sans D OT';
+      margin-bottom: 20px;
+      margin-top: 80px;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+    
+    .icon-with-text p {
+      font-family: 'Nimbus Sans D OT';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 32px;
+      letter-spacing: 0.01em;
+      color: #1C1B1B;
+    }
+    
+    .icon-with-text .icon {
+      width: 130px;
+      height: 130px;
+      background: #EFEFEF;
+      border: 6px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0px auto;
+      border-radius: 100px;
+      margin-bottom: -71px;
+      z-index: 2;
+      position: relative;
+    }
+    
+/*     .icon-with-text .col-6:last-child .items, .icon-with-text .col-6:nth-last-child(2) .items {
+      justify-content: end;
+    } */
+    
+    @media only screen and (max-width: 1200px) {
+      .icon-with-text .col-6:last-child .items, .icon-with-text .col-6:nth-last-child(2) .items {
+        justify-content: center;
+      }
+    }
+    
+    @media only screen and (max-width: 1024px) {
+      .icon-with-text {
+        margin: 150px 30px 0px;
+      }
+    }
+    
+    @media only screen and (max-width: 991px) {
+      .icon-with-text .items {
+        margin: 0px 15px 30px;
+        padding: 20px;
+      }
+      .icon-with-text h3 {
+        font-size: 18px;
+        line-height: 21.6px;
+        margin-bottom: 12px;
+        margin-top: 60px;
+      }
+      .icon-with-text p {
+        font-size: 16px;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .icon-with-text .col-6:last-child .items {
+        margin-bottom: 0px;
+      }
+      .icon-with-text .items {
+        margin: 0px auto 45px;
+        padding: 20px;
+        min-height: 300px;
+      }
+
+      .icon-with-text {
+        margin: 80px 20px 0px;
+        padding: 60px 0px 90px;
+      }
+      
+      .icon-with-text h2.main-title {
+        margin-bottom: 58px;
+      }
+
+      .icon-with-text .icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: -50px;
+      }
+    }
+/*     @media only screen and (max-width: 420px) {
+      .icon-with-text h2.main-title {
+        padding: 0px 15px;
+      }
+    } */
+    
+    @media only screen and (max-width: 340px) {
+      .icon-with-text p {
+        line-height: 26px;
+      }
+      .icon-with-text .items {
+        min-height: 310px;
+      }
+       .icon-with-text h2.main-title {
+        padding: 0px;
+      }
+    }
+  </style>
+  
+  <section class="icon-with-text">
+    <div class="container">
+      <h2 class="main-title">What We Love to See</h2>
+      <div class="row">
+        <div class="col-6">
+          <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none"><path d="M39.2852 21.4286C37.3184 21.4252 35.3888 21.9641 33.7085 22.9862C32.0281 24.0082 30.6621 25.4737 29.7605 27.2216C28.8589 28.9696 28.4568 30.9323 28.5982 32.8939C28.7396 34.8556 29.4191 36.7403 30.5621 38.3408L21.4283 47.4746L23.9532 49.9996L33.087 40.8658C34.4609 41.8423 36.0458 42.4808 37.7129 42.7292C39.38 42.9776 41.0822 42.829 42.6811 42.2955C44.2799 41.7619 45.7302 40.8585 46.9141 39.6587C48.0979 38.4589 48.9818 36.9966 49.4939 35.3908C50.0059 33.7849 50.1317 32.0809 49.861 30.4172C49.5902 28.7536 48.9306 27.1774 47.9358 25.8168C46.9409 24.4561 45.639 23.3496 44.1358 22.5871C42.6326 21.8245 40.9707 21.4276 39.2852 21.4286ZM39.2852 39.2855C37.8725 39.2855 36.4915 38.8666 35.3169 38.0817C34.1423 37.2968 33.2267 36.1813 32.6861 34.8761C32.1455 33.571 32.0041 32.1348 32.2797 30.7492C32.5553 29.3637 33.2355 28.091 34.2345 27.092C35.2334 26.0931 36.5061 25.4128 37.8917 25.1372C39.2772 24.8616 40.7134 25.003 42.0186 25.5437C43.3238 26.0843 44.4393 26.9998 45.2242 28.1744C46.009 29.349 46.4279 30.73 46.4279 32.1427C46.4256 34.0364 45.6723 35.8518 44.3333 37.1908C42.9942 38.5298 41.1788 39.2831 39.2852 39.2855ZM26.7853 17.8572C27.8449 17.8572 28.8806 17.543 29.7616 16.9544C30.6425 16.3657 31.3292 15.5291 31.7346 14.5502C32.1401 13.5713 32.2462 12.4942 32.0395 11.455C31.8328 10.4159 31.3226 9.46132 30.5734 8.71212C29.8242 7.96292 28.8696 7.45271 27.8305 7.246C26.7913 7.0393 25.7142 7.14539 24.7353 7.55085C23.7564 7.95631 22.9198 8.64294 22.3311 9.52391C21.7425 10.4049 21.4283 11.4406 21.4283 12.5001C21.4297 13.9205 21.9946 15.2822 22.9989 16.2866C24.0032 17.2909 25.365 17.8558 26.7853 17.8572ZM26.7853 10.7144C27.1385 10.7144 27.4838 10.8192 27.7774 11.0154C28.0711 11.2116 28.3 11.4905 28.4351 11.8168C28.5703 12.1431 28.6056 12.5021 28.5367 12.8485C28.4678 13.1949 28.2978 13.5131 28.048 13.7628C27.7983 14.0125 27.4801 14.1826 27.1337 14.2515C26.7873 14.3204 26.4283 14.2851 26.102 14.1499C25.7757 14.0147 25.4968 13.7859 25.3006 13.4922C25.1044 13.1986 24.9997 12.8533 24.9997 12.5001C24.9997 12.0265 25.1878 11.5723 25.5227 11.2375C25.8576 10.9026 26.3118 10.7144 26.7853 10.7144Z" fill="#1C1B1B"/><path d="M17.8569 39.2852H3.57138V28.5657L12.4998 19.6426L22.4747 29.6174L24.9996 27.0853L15.0248 17.1123C14.3551 16.4427 13.4468 16.0666 12.4998 16.0666C11.5528 16.0666 10.6446 16.4427 9.97486 17.1123L3.57138 23.514V3.57138H39.2852V14.2855H42.8565V3.57138C42.8556 2.62448 42.479 1.71663 41.8095 1.04708C41.1399 0.377518 40.2321 0.000945481 39.2852 0H3.57138C2.62448 0.000945481 1.71663 0.377518 1.04708 1.04708C0.377518 1.71663 0.000945481 2.62448 0 3.57138V39.2852C0.000945481 40.2321 0.377518 41.1399 1.04708 41.8095C1.71663 42.479 2.62448 42.8556 3.57138 42.8565H17.8569V39.2852Z" fill="#1C1B1B"/></svg>
+            </div>
+          <div class="items">
+            <h3>High Resolution:</h3>
+            <p class="content">Ensure you are posting high resolution content to Instagram and TikTok. We love good lighting!</p>
+          </div>
+        </div>
+         <div class="col-6">
+           <div class="icon">
+             <svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49" fill="none">
+               <path d="M23.4088 25.4375C29.8809 25.4375 35.1276 20.1908 35.1276 13.7188C35.1276 7.24666 29.8809 2 23.4088 2C16.9367 2 11.6901 7.24666 11.6901 13.7188C11.6901 20.1908 16.9367 25.4375 23.4088 25.4375Z" stroke="#1C1B1B" stroke-width="4"/>
+               <path d="M34.99 47H6.80503C6.12379 47.0001 5.4503 46.8589 4.82926 46.5857C4.20823 46.3124 3.65386 45.9134 3.20295 45.4151C2.75203 44.9169 2.41488 44.3307 2.21387 43.6956C2.01287 43.0604 1.9526 42.3909 2.03708 41.7313L2.97385 34.4094C3.19171 32.7083 4.03894 31.1435 5.35623 30.0093C6.67352 28.875 8.37012 28.2493 10.127 28.25M32.588 32.9375L37.9925 37.625L47 28.25" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>          
+           </div>
+           <div class="items">
+             <h3>Be Authentic:</h3>
+             <p class="content">We love seeing genuine, authentic content of you in your Vitality pieces! Whether that's to a workout, on an adventure, or while you're relaxing, we love to see it!</p>
+           </div>
+        </div>
+         <div class="col-6">
+           <div class="icon">
+             <svg xmlns="http://www.w3.org/2000/svg" width="61" height="49" viewBox="0 0 61 49" fill="none">
+               <path d="M30.125 27.3125C33.2316 27.3125 35.75 24.7941 35.75 21.6875C35.75 18.5809 33.2316 16.0625 30.125 16.0625C27.0184 16.0625 24.5 18.5809 24.5 21.6875C24.5 24.7941 27.0184 27.3125 30.125 27.3125Z" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+               <path d="M30.125 41.375C18.875 41.375 9.50094 34.8134 2 21.6875C9.50094 8.56156 18.875 2 30.125 2C41.375 2 50.7491 8.56156 58.25 21.6875C57.0688 23.7575 55.8369 25.6644 54.5628 27.4053M38.5625 41.375L44.1875 47L55.4375 35.75" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>          
+           </div>
+           <div class="items">
+             <h3>Highlight Product/Brand:</h3>
+             <p class="content">Show off your Vitality by making sure the product is clearly visible Don't forget to tag @shopvitality on Instagram and mention @vitality on TikTok.</p>
+           </div>
+        </div>
+         <div class="col-6">
+           <div class="icon">
+             <svg width="50" height="45" viewBox="0 0 50 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M26.8925 1.1181C26.7013 0.778295 26.4256 0.495991 26.0933 0.299681C25.7611 0.103371 25.3839 0 25 0C24.6161 0 24.239 0.103371 23.9067 0.299681C23.5744 0.495991 23.2988 0.778295 23.1075 1.1181L0.290082 41.6623C0.0994272 42.001 -0.000610872 42.385 2.80651e-06 42.7757C0.000616485 43.1664 0.10186 43.55 0.293578 43.8881C0.485297 44.2262 0.760748 44.507 1.0923 44.7021C1.42385 44.8973 1.79985 45 2.18258 45H47.8175C48.2002 45 48.5762 44.8973 48.9077 44.7021C49.2393 44.507 49.5147 44.2263 49.7064 43.8881C49.8981 43.55 49.9994 43.1664 50 42.7758C50.0006 42.3851 49.9006 42.0011 49.71 41.6624L26.8925 1.1181ZM4.44513 41.4354L25 4.91142L45.5549 41.4354H4.44513Z" fill="black"/>
+             </svg>
+           </div>
+          <div class="items">
+            <h3>Be Vitality:</h3>
+            <p class="content">Share your purpose, share your passion, share YOU. We cannot wait to see you emulate Vitality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<style>
+  .faq-section {
+    padding: 140px 0px;
+  }
+
+  .faq-section .section-heading {
+    margin-bottom: 80px;
+  }
+
+  .faq-section .container {
+    max-width: 1286px;
+    padding: 0px 30px;
+  }
+
+  .faq-section .col-12 {
+    margin-bottom: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: all 0.4s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .faq-section .col-12:last-child {
+    margin-bottom: 0px;
+  }
+
+  .faq-section h2 span {
+    font-size: 32px;
+    line-height: 36.77px;
+  }
+
+  .faq-section .question-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 38px 50px;
+    cursor: pointer;
+  }
+
+  .faq-section .question {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    width: 90%;
+    margin: 0;
+    text-transform: inherit;
+    color: #000000;
+  }
+
+  .detail-open-arrow {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    transition: all 0.4s ease;
+    margin-left: 10px;
+  }
+
+  .faq-section .col-wrapper .bottom-wrapper {
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+
+  .faq-section .col-wrapper:not(.top-click) .bottom-wrapper {
+    height: 0px !important;
+  }
+
+  .answer-wrapper {
+    padding: 0px 50px 50px;
+  }
+
+  .faq-section .answer-wrapper .answer {
+    font-family: 'Nimbus Sans D OT';
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.01em;
+    text-align: left;
+	margin: 0px;
+    padding: 9.5px 27px;
+    border-left: 8px solid #EFEFEF;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+    opacity: 1;
+    color: #000000;
+  }
+
+  .faq-section .answer-wrapper .answer a {
+    text-decoration: none;
+    color: currentColor;
+    cursor: pointer;
+  }
+
+  .faq-section .col-wrapper.top-click .answer-wrapper .answer {
+    transform: translateX(0px);
+    transition: all 0.4s ease-in-out;
+    opacity: 1;
+  }
+
+  .faq-section .col-wrapper.top-click .detail-open-arrow {
+    transform: rotate(90deg);
+  }
+
+  @media only screen and (max-width: 768px) {
+    .faq-section {
+      padding: 100px 0px;
+    }
+    
+    .faq-section .section-heading {
+      margin-bottom: 50px;
+    }
+
+    .faq-section h2 span {
+      font-size: 24px;
+      line-height: 27.58px;
+    }
+
+    .faq-section .question-wrapper {
+      padding: 24px;
+    }
+
+    .faq-section .question {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    .detail-open-arrow {
+      width: 16px;
+      height: 16px;
+    }
+
+    .answer-wrapper {
+      padding: 16px 24px 40px 24px;
+    }
+
+    .faq-section .answer-wrapper .answer {
+      font-size: 14px;
+      line-height: 20px;
+      padding: 4px 20px;
+      border-left: 4px solid #EFEFEF;
+    }
+  }
+  @media only screen and (max-width: 475px) {
+    .faq-section {
+      padding: 100px 0px 50px;
+    }
+    .faq-section .container {
+      padding: 0px 20px;
+    }
+    .faq-section .question-wrapper {
+      padding: 20px 15px;
+    }
+    .faq-section .answer-wrapper .answer {
+      padding: 10px 16px;
+    }
+  }
+</style>
+
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+    <div class="row">
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">How do I get rewarded?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">Ensure you’ve tagged @shopvitality and are following the post guidelines. On TikTok, make sure you’re including @vitality in the caption. At the end of each month, we will send your reward to the email you registered with.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">When should I expect rewards?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">Rewards are sent at the end of each month. You’ll be rewarded for the highest tier(s) achieved. If approved, story rewards will be delivered to your Vitality Rewards account within 48 hours of posting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">What is my reward eligible towards?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">
+                You will receive points in your Vitality rewards account according to rewards you earn. These points are eligible to use as discounts on shopvitality.com.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">Can I get rewarded on any other social platforms?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">While we encourage you to share on other platforms, we are only offering rewards for Instagram and TikTok at the moment.  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">Are Instagram Stories included? What about Reels?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">Yes, stories and Reels are eligible for rewards! Reels will count towards the in-feed post reward tiers. See the Rewards section above.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">How do I ensure my post is valid?</h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">Ensure you are posting from a public account, tagging the correct brand, following the post guidelines listed, and upholding the Terms & Conditions. On TikTok, ensure you’re mentioning @vitality in the caption. </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="col-wrapper">
+          <div class="top-wrapper">
+            <div class="question-wrapper">
+              <h5 class="question">Who do I contact if I haven’t received my reward or have questions about the program? </h5>
+              <svg class="detail-open-arrow" width="25" height="25" viewBox="0 0 16 26" fill="none">
+                <path d="M2.75 2.5L13.25 13L2.75 23.5" stroke="#1C1B1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="bottom-wrapper">
+            <div class="answer-wrapper">
+              <p class="answer">Please email <a href="mailto:support@shopvitality.com" target="_blank">support@shopvitality.com</a> with any questions!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  $(document).ready(function() {
+    
+    $('#HeaderWrapper').addClass('header-wrapper--overlay is-light');
+    $('#SiteHeader').data('overlay', 'true');
+    
+    
+    function resizeFun() {
+      $('.answer-wrapper').each(function(index) {
+        var contentHeight = $(this).innerHeight();
+        $(this).parent('.bottom-wrapper').css('height', contentHeight)
+      });
+    }
+    resizeFun();
+
+    $(window).resize(function() {
+      resizeFun();
+    });
+
+    $(document).on('click', '.top-wrapper', function() {
+      if (!$(this).parent().hasClass('top-click')) {
+        resizeFun();
+      }
+      $(this).parent().toggleClass('top-click').parents().siblings().children().removeClass('top-click');
+    });
+  });
+</script>
+<style>
+

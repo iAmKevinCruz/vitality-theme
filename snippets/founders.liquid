@@ -1,0 +1,37 @@
+<section class="founders">
+    <div class="container-max founders-grid">
+        <div class="founders__item textblock" style="background-color: {{bg_color}};">
+           <div class="inner">
+                <h2 class="h3 title">{{ title }}</h2>
+                <div class="text">
+                    {{ text }}
+                </div>
+                {% render 'icon-big-arrow' %}
+           </div>
+        </div>
+        <div class="founders__item people-item">
+            {% include 'responsive-image-acf' with image: founder1_photo, image_class: "",
+    wrapper_class: "people-item__photo", max_width: 360, max_height: 540 %}
+            <div class="people-item__content">
+                <h4 class="name">{{founder1_name}}</h4>
+                <p class="title">{{founder1_title}}</p>
+            </div>
+        </div>
+        <div class="founders__item people-item">
+            {% include 'responsive-image-acf' with image: founder2_photo, image_class: "",
+    wrapper_class: "people-item__photo", max_width: 360, max_height: 540 %}
+            <div class="people-item__content">
+                <h4 class="name">{{founder2_name}}</h4>
+                <p class="title">{{founder2_title}}</p>
+            </div>
+        </div>
+        <div class="founders__item people-item">
+            {% include 'responsive-image-acf' with image: founder3_photo, image_class: "",
+    wrapper_class: "people-item__photo", max_width: 360, max_height: 540 %}
+            <div class="people-item__content">
+                <h4 class="name">{{founder3_name}}</h4>
+                <p class="title">{{founder3_title}}</p>
+            </div>
+        </div>
+    </div>
+</section>

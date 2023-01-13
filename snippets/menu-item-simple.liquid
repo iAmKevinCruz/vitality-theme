@@ -1,0 +1,18 @@
+<ul class="header__nav-sub">
+    {% for child_link in menuItem.links %}
+    <li class="header__nav-subitem {% if child_link.links != blank %}hasGrandSub{% endif %}">
+        {% assign childTitle = child_link.title | split: '::' %}
+        <a href="{{ child_link.url }}" class="header__nav-sublink" {% if childTitle[1] == 'sale' %}style="color: red"{% endif %}>{{ childTitle[0] }}</a>
+        {% if child_link.links != blank %}
+            <ul class="header__nav-sub-sub">
+                {% for grandchild_link in child_link.links %}
+                    {% assign grandChildTitle = grandchild_link.title | split: '::' %}
+                    <li class="header__nav-subitem">
+                        <a href="{{ grandchild_link.url }}" class="header__nav-sublink" {% if grandChildTitle[1] == 'sale' %}style="color: red"{% endif %}>{{ grandChildTitle[0] }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

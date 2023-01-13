@@ -1,0 +1,27 @@
+
+<div class="select2" data-value="{{ product.selected_or_first_available_variant.id  }}">
+    <select name="id" class="select-tag" style="display: none;">
+        {%- for prodVariant in product.variants -%}
+            <option data-price="{{ prodVariant.price }}" value="{{ prodVariant.id }}" class="select2__list-item" {% if allowDisabled == blank %}{% unless prodVariant.available %}disabled{% endunless%} {% endif %} {% if product.selected_or_first_available_variant.id == prodVariant.id %} selected {% endif %} >{{ prodVariant.title }}</option>
+        {%- endfor -%}
+    </select>
+    {% if product.variants.size > 1 %}
+        <div class="select2__button" type="button">
+            <span class="select2-dropdown" data-value="{{ product.selected_or_first_available_variant.id  }}">
+                {{ product.selected_or_first_available_variant.title  }}
+            </span>
+            {% if product.variants.size > 1 %}
+                <div class="icon-down">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 7L8 11L12 7" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            {% endif%}
+        </div>
+    <ul class="select2__list">
+        {%- for prodVariant in product.variants -%}
+            <li class="select2__list-item  {% if allowDisabled == blank %}{% unless prodVariant.available %}disabled{% endunless%}{% else %}{% unless prodVariant.available %}visually-disabled{% endunless%}{% endif %}" data-value="{{ prodVariant.id }}">{{ prodVariant.title }}</li>
+        {%- endfor -%}
+    </ul>
+    {% endif %}
+</div>

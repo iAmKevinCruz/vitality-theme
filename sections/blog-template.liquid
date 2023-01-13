@@ -1,0 +1,82 @@
+<div class="blog">
+	<div class="blog__breadcrumbs">{% include 'breadcrumbs' %}</div>
+	<div class="container">
+
+		<div class="blog__title-wrapper">
+			{% if blog.tags.size > 0 %}
+				<div class="blog__filter">
+					<div class="select2" data-value="{{ current_tags.first }}" data-blog-filter>
+					    <select class="select-tag" style="display: none;">
+					        {% for tag in blog.all_tags %}
+					            <option value="{{ blog.url }}/tagged/{{ tag | handleize }}" {% if current_tags.first == tag %}selected{% endif %}>{{ tag }}</option>
+					        {%- endfor -%}
+					    </select>
+					    
+					    <div class="select2__button" type="button">
+					    	{% if current_tags.size > 0 %}
+						        <span class="select2-dropdown" data-value="{{ blog.url }}/tagged/{{ current_tags.first | handleize }}">
+						            {{ current_tags.first }}
+						        </span>
+					        {% else %}
+					        	<span class="select2-dropdown" data-value="">
+						            {{ 'blogs.article.filter_by' | t }}
+						        </span>
+					        {% endif %}
+				            <div class="icon-down">
+				                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+				                <path d="M4 7L8 11L12 7" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+				                </svg>
+				            </div>
+				        </div>
+
+					    <ul class="select2__list">
+					        {% for tag in blog.all_tags %}
+					            <li class="select2__list-item" data-value="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</li>
+					        {%- endfor -%}
+					    </ul>
+					    
+					</div>
+				</div>
+			{% endif %}
+
+			<h1 class="blog__title h2">{{ blog.title }}</h1>
+
+		</div>
+	</div>
+	
+	{% paginate blog.articles by 8 %}
+		
+		<div class="blog__articles">
+
+			<div class="blog__featured-article">
+				{% if section.settings.featured_article != blank and current_tags == blank and current_page == 1 %}
+					{% render 'article-card', article: articles[section.settings.featured_article], modifier: 'hero' %}
+				{% endif %}
+			</div>
+
+			{% for article in blog.articles %}
+				{% include 'article-card' %}
+			{% endfor %}
+		</div>
+
+		{% if paginate.pages > 1 %}
+			<div class="container">
+		    	{% include 'pagination' %}
+	    	</div>
+	  	{% endif %}
+	{% endpaginate %}
+
+</div>
+
+{% schema %}
+{
+    "name": "Blog Page",
+    "settings": [
+        {
+			"type": "article",
+			"id": "featured_article",
+			"label": "Featured article"
+		}
+    ]
+} 
+{% endschema %}

@@ -1,0 +1,9 @@
+<div class="address">
+	<p>{{ address.first_name }} {{ address.last_name }}</p>
+
+	<p>
+		<div>{{ address.street }}</div>
+		<div>{% if address.city != blank %} {{ address.city }}, {% endif %} {{ address.country }} </div>
+		<div>{{ address.zip }}</div>
+	</p>
+</div>

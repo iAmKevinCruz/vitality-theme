@@ -1,0 +1,21 @@
+{% if shop.metafields.accentuate.wd_sizeuseuausuk %}
+<div class="size-block">
+    <h4 class="title">{{ 'general.sizeguide.womensdresses' | t }}</h4>
+    <table style="width:100%">
+        <tr>
+        <th>{{ 'general.sizeguide.size' | t }}</th>
+        <th>{{ 'general.sizeguide.us' | t }}</th>
+        <th>{{ 'general.sizeguide.eu' | t }}</th>
+        <th>{{ 'general.sizeguide.ausuk' | t }}</th>
+        </tr>
+        {% for item in shop.metafields.accentuate.wd_sizeuseuausuk %}
+        {% assign sizes = item | split: ','%}
+        <tr>
+            {% for size in sizes %}
+                <td>{{size}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

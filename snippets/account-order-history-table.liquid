@@ -1,0 +1,31 @@
+<table>
+	<thead>
+		<tr>
+			<th>{{ 'customer.orders.order_number' | t }}</th>
+			<th>{{ 'customer.orders.date' | t }}</th>
+			<th>{{ 'customer.orders.payment_status' | t }}</th>
+			<th class="text-right">{{ 'customer.orders.total' | t }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for orders_list_item in customer.orders limit:orders_limit %}
+			{% assign customer_url_id = orders_list_item.customer_url | split: "/" | last %}
+			<tr>
+				<td><a href="#orders/{{ customer_url_id }}" class="account-app-orders-table__order-link">{{ orders_list_item.name }}</a></td>
+				<td>{{ orders_list_item.created_at | date: '%m/%d/%Y' }}</td>
+				<td>{{ orders_list_item.fulfillment_status_label }}</td>
+				<td class="text-right">{{ orders_list_item.total_price | money }}</td>
+			</tr>
+
+			{% capture order_html %}
+				<div class="account-app-layout__page" data-account-route="orders/{{ customer_url_id }}" style="display: none;">
+					<div class="account-app-layout__widget account-app-layout__widget--order">
+						<div class="account-app-widget-header account-app-widget-header--order h5">{{ 'customer.order.title' | t: name: orders_list_item.name }}</div>
+						{% render 'account-order', order: orders_list_item %}
+					</div>
+				</div>
+			{% endcapture %}
+			{% assign all_orders_html = all_orders_html | append: order_html %}
+		{% endfor %}
+	</tbody>
+</table>

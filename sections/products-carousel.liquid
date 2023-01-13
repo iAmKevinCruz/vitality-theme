@@ -1,0 +1,59 @@
+{%- include 'products-carousel', 
+  carousel_coll: section.settings.carousel_coll, 
+  carousel_coll_lm: section.settings.carousel_coll_lm, 
+  carousel_title: section.settings.carousel_title,
+  carousel_b_text: section.settings.carousel_b_text
+-%}
+{% schema %}
+{
+    "name": "Products Carousel",
+      "class" : "products-carousel",
+      "tag" : "section",
+      "settings": 
+          [
+            {
+            "type": "text",
+            "id": "carousel_title",
+            "label": "Title",
+            "default": "New arrivals"		
+            },
+            {
+            "type": "collection",
+            "id": "carousel_coll",
+            "label": "Collection"			
+            },
+            {
+            "type": "range",
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "id": "carousel_coll_lm",
+            "label": "Products Quantity",
+            "default": 15
+            },
+            {
+            "type": "number",
+            "id": "carousel_desk",
+            "label": "Desktop Carousel Visible Items #",
+            "default": 4			
+            },
+            {
+            "type": "number",
+            "id": "carousel_mob", 
+            "label": "Mobile Carousel Visible Items #",
+            "default": 2			
+            },
+            {
+            "type": "text",
+            "id": "carousel_b_text",
+            "label": "Button Text",
+            "default": "Shop Now"		
+            }
+          ],
+          "presets": [
+              {
+                  "name": "Products Carousel",
+                  "category": "Home Page"
+              }
+          ]
+  } {% endschema %}

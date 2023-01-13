@@ -1,0 +1,17 @@
+{% if video.src != blank %}
+<section class="try-on-haul">
+    <div class="container-max">
+        <video class="video haul-video" crossorigin="anonymous" poster="{{ poster.cloudinary_src}}" preload="none" type="video/mp4" src="{{ video.src }}"></video>
+        <div class="try-on-haul__text haultext">
+            {% if pretitle != blank %}<h5 class="haultext__pretitle h5">{{ pretitle }}</h5>{% endif %}
+            {%- if title_tag != blank -%}
+            {%- assign h_tag = title_tag -%}
+            {%- else -%}
+            {%- assign h_tag = 'h2' -%}
+            {%- endif -%}
+            {% if title != blank %}<{{ h_tag }} class="haultext__title h1">{{ title }}</{{ h_tag }}>{% endif %}
+            <button class="haultext__playbutton">{% render 'icon-play-thin' %}</button>
+        </div>
+    </div>
+</section>
+{% endif %}

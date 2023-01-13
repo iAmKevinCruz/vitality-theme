@@ -1,0 +1,130 @@
+<div class="account-order">
+
+	<div class="account-order__orders">
+		<div class="account-order__line-items-header">
+			<div>Product</div>
+			<div></div>
+			<div>Quantity</div>
+			<div>Total</div>
+		</div>
+		{%- for line_item in order.line_items -%}
+			{%- assign title = line_item.title | split: '-' -%}
+
+			<div class="account-order__line-item">
+
+				{% if line_item.product.available %}
+					<a href="{{ line_item.product.url }}" class="account-order__line-item-image">
+						{{ line_item.image | img_url: '100x160', crop: 'center' | img_tag }}
+					</a>
+				{% else %}
+					<div class="account-order__line-item-image">
+						{{ line_item.image | img_url: '100x160', crop: 'center' | img_tag }}
+					</div>
+				{% endif %}
+
+				<div class="account-order__line-item-description">
+					{% if line_item.product.available %}
+						<a href="{{ line_item.product.url }}" class="account-order__line-item-title h5">
+							{{ title[0] | trim }}
+						</a>
+					{% else %}
+						<div class="account-order__line-item-title h5">
+							{{ title[0] | trim }}
+						</div>
+					{% endif %}
+
+					<div class="account-order__line-item-options">
+						{% unless title[1] == blank and line_item.product.has_only_default_variant and line_item.properties == empty %}
+							<ul>
+								{% unless line_item.product.has_only_default_variant %}
+									{% for option in line_item.options_with_values %}
+										<li>{{ option.name }}: {{ option.value }}</li>
+									{% endfor %}
+								{% endunless %}
+								{% unless title[1] == blank %}
+									<li>{{ 'customer.order.color' | t }}: {{ title[1] }}</li>
+								{% endunless %}
+
+								{% for property in line_item.properties %}
+								  <li>{{ property.first }}: {{ property.last }}</li>
+								{% endfor %}
+							</ul>
+						{% endunless %}
+					</div>
+				</div>
+
+				<div class="account-order__line-item-quantity h5">
+					{{ line_item.quantity }}
+				</div>
+
+				<div class="account-order__line-item-total">
+					{% if line_item.original_line_price != line_item.final_line_price %}
+						<del class="h5">{{ line_item.original_line_price | money }}</del>
+					{% endif %}
+					<div class="h5">{{ line_item.final_line_price | money }}</div>
+				</div>
+			</div>
+		{% endfor %}
+
+		<div class="account-order__resume">
+			<div class="account-order__resume-line">
+				<div>{{ 'customer.order.subtotal' | t }}</div>
+				<div>{{ order.line_items_subtotal_price | money }}</div>
+			</div>
+
+			{% if order.total_discounts > 0 %}
+			<div class="account-order__resume-line">
+				<div>{{ 'customer.order.discount' | t }}</div>
+				<div>{{ order.total_discounts | money }}</div>
+			</div>
+			{% endif %}
+
+			<div class="account-order__resume-line">
+				<div>{{ 'customer.order.shipping' | t }}</div>
+				<div>
+					{% if order.shipping_price == 0 %} 
+						{{ 'customer.order.free' | t }}
+					{% else %}
+						{{ order.shipping_price | money }}
+					{% endif %}
+				</div>
+			</div>
+
+			{% if order.tax_price > 0 %}
+			<div class="account-order__resume-line">
+				<div>{{ 'customer.order.tax' | t }}</div>
+				<div>{{ order.tax_price | money }}</div>
+			</div>
+			{% endif %}
+
+			<div class="account-order__resume-line account-order__resume-line--total">
+				<div>{{ 'customer.order.total' | t }}</div>
+				<div>{{ order.total_price | money }}</div>
+			</div>
+
+			{% if order.total_refunded_amount > 0 %}
+			<div class="account-order__resume-line">
+				<div>{{ 'customer.order.refund' | t }}</div>
+				<div>{{ order.total_refunded_amount | money }}</div>
+			</div>
+			{% endif %}
+
+		</div>
+	</div>
+
+	<div class="account-order__addresses">
+		{% if order.shipping_address != blank %}
+			<div class="account-order__address-block">
+				<div class="h5">{{ 'customer.order.shipping_address' | t }}</div>
+				{% render 'address', address: order.shipping_address %}
+			</div>
+		{% endif %}
+
+		{% if order.billing_address != blank %}
+			<div class="account-order__address-block">
+				<div class="h5">{{ 'customer.order.billing_address' | t }}</div>
+				{% render 'address', address: order.billing_address %}
+			</div>
+		{% endif %}
+	</div>
+</div>

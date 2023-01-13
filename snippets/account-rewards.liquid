@@ -1,0 +1,31 @@
+<div class="account-app-layout__widget">
+	{% comment %}
+	- hidden for the meanwhile b/c the loaylty lion metafields are not synced yet
+	- To do - display when loyalty lion support confirms metafields are set up correctly on their end.
+	<div class="customer-loyalty-tier">
+		<div class="account-app-widget-header h4">
+			{{ 'customer.rewards.loyalty_tier' | t }}
+		</div>
+		{{ customer.metafields.loyaltylion.loyalty_tier }}
+		<div data-lion-tier-overview></div>
+	</div>
+	{% endcomment %}
+	<div class="account-app-widget-header h4">
+		{{ 'customer.rewards.get_rewards' | t }}
+	</div>
+	<div data-lion-rewards-list></div>
+</div>
+
+<div class="account-app-layout__widget">
+	<div class="account-app-widget-header h4">
+		{{ 'customer.rewards.earn_points' | t }}
+	</div>
+	<div data-lion-rules-list></div>
+</div>
+
+<div class="account-app-layout__widget">
+	<div class="account-app-widget-header h4">
+		{{ 'customer.rewards.account_activity' | t }}
+	</div>
+	<div data-lion-history-table></div>
+</div>

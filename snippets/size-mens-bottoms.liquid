@@ -1,0 +1,19 @@
+{% if shop.metafields.accentuate.mb_sizewaist %}
+<div class="size-block">
+    <h4 class="title">{{ 'general.sizeguide.mensbottoms' | t }}</h4>
+    <table style="width:100%">
+        <tr>
+        <th>{{ 'general.sizeguide.size' | t }}</th>
+        <th>{{ 'general.sizeguide.waist' | t }}*</th>
+        </tr>
+        {% for item in shop.metafields.accentuate.mb_sizewaist %}
+        {% assign sizes = item | split: ','%}
+        <tr>
+            {% for size in sizes %}
+                <td>{{size}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

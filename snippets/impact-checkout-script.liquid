@@ -1,0 +1,34 @@
+{% if order.customer.has_account %}
+  {% assign customer_status = 'Returning' %}
+{% else %}
+  {% assign customer_status = 'New' %}
+{% endif %}
+{% assign featured_discount = order.discount_applications | first %}
+<script type="text/javascript">
+  var match = document.cookie.match(new RegExp('(^| )irclickid=([^;]+)'));
+  var clickId = match ? match[2] : '';
+  var impactConversionParams = {
+    orderId: "{{ order.order_number }}",
+    clickId: clickId,
+    customerId: "{{ order.customer.id }}",
+    customerEmail: "{{ order.customer.email | sha1 }}",
+    customerStatus: "{{ customer_status }}",
+    customerCountry: "{{ order.billing_address.country }}",
+    currencyCode: "{{ currency }}",
+    text1: "shopvitality.com",
+    orderPromoCode: "{{ featured_discount.title }}",
+    orderDiscount: "{{ order.total_discounts | divided_by: 100.0 }}",
+    items: [
+      {% for line_item in order.line_items %}
+        {
+          name: "{{ line_item.title }}",
+          subTotal: {{ line_item.original_line_price | divided_by: 100.0 }},
+          category: "{{ line_item.product.type }}",
+          sku: "{{ line_item.sku }}",
+          quantity: {{ line_item.quantity }}
+        },
+      {% endfor %}
+    ]
+  };
+  ire('trackConversion', 20056, impactConversionParams, { verifySiteDefinitionMatch: true });
+</script>

@@ -1,0 +1,110 @@
+
+<section class="products-carousel OG-recs">
+<div class="container-max">
+      {% if carousel_title != blank %}
+          <h3 class="products-carousel__title">{{ carousel_title }}</h3>
+      {% endif %}
+      <div class="swiper-container products-carousel-swiper-original">
+          <div class="swiper-wrapper product-recommendations product-recommendations" data-base-url="{{ routes.product_recommendations_url }}"
+          data-product-id="{{ product.id }}"
+          data-limit="{{ carousel_coll_lm }}">
+          </div>
+          {% if carousel_coll_lm > 4 %}
+          <button class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</button>
+          <button class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</button>
+          {% endif %}
+      </div>
+      {% if carousel_b_text != blank %}
+          <div class="products-carousel__button">
+              <a href="{{ carousel_b_url }}" class="secondary-button" style="--sec-color: #000">{{ carousel_b_text }}</a>
+          </div>
+      {% endif %}
+</div>
+</section>
+
+{%- capture product_card -%}
+<div class="swiper-slide">
+<div class="product-card [[itemGeneralClass]]">
+  <form method="post" action="/cart/add" id="product_form_[[itemVariantId]]" accept-charset="UTF-8" class="quickShop [[itemProductNot]]" enctype="multipart/form-data">
+    <input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓">
+    <input type="hidden" name="quantity" value="1" min="1">
+    <div class="product-card__image">
+        <div class="images">
+            <div class="main-image">
+                [[itemImageMain]]
+            </div>
+            <div class="hover-image">
+                [[itemImageHover]]
+            </div>
+        </div>
+        
+        <a href="[[itemUrl]]" class="product-card__link"></a>
+        <div class="product-card__label">
+            [[itemLabel]]
+        </div>
+        <div class="product-card__wishlist">
+            <!-- include 'wishlist-button-collection' with '[[itemId]]' -->
+        </div>
+        <input type="hidden" name="quantity" value="1" min="1">
+        <div class="product-card__actions [[itemOnlyone]]">
+            <div class="hover-select [[itemOnlyone]]" data-value="[[itemVariantId]]">
+                <select name="id" class="select-tag" style="display: none;">
+                  [[itemVariantsOptions]]
+                </select>
+                <strong class="title">{{ 'products.product.quickadd' | t }} +</strong>
+                <ul class="hover-select__list">
+                  [[itemVariantsList]]
+                </ul>
+                [[defaultButton]]
+            </div>
+            [[itemLabelsProperty]]
+            <button class="primary-button" style="display: none;" type="submit">{{ 'products.product.quickadd' | t }}</button>
+        </div>
+    </div>
+    <div class="product-card__description card">
+        <div class="card__titleblock">
+            <h2 class="h5 title"><a href="[[itemUrl]]">[[itemTitle]]</a></h2>
+        </div>
+        <div class="card__priceblock [[itemIsSale]]">
+            <span class="current-price">[[itemVariantPrice]]</span>
+            <span class="old-price">[[itemVariantComparePrice]]</span>
+        </div>
+    </div>
+    <div class="product-card__reviews">
+        [[itemFinalSale]]
+        <a href="[[itemUrl]]#yotpoWidget" class="review-link"></a>
+        [[itemYotpoStars]]
+    </div>
+  
+  <div class="quickshop-mobile">
+    <div class="hover-select" data-value="[[itemVariantId]]">
+        <select name="id" class="select-tag" style="display: none;">
+          [[itemVariantsOptions]]
+        </select>
+        <strong class="title quickshop-button">{{ 'products.product.quickadd' | t }} +</strong>
+        <ul class="hover-select__list hidden">
+          [[itemVariantsList]]
+        </ul>
+    </div>
+    [[itemLabelsProperty]]
+    <button class="primary-button " style="display: none;" type="submit">{{ 'products.product.quickadd' | t }}</button>
+  </div>
+  <div class="product-card__error error-note"></div>
+  <notify-modal-opener data-modal="data-popup-modal" style="display: none;">
+    <button id="ProductPopup-notifyme" type="button" aria-haspopup="dialog" class="primary-button">{{ 'products.product.notify_me' | t }}</button>
+    <div data-popup-content style="display: none;">
+        <div class="notify-title">[[itemTitle]]</div>
+        <p>{{ 'products.product.notify_me_text' | t }}</p>
+        <select name="variant">
+          [[notifyMeVariantsOptions]]
+        </select>
+    </div>
+  </notify-modal-opener>
+  </form>
+</div>
+</div>
+{%- endcapture -%}
+{%- assign str = '}}' -%}
+<script>
+  var productcard = {{- product_card | json | replace: '[[', '{{' | replace: ']]', str -}}
+</script>

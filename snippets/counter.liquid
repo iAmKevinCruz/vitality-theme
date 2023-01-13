@@ -1,0 +1,110 @@
+{% if end_date != blank %}
+<div class="timer">
+  {% if title != blank %}
+    <h4 class="timer__title">{{ title }}</h4>
+  {% endif %}
+  <div class="timer-display">
+    <div class="timer-block">
+      <span class="timer-block__num js-timer-hours">00</span>
+      <span class="timer-block__unit">Hours</span>
+    </div>
+    <div class="timer-block">
+      <span class="timer-block__num js-timer-minutes">00</span>
+      <span class="timer-block__unit">Min</span>
+    </div>
+    <div class="timer-block">
+      <span class="timer-block__num js-timer-seconds">00</span>
+      <span class="timer-block__unit">Sec</span>
+    </div>
+  </div>
+</div>
+<style>
+/* styles for timer */
+  .timer {
+    max-width: 300px;
+    margin: 10px auto;
+  }
+  .timer--expired {
+    display: none;
+  }
+  .timer__title {
+    text-align: center;
+  }
+  .timer-display {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 5px;
+  }
+  .timer-block {
+    position: relative;
+    width: 25%;
+    padding: 0 10px;
+    
+  }
+  .timer-block:not(:last-child):after {
+    content: ':';
+    position: absolute;
+    right: -50%;
+    top: -3px;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    font-family: "nimbus-sans-extended",sans-serif;
+    transform: translateX(-50%);
+    }
+
+  .timer-block__num,
+  .timer-block__unit {
+    display: block;
+    text-align: center;
+  }
+  .timer-block__num{
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 48px;
+    font-family: "nimbus-sans-extended",sans-serif;
+  }
+  .timer-block__unit{
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 136%;
+    font-family: "nimbus-sans", sans-serif;
+  }
+</style>
+<script type="text/javascript">
+    let second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
+
+
+    let countDown = new Date('{{- end_date -}}').getTime(),
+      x = setInterval(function() {
+            let now = new Date().getTime(),
+            distance = countDown - now;
+            if(countDown > now){
+              let hour_html = Math.floor((distance % (day)) / (hour));
+              let min_html = Math.floor((distance % (hour)) / (minute))
+              let sec_html = Math.floor((distance % (minute)) / second)
+              // document.querySelector('.js-timer-days').innerText = Math.floor(distance / (day)),
+              document.querySelector('.js-timer-hours').innerText = hour_html < 10 ? '0'+ hour_html : hour_html,
+              document.querySelector('.js-timer-minutes').innerText = min_html < 10 ? '0'+ min_html : min_html,
+              document.querySelector('.js-timer-seconds').innerText = sec_html < 10 ? '0'+ sec_html : sec_html;
+            }else{
+               // document.querySelector('.js-timer-days').innerText = Math.floor(distance / (day)),
+              document.querySelector('.js-timer-hours').innerText = "00",
+              document.querySelector('.js-timer-minutes').innerText = "00",
+              document.querySelector('.js-timer-seconds').innerText = "00";
+              clearInterval(x);
+            }
+           
+    }, second)
+</script>
+{% endif %}

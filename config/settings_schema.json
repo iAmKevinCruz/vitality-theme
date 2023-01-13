@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Shipping notes",
+    "settings": [
+      {
+        "type": "text",
+        "id": "shipping_note_default",
+        "label": "Default shipping note"
+      },
+      {
+        "type": "header",
+        "content": "Shipping note 1"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_1_name",
+        "label": "Shipping method"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_1_note",
+        "label": "Note"
+      },
+      {
+        "type": "header",
+        "content": "Shipping note 2"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_2_name",
+        "label": "Shipping method"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_2_note",
+        "label": "Note"
+      },
+      {
+        "type": "header",
+        "content": "Shipping note 3"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_3_name",
+        "label": "Shipping method"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note_3_note",
+        "label": "Note"
+      }
+    ]
+  },
+  {
+    "name": "Gift card",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "gift_card_image",
+        "label": "Gift card image"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "label": "Precheckout note",
+        "id": "cart_precheckout_note",
+        "type": "richtext"
+      }
+    ]
+  }
+]

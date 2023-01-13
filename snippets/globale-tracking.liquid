@@ -1,0 +1,66 @@
+<script type="text/javascript">
+var glegem = glegem || function(){(window["glegem"].q = window["glegem"].q || []).push(arguments)};
+glegem("OnCheckoutStepLoaded",function(data){
+ switch(data.StepId){
+  case data.Steps.LOADED:
+
+      break;
+  case data.Steps.CONFIRMATION:
+
+	if (data.IsSuccess && !data.IsPageReload){
+
+        var totalCartDiscountInMerchantCurrency = 0;
+		if(Array.isArray(data.details.Discounts)) {
+			for(i=0;i<data.details.Discounts.length;i++){
+			  if(data.details.Discounts[i].DiscountTypeId == 1){
+				totalCartDiscountInMerchantCurrency = totalCartDiscountInMerchantCurrency + data.details.Discounts[i].DiscountPrices.CustomerTransactionInMerchantCurrency.CustomerPriceInMerchantCurrency;
+			  }
+			}
+		}
+
+       // Start of GA Ecommerce
+
+	   // include of GA script - can be removed if already exists on the page
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                               })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	   // GA account - should be set by the merchant
+       ga('create', 'UA-******-*', 'auto');
+
+
+       ga('require','ecommerce');
+
+
+      ga('ecommerce:addTransaction', {
+        'id': data.details.OrderID,
+        'affiliation': 'Global-E',
+        'revenue': data.details.OrderPrices.CustomerTransactionInMerchantCurrency.CustomerTotalPriceInMerchantCurrency,
+        'shipping': data.details.OrderPrices.CustomerTransactionInMerchantCurrency.CustomerShippingPriceInMerchantCurrency,
+        'tax': data.details.OrderPrices.CustomerTransactionInMerchantCurrency.CustomerVATInMerchantCurrency,
+        'currency': data.details.MerchantCurrencyCode
+      });
+
+
+       for(i=0;i<data.details.ProductInformation.length;i++){
+         ga('ecommerce:addItem', {
+           'id': data.OrderId,
+           'name': data.details.ProductInformation[i].ProductName,
+           'sku':data.details.ProductInformation[i].SKU,
+           'category': (data.details.ProductInformation[i].Categories != null && data.details.ProductInformation[i].Categories.length ) ? data.details.ProductInformation[i].Categories[0].Name : '',
+           'price': data.details.ProductInformation[i].ProductPrices.CustomerTransactionInMerchantCurrency.CustomerDiscountedPriceInMerchantCurrency,
+           'quantity': data.details.ProductInformation[i].Quantity,
+           'currency': data.details.MerchantCurrencyCode
+         });
+       }
+       ga('ecommerce:send');
+
+
+       // End of GA Ecommerce
+
+	}
+
+
+     }});
+</script>

@@ -1,0 +1,30 @@
+<style>
+  main.main-content{
+    display: flex;
+    flex-direction: column;
+  }
+  #help_iframe {
+    width: 1px;
+    min-width: 100%;
+    border: none;
+  }
+</style>
+
+<iframe id="help_iframe" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" src="https://vitality-xnx9skqmjbs-copy.gorgias.help/en-US" scrolling="no"></iframe>
+
+
+<script>
+  window.addEventListener('message', e=>{
+    handle_resize(e)
+  }, false);
+  
+  function handle_resize(e) {
+    let eventName = e.data[0];
+    let data = e.data[1];
+    switch(eventName) {
+      case 'setHeight':
+        document.querySelector("#help_iframe").style.height = data + "px";
+        break;
+    }
+  }
+</script>

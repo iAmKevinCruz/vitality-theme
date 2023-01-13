@@ -1,0 +1,98 @@
+{%- include 'half-media-text', 
+    video: section.settings.half_video, 
+    image: section.settings.half_image, 
+    image_position: section.settings.half_image_p,  
+    title: section.settings.half_title,
+    title_tag: section.settings.half_title_tag,
+    text: section.settings.half_text,
+    button_text: section.settings.half_b_text,
+    button_url: section.settings.half_b_url,
+    text_color: section.settings.half_text_color,
+    bg_color: section.settings.half_bg_color,
+    half_text_width: section.settings.half_text_width
+-%}
+{% schema %}
+{
+    "name": "50/50 Media & Text",
+      "settings": 
+          [
+              {
+                  "type": "header",
+                  "content": "Media Settings"
+              },
+              {
+                "type": "image_picker",
+                "id": "half_image",
+                "label": "Image"			
+              },
+              {
+                "type": "select",
+                "id": "half_image_p",
+                "options": [
+                   { "value": "2", "label": "Right"},
+                   { "value": "1", "label": "Left"}
+                ],
+                "label": "Image Position alignment",
+                "default": "1"
+              },
+              {
+                "type": "text",
+                "id": "half_video",
+                "label": "Video Url (mp4)"			
+              },
+              {
+                  "type": "text",
+                  "id": "half_title",
+                  "label": "Title"
+              },
+              {
+                "type": "radio",
+                "id": "half_title_tag",
+                "options": [
+                   { "value": "h2", "label": "Style 1"},
+                   { "value": "h3", "label": "Style 2"}
+                ],
+                "label": "Title Style"
+             },
+              {
+                  "type": "richtext",
+                  "id": "half_text",
+                  "label": "Text"
+              },
+              {
+                  "type": "text",
+                  "id": "half_b_text",
+                  "label": "Button Text",
+                  "default": "Shop Now"			
+              },
+              {
+                  "type": "url",
+                  "id": "half_b_url",
+                  "label": "Button Url"	
+              },
+              {
+                "type": "color",
+                "id": "half_text_color",
+                "label": "Text Color",
+                "default" : "#000"
+              },
+              {
+                  "type": "color",
+                  "id": "half_bg_color",
+                  "label": "Text Background Color",
+                  "default": "#fff"
+              },
+              {
+                "type": "checkbox",
+                "id": "half_text_width",
+                "label": "Text container full width?"
+            }
+          ],
+          "presets": [
+              {
+                  "name": "50/50 Media & Text",
+                  "category": "Home Page"
+              }
+          ]
+  } 
+{% endschema %}

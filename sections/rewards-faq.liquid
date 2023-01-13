@@ -1,0 +1,53 @@
+{% if section.blocks.size > 0 %}
+	<div class="lion-integrated-page-section container-min">
+		<h3 class="lion-integrated-page-section__heading">{{ section.settings.heading }}</h3>
+        <ul class="faq-list">
+            {% for block in section.blocks %}
+            	{% assign title = block.settings.title | escape %}
+            	{% assign text = block.settings.text %}
+            	{% if title != blank and text != blank %}
+	                <li class="faq-list__item">
+	                    <button data-accordion="trigger" class="h5 faq-list__question">{{ title }}</button>
+	                    <div data-accordion="content-container" class="faq-list__wrapper" style="height: 0;">
+	                        <div data-accordion="content" class="faq-list__answer">
+	                            {{ text }}
+	                        </div>
+	                    </div>
+	                </li>
+                {% endif %}
+            {% endfor %} 
+        </ul>
+	</div>
+{% endif %}
+
+{% schema %}
+{
+	"name": "FAQ",
+	"settings": [
+		{
+			"type": "text",
+			"id": "heading",
+			"label": "Heading",
+			"default": "FAQ"
+		}
+	],
+	"blocks": [
+		{
+			"name": "Item",
+			"type": "item",
+			"settings": [	
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "text",
+					"label": "Text"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

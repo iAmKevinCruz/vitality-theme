@@ -1,0 +1,181 @@
+{% liquid
+    for tag in product.tags
+        if tag contains "prodGroup::"
+            assign groupTag = tag | replace: 'prodGroup::', ''
+        endif
+        if tag contains "prodColor::"
+            assign colorTag = tag | replace: 'prodColor::', ''
+        endif
+        if tag contains "prodToggle::"
+            assign toggleTag = tag | replace: 'prodToggle::', ''
+        endif
+    endfor
+    assign colorNames = blank
+    assign colorHandles = blank
+    assign prodCollection = collections[groupTag].products
+%}
+
+{%- if groupTag and prodCollection != blank -%}
+    
+    {% assign colorsWithCurrentToggle = '' %}
+    {% assign toggleCounter = 0 %}
+    {%- capture toggleHtml -%}
+        {%- for prod in prodCollection -%}
+            {%- for tag in prod.tags -%}
+                {%- if tag contains "prodColor::" -%}
+                    {%- assign color = tag | replace: 'prodColor::', '' -%}
+                {%- endif -%}
+                {%- if tag contains "prodToggle::" -%}
+                    {%- assign prodToggleTag = tag | replace: 'prodToggle::', '' -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {% if prodToggleTag != blank and prodToggleTag == toggleTag %}
+                {% assign shownColorItem = '::' | append: color | append: '::' %}
+                {% if shownColorItem == '::::' %}{% assign shownColorItem = '::||::' %}{% endif %}
+                {% assign colorsWithCurrentToggle = colorsWithCurrentToggle | append: shownColorItem %}
+            {% endif %}
+
+            {%- if color == colorTag -%}
+                {% assign toggleCounter = toggleCounter | plus: 1 %}
+                <a href="{{collection.url}}{{prod.url}}" class="product-form__field {% if product.url == prod.url %}active{% endif %}" data-product-group-link>
+                    <label>
+                        {% if prodToggleTag != blank %}
+                            {{ prodToggleTag | escape }}
+                        {% else %}
+                            &nbsp;
+                        {% endif %}
+                    </label>
+                </a>
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- if product.title contains "-" -%}
+        {%- assign title_splitted = product.title | split: '-' -%}
+    {%- endif -%}
+
+    {% assign shownColors = '' %}
+    <div class="product-details__swatchitem colorswatch color_inputs">
+        <h6 class="title">Color <span style="font-weight: 400; margin-left: 13px;" data-color_tag="prodColor::{{ colorTag }}">{{ title_splitted.last }}</span></h6>
+        <fieldset class="product-colors">
+            <ol class="product-colors__option-list">
+            {%- for prod in prodCollection -%}
+                {%- for tag in prod.tags -%}
+                    {%- if tag contains "prodColor::" -%}
+                        {%- assign color = tag | replace: 'prodColor::', '' -%}
+                    {%- endif -%}
+                    {%- if tag contains "prodToggle::" -%}
+                        {%- assign prodToggleTag = tag | replace: 'prodToggle::', '' -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {% assign shownColorItem = '::' | append: color | append: '::' %}
+                {% if shownColorItem == '::::' %}{% assign shownColorItem = '::||::' %}{% endif %}
+                {% unless shownColors contains shownColorItem %}
+        
+                    {% assign shouldHaveToggle = false %}
+                    {% if colorsWithCurrentToggle contains shownColorItem %}
+                        {% assign shouldHaveToggle = true %}
+                    {% endif %}
+                    {% if shouldHaveToggle == false or prodToggleTag == toggleTag %}
+
+                        {%- assign handle = prod.url -%}
+                        
+                        {%- assign color_img = 'colorswatch-' | append: color | append: '.jpg' -%}
+
+                        {%- assign available_options = '' -%}
+                
+                        {%- for option in prod.options_with_values -%}
+                            {%- for option_value in option.values -%}
+                                {%- assign current_option_variant = null -%}
+                                {%- for variant in prod.variants -%}
+                                    {%- if variant.option1 == option_value or variant.option2 == option_value or variant.option3 == option_value or variant.option4 == option_value -%}
+                                        {%- assign current_option_variant = variant -%}
+                                    {%- endif -%}
+                                {%- endfor -%}
+                                {%- if current_option_variant and current_option_variant.available -%}
+                                    {%- if available_options != '' -%}
+                                        {%- assign available_options = available_options | append : ',' -%}
+                                    {%- endif -%}
+                                    {%- assign available_options = available_options | append : option_value -%}
+                                {%- endif -%} 
+
+                            {%- endfor -%}
+                        {%- endfor -%}
+
+                        <li 
+                            class="product-colors__option-item {% if product.url == prod.url %}product-colors__option-item--current{% endif %}"
+                            data-available-options="{{ available_options }}"
+                        >
+                        <a href="{{collection.url}}{{handle}}" data-product-group-link>
+                        <img 
+                            class="product-colors__option-image"
+                            src="{{color_img  | file_img_url: '50x50'}}"
+                            alt="{{prod.title}}"
+                        /></a>
+                        </li>
+                        {% assign shownColors = shownColors | append: shownColorItem %}
+                    {% endif %}
+                {% endunless %}
+            {%- endfor -%}
+            </ol>
+            <div class="product-colors__scrollbar scrollbar">
+                <div class="scrollbar__thumb"></div>
+            </div>
+        </fieldset>
+    </div>
+
+    {% if toggleTag and toggleHtml != '' and toggleCounter > 1 %}
+        <div class="product-details__swatchitem colorswatch">
+            <h6 class="title">
+                {% if collections[groupTag].metafields.accentuate.product_group_prodtoggle_label != blank %}
+                    {{ collections[groupTag].metafields.accentuate.product_group_prodtoggle_label | escape }}
+                {% else %}
+                    Cup size
+                {% endif %}
+                </h6>
+            <fieldset class="option-select">
+                {{ toggleHtml }}
+            </fieldset>
+        </div>
+    {% endif %}
+{%- endif -%}
+<script>
+    const scroll_container = document.querySelector(".color_inputs .product-colors__option-list");
+    const scrollbar = document.querySelector(".scrollbar__thumb");
+    if(scroll_container){
+        const change_width = debounce(set_scrollbar_width)
+        set_scrollbar_width();
+
+        scroll_container.addEventListener("scroll", e=>{
+            set_scroll_position()
+        })
+
+        window.addEventListener("resize", e=>{
+            change_width()
+        })
+    }
+    function set_scrollbar_width(){
+        if(scroll_container.clientWidth < scroll_container.scrollWidth){
+            document.querySelector(".product-colors__scrollbar").style.display = "block";
+            scrollbar.style.width = scroll_container.clientWidth * 100 / scroll_container.scrollWidth + "%";
+        } else{
+            document.querySelector(".product-colors__scrollbar").style.display = "none";
+        }
+    }
+    function set_scroll_position(){
+        const total = scroll_container.scrollWidth - scroll_container.clientWidth;
+        const scrolled = scroll_container.scrollLeft * 100 / total;
+        const scrollbar_width = document.querySelector(".scrollbar__thumb").clientWidth;
+        const need_to_scroll = (scroll_container.clientWidth - scrollbar_width) * scrolled / 100;
+        scrollbar.style.transform = `translate(${need_to_scroll}px, 0)`;
+    }
+    function debounce(callback, delay = 1000) {
+        let timer;
+        return (...args) => {
+          clearTimeout(timer);
+          timer = setTimeout(() => { callback.apply(this, args) }, delay);
+        };
+    }
+</script>

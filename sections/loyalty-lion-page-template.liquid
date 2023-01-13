@@ -1,0 +1,385 @@
+{% assign how_it_works_html = '' %}
+{% assign benefits_html = '' %}
+{% assign benefits_counter = 0 %}
+
+{% for block in section.blocks %}
+	{% if block.type == 'how_it_works' %}
+		{% capture block_html %}
+			<div class="loyalti-lion-features__item">
+				<div class="loyalti-lion-features__icon">
+					<img src="{{ block.settings.icon }}" alt="{{ block.settings.title }}" />
+				</div>
+				<div class="loyalti-lion-features__title h5">{{ block.settings.title }}</div>
+				<div>{{ block.settings.description }}</div>
+			</div>
+		{% endcapture %}
+		{% assign how_it_works_html = how_it_works_html | append: block_html %}
+	{% elsif block.type == 'benefits' %}
+		{% assign benefits_counter = benefits_counter | plus: 1 %}
+		{% capture block_html %}
+			<div class="loyalti-lion-features__item loyalti-lion-features__item--benefit">
+				<div class="loyalti-lion-features__number">{{ benefits_counter }}</div>
+				<div class="loyalti-lion-features__title h5">{{ block.settings.title }}</div>
+				<div>{{ block.settings.description }}</div>
+			</div>
+		{% endcapture %}
+		{% assign benefits_html = benefits_html | append: block_html %}
+	{% endif %}
+{% endfor %}
+
+<div class="loyalti-lion-banner">
+	{% if section.settings.cover_image_mobile != blank %}
+		<div class="loyalti-lion-banner__mobile-image">
+			{% include 'responsive-image' with image: section.settings.cover_image_mobile, image_class: "", wrapper_class: "" %}
+		</div>
+	{% endif %}
+	{% if section.settings.cover_image != blank %}
+		<div class="loyalti-lion-banner__image">
+			{% include 'responsive-image' with image: section.settings.cover_image, image_class: "", wrapper_class: "" %}
+		</div>
+	{% endif %}
+	<div class="loyalti-lion-banner__container container">
+		<div class="loyalti-lion-banner__pre-title h5">
+			{{ section.settings.pretitle }}
+		</div>
+		<h1 class="loyalti-lion-banner__title h2">
+			{{ page.title }}
+		</h1>
+		<div class="loyalti-lion-banner__sub-title rte">
+			{{ section.settings.subtitle }}
+		</div>
+
+		{%- assign tier = false -%}
+		{%- for tag in customer.tags -%}
+			{%- if tag contains 'tier:' -%}
+				{%- assign tier = tag | replace : 'tier: ', '' -%}
+			{%- endif -%}
+		{%- endfor -%}
+
+		{%- if tier -%}
+			<div class="loyalti-lion-banner__sub-title rte">
+				{{ 'customer.account.your_tier' | t }}: <strong>{{ tier }}</strong>
+			</div>
+		{%- endif -%}
+
+		<div class="loyalti-lion-banner__buttons">
+			{%- if customer.id == null -%}
+				<a href="{{ routes.account_register_url }}" class="primary-button-outlined">{{ 'loyalty_page.sign_up' | t }}</a>
+				<a href="{{ routes.account_login_url }}" class="primary-button">{{ 'loyalty_page.login' | t }}</a>
+			{%- else -%}
+				<a href="{{ routes.account_url | append: "#rewards" }}" class="primary-button-outlined">{{ 'loyalty_page.get_rewards' | t }}</a>
+			{%- endif -%}
+		</div>
+	</div>
+</div>
+
+{% if how_it_works_html != '' %}
+	<div class="lion-integrated-page-section">
+		<h3 class="lion-integrated-page-section__heading">{{ section.settings.how_it_works_title }}</h3>
+		<div class="loyalti-lion-features">
+			{{ how_it_works_html }}
+		</div>
+	</div>
+{% endif %}
+
+{% comment %} Section is removed acording to the new design, Feb 2022
+
+<div class="lion-integrated-page-section lion-integrated-page-section--featured">
+	<div class="container">
+		<h3 class="lion-integrated-page-section__heading">{{ section.settings.login_register_title }}</h3>
+		<p class="text-center">{{ section.settings.login_register_subtitle }}</p>
+
+		<div class="loyalti-lion-login-buttons">
+			<a href="{{ routes.account_login_url }}" class="primary-button">{{ 'loyalty_page.login' | t }}</a>
+			<a href="{{ routes.account_register_url }}" class="primary-button-outlined">{{ 'loyalty_page.sign_up' | t }}</a>
+		</div>
+	</div>
+</div>
+{% endcomment %}
+
+<div data-lion-integrated-page=""></div>
+
+{% if section.settings.featured_way_to_earn_text and section.settings.featured_way_to_earn_image %}
+	<div class="lion-earn__featured" style="display:none" data-ref="loyalti-lion-featured-earn">
+		<div class="lion-earn__featured-wrapper">
+				{%- if section.settings.banner_link -%}
+					<a class="lion-earn__featured-wrapper-link" href="{{ section.settings.banner_link }}"></a>
+				{%- endif -%}
+					<div class="lion-earn__featured-image">
+						{{ section.settings.featured_way_to_earn_image | image_url: width: 2000 | image_tag }}
+					</div>
+					<div class="lion-earn__featured-info">
+							<div class="lion-earn__featured-title h3">{{ section.settings.featured_way_to_earn_text }}</div>
+							{% if section.settings.featured_way_to_earn_subtitle != blank %}
+								<div class="lion-earn__featured-subtitle h4">{{ section.settings.featured_way_to_earn_subtitle }}</div>
+							{% endif %}
+					</div>
+				</div>
+			</div>
+{% endif %}
+
+{% if section.settings.banner_2_title and section.settings.banner_2_image %}
+	<div class="lion-earn__featured" style="display:none" data-ref="loyalti-lion-banner-2">
+		<div class="lion-earn__featured-wrapper">
+				{%- if section.settings.banner_2_link -%}
+					<a class="lion-earn__featured-wrapper-link" href="{{ section.settings.banner_2_link }}"></a>
+				{%- endif -%}
+					<div class="lion-earn__featured-image">
+						{{ section.settings.banner_2_image | image_url: width: 2000 | image_tag }}
+					</div>
+					<div class="lion-earn__featured-info">
+							<div class="lion-earn__featured-title h3">{{ section.settings.banner_2_title }}</div>
+							{% if section.settings.banner_2_subtitle != blank %}
+								<div class="lion-earn__featured-subtitle h4">{{ section.settings.banner_2_subtitle }}</div>
+							{% endif %}
+					</div>
+				</div>
+			</div>
+{% endif %}
+
+{% if benefits_html != '' %}
+	<div class="lion-integrated-page-section container-min" data-ref="loyalti-lion-benefits-section">
+		<h3 class="lion-integrated-page-section__heading">{{ section.settings.benefits_title }}</h3>
+		<div class="loyalti-lion-features loyalti-lion-features--benefits">
+			{{ benefits_html }}
+		</div>
+		<div class="loyalti-lion-benefits-table" data-checkmark-replace>
+			{{ page.content }}
+		</div>
+	</div>
+{% endif %}
+
+
+<script type="application/json" data-ref="loyalti-lion-strings">
+	{
+		{% if section.settings.ways_to_earn_title != blank %}
+		"ways_to_earn_title": "{{ section.settings.ways_to_earn_title | escape }}",
+		{% endif %}
+
+		{% if section.settings.rewards_title != blank %}
+		"rewards_title": "{{ section.settings.rewards_title | escape }}",
+		{% endif %}
+
+		"earn_way_links": {
+			{% if section.settings.way_to_earn_purchase_url != blank %}
+			"purchase": "{{ section.settings.way_to_earn_purchase_url }}",
+			{% endif %}
+
+			{% if section.settings.way_to_earn_email_url != blank %}
+			"newsletter-signup": "{{ section.settings.way_to_earn_email_url }}",
+			{% endif %}
+
+			{% if section.settings.way_to_earn_twitter_url != blank %}
+			"fake-twitter": "{{ section.settings.way_to_earn_twitter_url }}",
+			{% endif %}
+
+			{% if section.settings.way_to_earn_tiktok_url != blank %}
+			"tiktok": "{{ section.settings.way_to_earn_tiktok_url }}",
+			{% endif %}
+
+			{% if section.settings.way_to_earn_insta_url != blank %}
+			"instagram-follow": "{{ section.settings.way_to_earn_insta_url }}",
+			{% endif %}
+
+			{% if section.settings.way_to_earn_fb_url != blank %}
+			"facebook-like": "{{ section.settings.way_to_earn_fb_url }}",
+			{% endif %}
+
+			"signup": "{{ routes.account_register_url }}"
+		}
+	}
+</script>
+
+{% schema %}
+{
+    "name": "Loyalty Page",
+    "settings": [
+    	{
+    		"type": "header",
+    		"content": "Hero banner"
+    	},
+    	{
+    		"type": "text",
+			"id": "pretitle",
+		  	"label": "Pre Title",
+		  	"default": "Loyalty program"
+		},
+		{
+			"type": "richtext",
+			"id": "subtitle",
+			"label": "Subtitle"
+		},
+        {
+            "type": "image_picker",
+            "id": "cover_image",
+            "label": "Image"			
+        },
+        {
+            "type": "image_picker",
+            "id": "cover_image_mobile",
+            "label": "Mobile image"			
+        },
+        {
+    		"type": "header",
+    		"content": "How it works"
+    	},
+        {
+    		"type": "text",
+			"id": "how_it_works_title",
+		  	"label": "'How it works' title",
+		  	"default": "How it works"
+		},
+		{
+    		"type": "header",
+    		"content": "Benefits"
+    	},
+		{
+    		"type": "text",
+			"id": "benefits_title",
+		  	"label": "'Benefits' title",
+		  	"default": "benefits"
+		},
+		{
+			"type": "header",
+			"content": "Ways to earn"
+		},
+		{
+			"type": "header",
+			"content": "Banner #1"
+		},
+		{
+			"type": "text",
+			"id": "ways_to_earn_title",
+			"label": "Section title",
+			"default": "Ways to earn points"
+		},
+		{
+			"type": "text",
+			"id": "featured_way_to_earn_text",
+			"label": "Banner #1 title"
+		},
+		{
+			"type": "image_picker",
+			"id": "featured_way_to_earn_image",
+			"label": "Banner #1 image"
+		},
+		{
+			"type": "text",
+			"id": "featured_way_to_earn_subtitle",
+			"label": "Banner #1 subtitle"
+		},
+		{
+			"type": "url",
+			"id": "banner_link",
+			"label": "Banner #1 link"
+		},
+		{
+			"type": "header",
+			"content": "Banner #2"
+		},
+		{
+			"type": "text",
+			"id": "banner_2_title",
+			"label": "Banner #2 title"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_2_image",
+			"label": "Banner #2 image"
+		},
+		{
+			"type": "text",
+			"id": "banner_2_subtitle",
+			"label": "Banner #2 subtitle"
+		},
+		{
+			"type": "url",
+			"id": "banner_2_link",
+			"label": "Banner #2 link"
+		},
+		{
+			"type": "header",
+			"content": "Icons"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_purchase_url",
+			"label": "\"Make a purchase\" link"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_email_url",
+			"label": "\"Sign up to mailing list\" link"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_fb_url",
+			"label": "Facebook link"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_insta_url",
+			"label": "Instagram link"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_twitter_url",
+			"label": "Twitter link"
+		},
+		{
+			"type": "url",
+			"id": "way_to_earn_tiktok_url",
+			"label": "Tiktok link"
+		},
+		{
+    		"type": "header",
+    		"content": "Rewards list"
+    	},
+		{
+			"type": "text",
+			"id": "rewards_title",
+			"label": "'Rewards' title",
+			"default": "Redeem exclusive"
+		}
+    ],
+    "blocks": [
+     	{
+       		"name": "How it works",
+       		"type": "how_it_works",
+       		"settings": [
+       			{
+					"type": "text",
+					"id": "icon",
+					"label": "SVG Icon"		
+				},
+         		{
+           			"type": "text",
+					"id": "title",
+				  	"label": "Title"
+         		},
+         		{
+           			"type": "text",
+					"id": "description",
+				  	"label": "Description"
+         		}
+       		]
+     	},
+     	{
+       		"name": "Benefits",
+       		"type": "benefits",
+       		"settings": [
+         		{
+           			"type": "text",
+					"id": "title",
+				  	"label": "Title"
+         		},
+         		{
+           			"type": "text",
+					"id": "description",
+				  	"label": "Description"
+         		}
+       		]
+     	}
+   	]
+} 
+{% endschema %}

@@ -1,0 +1,58 @@
+<!-- /templates/page.lookbook.liquid -->
+<div class="lookbook-page">
+
+  {% for hero in page.metafields.accentuate.hero_img %}
+    {%- include 'hero-banner-acf' with 
+        sectionId: hero[0].id,
+        hero_img_mob: page.metafields.accentuate.hero_mobile_img[forloop.index0][0], 
+        hero_img: hero[0],
+        hero_video: page.metafields.accentuate.hero_video_[forloop.index0][0],
+        hero_desktop_bg_height: page.metafields.accentuate.hero_desktop_bg_height[section.index0],
+        hero_pre_title: page.metafields.accentuate.pre_title[forloop.index0],
+        hero_title: page.metafields.accentuate.main_title[forloop.index0],
+        hero_title_tag: page.metafields.accentuate.main_title_tag[forloop.index0],
+        hero_text: page.metafields.accentuate.text[forloop.index0],
+        hero_text_color: page.metafields.accentuate.text_color[forloop.index0],
+        hero_b_text: page.metafields.accentuate.button_text[forloop.index0],
+        hero_b_url: page.metafields.accentuate.button_url[forloop.index0],
+        hero_cover_color: page.metafields.accentuate.cover_color[forloop.index0],
+        hero_cover_opacity: page.metafields.accentuate.cover_opacity[forloop.index0],
+        vertical_alignment: page.metafields.accentuate.vertical_alignment[forloop.index0],
+        horizontal_alignment: page.metafields.accentuate.horizontal_alignment[forloop.index0],
+        text_align: page.metafields.accentuate.text_alignment[forloop.index0]
+    -%}
+  {% endfor %}
+	<div class="container-max">
+		{%- for item in page.metafields.accentuate.left_image -%}
+          <div class="lookbook-page__block grid-container">
+              <div class="grid-item lookbook-item" style="background-color: {{ page.metafields.accentuate.left_text_bg_color[forloop.index0] }}; color: {{ page.metafields.accentuate.left_text_color[forloop.index0] }}">
+                {% if item != blank %}
+                  {% if page.metafields.accentuate.left_image_url[forloop.index0] != blank %}
+                    <a href="{{ page.metafields.accentuate.left_image_url[forloop.index0] }}" class="lookbook-item__url"></a>
+                  {% endif %}
+                {% include 'responsive-image-acf' with image: item[0], image_class: "",
+                wrapper_class: "lookbook-item__image", max_width: 720, max_height: 1080 %}
+                {% else %}
+                <div class="lookbook-item__text" style="text-align: {{page.metafields.accentuate.left_text_align[forloop.index0]}};">
+                    <h2>{{page.metafields.accentuate.left_text[forloop.index0]}}</h2>
+                </div>
+                {% endif %}
+              </div>
+              <div class="grid-item lookbook-item" style="background-color: {{ page.metafields.accentuate.right_text_bg_color[forloop.index0] }}; color: {{ page.metafields.accentuate.right_text_color[forloop.index0] }}">
+                {% if page.metafields.accentuate.right_image[forloop.index0] != blank %}
+                  {% if page.metafields.accentuate.right_image_url[forloop.index0] != blank %}
+                    <a href="{{ page.metafields.accentuate.right_image_url[forloop.index0] }}" class="lookbook-item__url"></a>
+                  {% endif %}
+                {% include 'responsive-image-acf' with image: page.metafields.accentuate.right_image[forloop.index0][0], image_class: "",
+                wrapper_class: "lookbook-item__image", max_width: 720, max_height: 1080 %}
+                {% else %}
+                <div class="lookbook-item__text" style="text-align: {{page.metafields.accentuate.right_text_align[forloop.index0]}};">
+                    <h2>{{page.metafields.accentuate.right_text[forloop.index0]}}</h2>
+                </div>
+                {% endif %}
+              </div>
+          </div>
+        {%- endfor -%}
+	</div>
+
+</div>

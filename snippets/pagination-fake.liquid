@@ -1,0 +1,27 @@
+<ul class="pagination">
+  <li class="pagination__item-wrapper">
+    <span class="pagination__item pagination__item--previous">
+        <span class="visually-hidden">{{ 'general.pagination.previous' | t }}</span>&nbsp;
+    </span>
+  </li>
+  <li class="pagination__item-wrapper" aria-current="page">
+      <span class="pagination__item pagination__item--page pagination__item--page-active">
+        <span class="visually-hidden">{{ 'general.pagination.page' | t }}</span> 1
+      </span>
+    </li>
+    <li class="pagination__item-wrapper">
+      <a href="{{ base_route | append: '?page=2' }}" class="pagination__item pagination__item--page">
+        <span class="visually-hidden">{{ 'general.pagination.page' | t }}</span> 2
+      </a>
+  </li>
+  <li>
+      <span class="pagination__item pagination__item--page pagination__item--page">
+        ...
+      </span>
+    </li>
+    <li class="pagination__item-wrapper">
+      <a href="{{ base_route | append: '?page=2' }}" class="pagination__item pagination__item--next">
+        &nbsp;<span class="visually-hidden">{{ 'general.pagination.next' | t }}</span>
+    </a>
+    </li>
+</ul>

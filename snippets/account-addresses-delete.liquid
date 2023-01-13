@@ -1,0 +1,21 @@
+<div class="account-app-layout__page" data-account-route="addresses/{{ address.id }}/delete" style="display: none;">
+	<div class="account-app-layout__widget account-app-layout__widget--address-form">
+		<div class="account-app-widget-header h5">{{ 'customer.addresses.delete_confirm' | t }}</div>
+
+		<div>
+			{% render 'address', address: address %}
+		</div>
+
+		<form method="post" action="/account/addresses/{{ address.id }}" data-js-simple-form>
+		  	<input type="hidden" name="_method" value="delete">
+
+		  	<div class="form-element">
+		  		<button type="submit" class="primary-button form-main-button">{{ 'customer.addresses.delete' | t }}</button>
+			</div>
+
+			<div class="text-center">
+		    	<a href="#addresses" class="small">{{ 'customer.addresses.cancel' | t }}</a>
+		    </div>
+		</form>
+	</div>
+</div>

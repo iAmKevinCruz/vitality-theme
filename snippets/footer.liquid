@@ -1,0 +1,61 @@
+<div class="container-max">
+    <div class="grid-container">
+        <div class="grid-item grid-item-menu">
+			{% assign footerMenu = linklists[section.settings.footermenu] %}
+			{% if footerMenu.links != blank %}
+			<nav class="footer-nav" role="navigation">
+				<ul class="footer-nav__menu">
+					{% for link in footerMenu.links %}
+					<li class="footer-nav__item">
+						<a href="{{ link.url }}" class="footer-nav__link">{{ link.title }}</a>
+						<button class="toggle-sub" data-slide-trigger></button>
+						{% if link.links != blank %}
+						<ul class="footer-nav__sub" data-slide-openelem>
+							{% for child in link.links %}
+							<li class="footer-nav__subitem">
+								<a href="{{ child.url }}" class="footer-nav__sublink">
+									{{ child.title }}
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</nav>
+			{% endif %}
+		</div>
+		<div class="grid-item grid-item-newsletter">
+			{% if section.settings.nl_form != blank %}
+				<div class="newsletter">
+					<h4 class="title">{{ section.settings.nl_title }}</h4>
+					<p>{{ section.settings.nl_text }}</p>
+					<div class="form-area" id="bluecore_signup"></div>
+				</div>
+			{% endif %}
+
+			{% assign socials = section.blocks %}
+			{% if socials != blank %}
+				<ul class="socials">
+					{% for social in socials %}
+						<li class="socials__item">
+							<a href="{{ social.settings.social_url }}" class="socials__link">
+								<img src="{{ social.settings.social_icon }}" width="16" height="16" alt="{{ social.settings.social_label }}" />
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+    </div>
+</div>
+<p class="copyrights">© {{ "now" | date: "%Y" }}
+    {{ section.settings.copy }}</p>
+
+<script>
+	if (window.location.href.includes("customer_posted=true#contact_form") || window.location.href.includes("form_type=customer")) {
+		document.querySelector("#email_consent_success").style.display = "block";
+		document.querySelector("#email_consent_form").style.display = "none";
+	}
+</script>

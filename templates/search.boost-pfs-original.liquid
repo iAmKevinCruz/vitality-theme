@@ -1,0 +1,38 @@
+<!-- /templates/search.liquid -->
+{% comment %}
+
+  To return only products or pages in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product or type=page to the search URL as a parameter
+
+{% endcomment %}
+
+{% comment %}
+  Avoid accessing search.results before the opening paginate tag.
+  If you do, the pagination of results will be broken.
+{% endcomment %}
+{% paginate search.results by 12 %}
+        {% if search.performed %}
+          {% if search.results_count == 0 %}
+            <p>Not found</p>
+          {% else %}
+            <h1 class="text-center">{{  search.terms }}</h1>
+          {% endif %}
+        {% else %}
+          <h1 class="text-center">Search Page</h1>
+        {% endif %}
+      {% if search.performed %}
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% assign product = item %}
+              {% comment %} {% include 'product-grid-item' %} {% endcomment %}
+            {% else %}
+              {{ item.title }}
+              {{ item.content | strip_html | truncatewords: 60 }}
+            {% endif %}
+          {% endfor %}
+        {% if paginate.pages > 1 %}
+          {% comment %} {% include 'pagination' %} {% endcomment %}
+        {% endif %}
+      {% endif %}
+{% endpaginate %}

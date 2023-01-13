@@ -1,0 +1,30 @@
+{% if page.metafields.accentuate.half_text_color[section.index] != blank %}
+    {% assign textColor = page.metafields.accentuate.half_text_color[section.index]%}
+{% else %}
+    {% assign textColor = ''%}
+{% endif %}
+<section class="half-media-text">
+  <div class="container-max">
+    <div class="grid-container">
+      <div class="grid-item half-media-text__media {% if image_not_stretch != blank %}half-media-text__media--not-stretch{% endif %} {% if image_size != blank %}half-media-text__media--size-{{image_size}}{% endif %}" style="order: {{ image_position }} ">
+        {%- if video != blank -%}
+        <video class="video" crossorigin="anonymous" autoplay playsinline muted loop poster="{{ image.cloudinary_src }}" preload="none" type="video/mp4" src="{{ video.src }}"></video>
+        {%- else -%}
+        {% include 'responsive-image-acf' with image: image, image_class: "",
+        wrapper_class: "", max_width: 1440, max_height: 720 %}
+        {% endif %}
+      </div>  
+      <div class="grid-item half-media-text__body" style="background-color: {{ bg_color }}; {% if half_text_width != blank %}display: block{% endif%}">
+        <div class="half-media-text__content" style="color: {{ textColor }}; {% if half_text_width != blank %}max-width: 100%{% endif%}">
+          {% assign hTag = 'h2' %}
+          {% if title_tag %}
+            {% assign hTag = title_tag %}
+          {% endif %}
+          <{{ hTag }} class="half-media-text__title">{{ title }}</{{ hTag }}>
+          {% if text != blank %}<div class="half-media-text__text">{{ text }}</div>{% endif %}
+          {% if button_text != blank %}<div><a href="{{ button_url }}" class="half-media-text__link secondary-button" style="--sec-color: {% if text_color != blank %}{{ text_color }}{% else %}#fff{% endif %}">{{ button_text }}</a></div>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

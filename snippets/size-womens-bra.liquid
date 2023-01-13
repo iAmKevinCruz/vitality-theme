@@ -1,0 +1,23 @@
+{% if shop.metafields.accentuate.wbt_sizebustuseuausuk %}
+<div class="size-block">
+    <h4 class="title">{{ 'general.sizeguide.womensbratop' | t }}</h4>
+    <table style="width:100%">
+        <tr>
+        <th>{{ 'general.sizeguide.size' | t }}</th>
+        <th>{{ 'general.sizeguide.bust' | t }}*</th>
+        <th>{{ 'general.sizeguide.us' | t }}</th>
+        <th>{{ 'general.sizeguide.eu' | t }}</th>
+        <th>{{ 'general.sizeguide.aus' | t }}</th>
+        <th>{{ 'general.sizeguide.uk' | t }}</th>
+        </tr>
+        {% for item in shop.metafields.accentuate.wbt_sizebustuseuausuk %}
+        {% assign sizes = item | split: ','%}
+        <tr>
+            {% for size in sizes %}
+                <td>{{size}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

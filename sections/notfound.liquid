@@ -1,0 +1,55 @@
+<div class="notfound-page">
+    <div class="notfound-page__container">
+        {% include 'responsive-image' with image: section.settings.img_left, image_class: "",
+            wrapper_class: "", max_width: 720, max_height: 908 %}
+        {% include 'responsive-image' with image: section.settings.img_right, image_class: "",
+        wrapper_class: "", max_width: 720, max_height: 908 %}
+    </div>
+    <div class="notfound-page__404" style="background-image: url({{ 'notfound.svg' | asset_url }});">
+        <!-- <span></span> -->
+       <!-- <img loading="lazy" src="{{ 'notfound.svg' | asset_url }}" width="1600" height="50"/> -->
+    </div>
+    <div class="notfound-page__body">
+        <h1 class="h2">{{ section.settings.main_title }}</h1>
+        <a href="{{ section.settings.button_url }}" class="primary-button">{{ section.settings.button_text }}</a>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Not Found",
+    "settings": 
+        [
+            {
+                "type": "text",
+                "id": "main_title",
+                "label": "Title"			
+            },
+            {
+                "type": "image_picker",
+                "id": "img_left",
+                "label": "Image Left"			
+            },
+            {
+                "type": "image_picker",
+                "id": "img_right",
+                "label": "Image Right"			
+            },
+            {
+                "type": "text",
+                "id": "img_404",
+                "label": "Image 404"			
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button Text"			
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "Button Url"	
+            }
+        ]
+  } 
+{% endschema %}

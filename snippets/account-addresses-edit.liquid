@@ -1,0 +1,87 @@
+<div class="account-app-layout__page" data-account-route="addresses/{{ address.id }}" style="display: none;">
+	<div class="account-app-layout__widget account-app-layout__widget--address-form">
+		<div class="account-app-widget-header h5">{{ 'customer.addresses.edit_address' | t }}</div>
+		{% form 'customer_address', address, data-js-simple-form: '', data-address-form: '' %}
+
+			<div class="grid-container grid-container--w-gaps">
+				<div class="grid-item">
+					<div class="form-element">
+				        <input type="text" id="AddressFirstName_{{form.id}}" name="address[first_name]" placeholder="{{ 'customer.addresses.first_name' | t }}" value="{{form.first_name}}" autocapitalize="characters">
+				    	<label for="AddressFirstName_{{form.id}}">{{ 'customer.addresses.first_name' | t }}</label>
+				    </div>
+				</div>
+
+			    <div class="grid-item">
+				    <div class="form-element">
+				        <input type="text" id="AddressLastName_{{form.id}}" name="address[last_name]" placeholder="{{ 'customer.addresses.last_name' | t }}" value="{{form.last_name}}" autocapitalize="characters">
+				        <label for="AddressLastName_{{form.id}}">{{ 'customer.addresses.last_name' | t }}</label>
+				    </div>
+				</div>
+			</div>
+
+			<div class="form-element">
+			    <input type="text" id="AddressAddress1_{{form.id}}" class="input-full" name="address[address1]" placeholder="{{ 'customer.addresses.address1' | t }}" value="{{form.address1}}" autocapitalize="characters">
+			    <label for="AddressAddress1_{{form.id}}">{{ 'customer.addresses.address1' | t }}</label>
+			</div>
+
+		    <div class="form-element">
+			    <input type="text" id="AddressAddress2_{{form.id}}" class="input-full" name="address[address2]" placeholder="{{ 'customer.addresses.address2' | t }}" value="{{form.address2}}" autocapitalize="characters">
+			    <label for="AddressAddress2_{{form.id}}">{{ 'customer.addresses.address2' | t }}</label>
+			</div>
+
+		    <div class="form-element">
+		        <input type="text" id="AddressCity_{{form.id}}" class="input-full" name="address[city]" placeholder="{{ 'customer.addresses.city' | t }}" value="{{form.city}}" autocapitalize="characters">
+		        <label for="AddressCity_{{form.id}}">{{ 'customer.addresses.city' | t }}</label>
+			</div>
+
+			<div class="grid-container grid-container--w-gaps">
+				<div class="grid-item">
+				    <div class="form-element">
+				        <label for="AddressCountry_{{form.id}}">{{ 'customer.addresses.country' | t }}</label>
+				        <select id="AddressCountry_{{form.id}}" name="address[country]" data-default="{{form.country}}">{{ all_country_option_tags }}</select>
+				    </div>
+				</div>
+
+				<div class="grid-item">
+					<div class="form-element" id="AddressProvinceContainer_{{form.id}}">
+				        <label for="AddressProvince_{{form.id}}">{{ 'customer.addresses.province' | t }}</label>
+				        <select id="AddressProvince_{{form.id}}" class="input-full" name="address[province]" data-default="{{form.province}}"></select>
+				    </div>
+				</div>
+			</div>
+
+			<div class="grid-container grid-container--w-gaps">
+				<div class="grid-item">
+				    <div class="form-element">
+				        <input type="text" id="AddressZip_{{form.id}}" class="input-full" name="address[zip]" placeholder="{{ 'customer.addresses.zip' | t }}" value="{{form.zip}}" autocapitalize="characters">
+				        <label for="AddressZip_{{form.id}}">{{ 'customer.addresses.zip' | t }}</label>
+				    </div>
+				</div>
+
+				<div class="grid-item">
+					<div class="form-element">
+				        <input type="tel" id="AddressPhone_{{form.id}}" class="input-full" name="address[phone]" placeholder="{{ 'customer.addresses.phone' | t }}" value="{{form.phone}}" autocapitalize="characters">
+				        <label for="AddressPhone_{{form.id}}">{{ 'customer.addresses.phone' | t }}</label>
+				    </div>
+				</div>
+			</div>
+			
+		    <div class="form-element">
+		      {{ form.set_as_default_checkbox }}
+		      <label for="address_default_address_{{form.id}}">{{ 'customer.addresses.set_default' | t }}</label>
+		    </div>
+
+		    {{ form.errors | default_errors }}
+
+			<div class="form-element">
+		    	<button type="submit" class="primary-button form-main-button">{{ 'customer.addresses.update' | t }}</button>
+		    </div>
+
+		    <div class="text-center">
+		    	<a href="#addresses" class="small">{{ 'customer.addresses.cancel' | t }}</a>
+		    </div>
+
+
+		{% endform %}
+	</div>
+</div>

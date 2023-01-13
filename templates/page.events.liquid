@@ -1,0 +1,400 @@
+<!-- /templates/page.events.liquid -->
+
+
+<!-- 
+    page.metafields.accentuate.banner_text
+    page.metafields.accentuate.banner_title
+    page.metafields.accentuate.banner_media
+ -->
+
+<script>
+
+    /**
+     * Event countdown 
+     * Sliders with breakpoint match
+     * for mobile view
+     */
+
+    window.addEventListener('DOMContentLoaded', () => {
+
+        let breakpoint = window.matchMedia('(min-width:768px)');
+
+        let planWeekendSwiper;
+
+
+        // swiper logic
+        function swiperForSections(selector) {
+            new Swiper(selector, {
+                loop: true,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".slider-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    571: {
+                        slidesPerView: 1,
+                    },
+                    769: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    }
+                },
+            })
+        }
+
+        swiperForSections('.hotels-slider');
+        swiperForSections('.fitness-slider');
+        swiperForSections('.beverages-slider');
+        swiperForSections('.shops-slider');
+
+
+        let breakpointChecker = function () {
+            // if larger viewport and multi-row layout needed
+            if (breakpoint.matches === true) {
+                // clean up old instances and inline styles when available
+                if (planWeekendSwiper !== undefined) planWeekendSwiper.destroy(true, true);
+                // or/and do nothing
+                return;
+
+                // else if a small viewport and single column layout needed
+            } else if (breakpoint.matches === false) {
+                // fire small viewport version of swiper
+                return enableSwiper();
+            }
+        };
+
+        const enableSwiper = function () {
+
+            planWeekendSwiper = new Swiper('.swiper-plan-weekend', {
+
+                loop: true,
+                grabCursor: true,
+
+                // pagination
+                pagination: {
+                    el: ".plan-weekend-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    571: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    }
+                },
+
+            });
+        };
+
+        // keep an eye on viewport size changes
+        breakpoint.addEventListener("change", breakpointChecker);
+
+        // kickstart
+        breakpointChecker();
+
+    })
+</script>
+
+
+<div class="page">
+    <div class="container-max">
+        <section class="events-banner">
+            <div class="events-banner__wrapper">
+                <div class="events-banner__content">
+                    <h1 class="h2 events-banner__content-title">{{ page.metafields.accentuate.banner_title }}</h1>
+                    <p class="h4 events-banner__content-text">{{ page.metafields.accentuate.banner_text }}</p>
+                </div>
+                <script>
+                    console.log('{{ page.metafields.accentuate.banner_title }}')
+                </script>
+            </div>
+            <div class="events-banner__media">
+                {% include 'responsive-image-ratio-acf' with image: page.metafields.accentuate.banner_media[0][0],
+                ratio: 1.4 %}
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <div class="event-info">
+            <div class="event-info__address">
+                <h3 class="h3">
+                    {{page.metafields.accentuate.address}}
+                </h3>
+            </div>
+            <div class="event-info__date">
+
+                {% include 'countdown' deadline: page.metafields.accentuate.countdown %}
+
+            </div>
+        </div>
+
+        <div class="event-banner-full">
+            <script>
+                console.log("image: ", "{{ page.metafields.accentuate.banner_media_2[0][0] }}")
+            </script>
+            {% if page.metafields.accentuate.banner_media_2[0][0] != blank %}
+            <div class="event-banner-full__img">
+                {% include 'responsive-image-acf' with image: page.metafields.accentuate.banner_media_2[0][0],
+                image_class: "",
+                wrapper_class: "", max_width: 1360, max_height: 590 %}
+            </div>
+            {% endif %}
+            <div class="event-banner-full__text">
+                <h3 class="h3">{{ page.metafields.accentuate.banner_text_2 }}</h3>
+            </div>
+            <div id="eventbrite-widget-container-358928734507"></div>
+
+            <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+
+            <script type="text/javascript">
+
+                var exampleCallback = function () {
+
+                    console.log('Order complete!');
+
+                };
+
+                window.EBWidgets.createWidget({
+
+                    // Required
+
+                    widgetType: 'checkout',
+
+                    eventId: '358928734507',
+
+                    iframeContainerId: 'eventbrite-widget-container-358928734507',
+
+                    // Optional
+
+                    iframeContainerHeight: 425, // Widget height in pixels. Defaults to a minimum of 425px if not provided
+
+                    onOrderComplete: exampleCallback // Method called when an order has successfully completed
+
+                });
+
+            </script>
+        </div>
+    </div>
+
+
+    <div class="container-min">
+        <div class="event-schedule">
+            <h3 class="h3 event-schedule__title">
+                {{ page.metafields.accentuate.schedule_title }}
+            </h3>
+            <div class="event-schedule__wrapper">
+                <ul class="event-schedule__list">
+
+                    {% for hour in page.metafields.accentuate.schedule_hour %}
+                    <li>
+                        <span class="h4 schedule-item schedule-hour">{{ hour }}</span>
+                        <span class="h4 schedule-item schedule-name">
+                            {{ page.metafields.accentuate.schedule_name[forloop.index0] | upcase }}
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="plan-weekend">
+            <h3 class="h2 plan-weekend__title">
+                {{ page.metafields.accentuate.plan_weekend_title }}
+            </h3>
+            {{ page.metafields.accentuate.plan_weekend_subtitle }}
+            <div class="swiper swiper-container swiper-plan-weekend">
+                <div class="swiper-wrapper plan-weekend__offers">
+                    {% for title in page.metafields.accentuate.offer_title %}
+
+                    <a href="{{ page.metafields.accentuate.offer_link[forloop.index0] }}" class="swiper-slide">
+                        <div class="offer-card">
+
+                            {% include 'responsive-image-acf' with image:
+                            page.metafields.accentuate.offer_image[forloop.index0][0],
+                            image_class: "offer-card__img",
+                            wrapper_class: "", max_width: 320, max_height: 220 %}
+                            <h5 class="h4 offer-card__title">{{ title | upcase }}</h5>
+
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                <div class="plan-weekend-pagination swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-max">
+        <div class="slider-section">
+
+            {% if page.metafields.accentuate.hotel_title != blank %}
+            <div class="slider-item">
+                <h3 class="h3 slider-item-title">{{ page.metafields.accentuate.hotel_title }}</h3>
+
+                <div class="swiper swiper-container slider-item-gallery hotels-slider">
+                    <div class="swiper-wrapper slider-item-gallery__wrapper">
+                        {% for name in page.metafields.accentuate.hotel_name %}
+                        <div class="swiper-slide">
+                            <a href="{{ page.metafields.accentuate.hotel_link[forloop.index0] }}"
+                                class="slider-item-gallery__card">
+
+                                {% include 'responsive-image-ratio-acf' with image:
+                                page.metafields.accentuate.hotel_image[forloop.index0][0],
+                                ratio: 1 %}
+                                <div class="slider-item-gallery__card-content">
+                                    <h5 class="h4 slider-item-gallery__card-title">{{ name | upcase }}</h5>
+                                    <p class="slider-item-gallery__card-info">{{
+                                        page.metafields.accentuate.hotel_info[forloop.index0] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="slider-pagination swiper-pagination"></div>
+                </div>
+            </div>
+            {% endif %}
+
+
+
+            {% if page.metafields.accentuate.fitness_title != blank %}
+            <div class="slider-item">
+                <h3 class="h3 slider-item-title">{{ page.metafields.accentuate.fitness_title }}</h3>
+
+                <div class="swiper swiper-container slider-item-gallery fitness-slider">
+                    <div class="swiper-wrapper slider-item-gallery__wrapper">
+                        {% for name in page.metafields.accentuate.fitness_name %}
+                        <div class="swiper-slide">
+                            <a href="{{ page.metafields.accentuate.fitness_link[forloop.index0] }}"
+                                class="slider-item-gallery__card">
+
+                                {% include 'responsive-image-ratio-acf' with image:
+                                page.metafields.accentuate.fitness_image[forloop.index0][0],
+                                ratio: 1 %}
+                                <div class="slider-item-gallery__card-content">
+                                    <h5 class="h4 slider-item-gallery__card-title">{{ name | upcase }}</h5>
+                                    <p class="slider-item-gallery__card-info">{{
+                                        page.metafields.accentuate.fitness_info[forloop.index0] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="slider-pagination swiper-pagination"></div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if page.metafields.accentuate.beverage_title != blank %}
+            <div class="slider-item">
+                <h3 class="h3 slider-item-title">{{ page.metafields.accentuate.beverage_title }}</h3>
+
+                <div class="swiper swiper-container slider-item-gallery beverages-slider">
+                    <div class="swiper-wrapper slider-item-gallery__wrapper">
+                        {% for name in page.metafields.accentuate.beverage_name %}
+                        <div class="swiper-slide">
+                            <a href="{{ page.metafields.accentuate.beverage_link[forloop.index0] }}"
+                                class="slider-item-gallery__card">
+
+                                {% include 'responsive-image-ratio-acf' with image:
+                                page.metafields.accentuate.beverage_image[forloop.index0][0],
+                                ratio: 1 %}
+                                <div class="slider-item-gallery__card-content">
+                                    <h5 class="h4 slider-item-gallery__card-title">{{ name | upcase }}</h5>
+                                    <p class="slider-item-gallery__card-info">{{
+                                        page.metafields.accentuate.beverage_info[forloop.index0] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="slider-pagination swiper-pagination"></div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if page.metafields.accentuate.shop_title != blank %}
+            <div class="slider-item">
+                <h3 class="h3 slider-item-title">{{ page.metafields.accentuate.shop_title }}</h3>
+
+                <div class="swiper swiper-container slider-item-gallery shops-slider">
+                    <div class="swiper-wrapper slider-item-gallery__wrapper">
+                        {% for name in page.metafields.accentuate.shop_name %}
+                        <div class="swiper-slide">
+                            <a href="{{ page.metafields.accentuate.shop_link[forloop.index0] }}"
+                                class="slider-item-gallery__card">
+
+                                {% include 'responsive-image-ratio-acf' with image:
+                                page.metafields.accentuate.shop_image[forloop.index0][0],
+                                ratio: 1 %}
+                                <div class="slider-item-gallery__card-content">
+                                    <h5 class="h4 slider-item-gallery__card-title">{{ name | upcase }}</h5>
+                                    <p class="slider-item-gallery__card-info">{{
+                                        page.metafields.accentuate.shop_info[forloop.index0] }}</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="slider-pagination swiper-pagination"></div>
+                </div>
+            </div>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+    <div class="container container-min">
+        {% assign categories = page.metafields.accentuate.faq_category | uniq %}
+
+
+        <div class="event-faq">
+            <h3 class="h3 event-faq__title">FAQ</h3>
+            {% for category in categories %}
+            <div class="event-faq__body" id="{{category}}">
+                <h4 class="title">{{ category }}</h4>
+                <ul class="faq-list">
+                    {% for question in page.metafields.accentuate.faq_title %}
+                    {% if page.metafields.accentuate.faq_category[forloop.index0] == category %}
+                    <li class="faq-list__item">
+                        <button data-accordion="trigger" class="h5 faq-list__question">{{ question }}</button>
+                        <div data-accordion="content-container" class="faq-list__wrapper" style="height: 0;">
+                            <div data-accordion="content" class="faq-list__answer">
+                                {{ page.metafields.accentuate.faq_text[forloop.index0] }}
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>

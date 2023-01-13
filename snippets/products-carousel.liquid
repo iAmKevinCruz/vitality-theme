@@ -1,0 +1,31 @@
+{% if carousel_coll != blank %}
+{% assign limit = carousel_coll_lm | plus: 0 %}
+    <div class="container-max">
+        {% if collections[carousel_coll].products_count != 0 %}
+            {% if carousel_title != blank %}
+                <h3 class="products-carousel__title">{{ carousel_title }}</h3>
+            {% endif %}
+            <div class="swiper-container products-carousel-swiper-original">
+                <div class="swiper-wrapper">
+                    {% for product in collections[carousel_coll].products limit: limit %}
+                        {%- assign prod = product.selected_or_first_available_variant -%}
+                        <div class="swiper-slide">
+                           {%- include 'product-card' with variant: prod, isWishlist: false -%}
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                {% if collections[carousel_coll].products_count > 4 and limit > 4 %}
+                <button class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</button>
+                <button class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</button>
+                {% endif %}
+            </div>
+         
+            {% if carousel_b_text != blank %}
+                <div class="products-carousel__button">
+                    <a href="{{ collections[carousel_coll].url }}" class="primary-button-outlined" style="--sec-color: #000">{{ carousel_b_text }}</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+{% endif %}

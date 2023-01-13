@@ -1,0 +1,1402 @@
+{%- comment -%} VERSION: 0.0.3 Please do not delete this line. {%- endcomment -%}
+{%- liquid
+	assign products_per_page = section.settings.products_per_page
+	assign boost_translations = shop.metafields.boostpfs-settings.labelTranslations
+	assign current_locale = request.locale.iso_code
+	assign primary_locale = current_locale
+	for locale in shop.published_locales
+		if locale.primary
+			assign primary_locale = locale.iso_code
+			break
+		endif
+	endfor
+	assign label_toolbar_viewas = boost_translations[current_locale].defaultTheme.toolbarViewAs | default:  boost_translations[primary_locale].defaultTheme.toolbarViewAs | escape
+	assign label_items_with_count_one = boost_translations[current_locale].defaultTheme.toolbarProduct | default:  boost_translations[primary_locale].defaultTheme.toolbarProduct | escape
+	assign label_items_with_count_other = boost_translations[current_locale].defaultTheme.toolbarProducts | default:  boost_translations[primary_locale].defaultTheme.toolbarProducts | escape
+	assign label_sale = boost_translations[current_locale].defaultTheme.productItemSale | default:  boost_translations[primary_locale].defaultTheme.productItemSale | escape
+	assign label_soldout = boost_translations[current_locale].defaultTheme.productItemSoldOut | default:  boost_translations[primary_locale].defaultTheme.productItemSoldOut | escape
+	assign label_from = boost_translations[current_locale].defaultTheme.productItemFrom | default:  boost_translations[primary_locale].defaultTheme.productItemFrom | escape
+	assign switch_layout_filter = section.settings.switch_layout_filter
+	assign enable_filter_sticky = section.settings.enable_filter_sticky
+	assign toolbar_filter_sticky_mobile = section.settings.toolbar_filter_sticky_mobile
+	assign filter_layout = section.settings.filter_layout
+	assign layout_type = section.settings.layout_type
+	assign show_toolbar_view_as = section.settings.show_toolbar_view_as
+	assign show_toolbar_product_count = section.settings.show_toolbar_product_count
+	assign show_toolbar_sort_by = section.settings.show_toolbar_sort_by
+	assign show_toolbar_view_as_mobile = section.settings.show_toolbar_view_as_mobile
+	assign show_toolbar_product_count_mobile = section.settings.show_toolbar_product_count_mobile
+	assign show_toolbar_sort_by_mobile = section.settings.show_toolbar_sort_by_mobile
+	assign view_as_type = section.settings.view_as_type
+	assign products_per_row = section.settings.products_per_row
+	assign products_per_row_mobile = section.settings.products_per_row_mobile
+	assign show_details_when_hovering = section.settings.show_details_when_hovering
+	assign show_vendor = section.settings.show_vendor
+	assign show_price = section.settings.show_price
+	assign show_sold_out_label = section.settings.show_sold_out_label
+	assign show_sale_label = section.settings.show_sale_label
+	assign show_sale_percent = section.settings.show_sale_percent
+	assign product_label_type = section.settings.product_label_type
+	assign product_label_has_border_radius = section.settings.product_label_has_border_radius
+	assign active_image_swap = section.settings.active_image_swap
+	assign show_product_review = section.settings.show_product_review
+	assign display_item_swatch = section.settings.display_item_swatch
+	assign swatch_color_display_type = section.settings.swatch_color_display_type
+	assign swatch_color_event_change_image = section.settings.swatch_color_event_change_image
+	assign swatches_color_shape = section.settings.swatches_color_shape
+	assign display_item_swatch_size = section.settings.display_item_swatch_size
+	assign equal_height = section.settings.equal_height
+	assign ratio_width_height_other = section.settings.ratio_width_height_other
+	assign equal_height_crop_image_position = section.settings.equal_height_crop_image_position
+	assign show_label_by_tag = section.settings.show_label_by_tag
+	assign show_product_label_image = section.settings.show_product_label_image
+	assign product_label_image_sale = section.settings.product_label_image_sale
+	assign product_label_image_sold_out = section.settings.product_label_image_sold_out
+	assign product_item_type = section.settings.product_item_type
+-%}
+
+{%- paginate collection.products by products_per_page -%}
+
+<style>
+{% if section.settings.collection_header_image != blank %}
+	.boost-pfs-filter-collection-header-wrapper.boost-pfs-filter-collection-image{
+		background: url("{{ section.settings.collection_header_image | img_url: 'master' }}") no-repeat center center /cover;
+		padding: 140px 0 100px;
+	}
+	.boost-pfs-filter-collection-header-wrapper .boost-pfs-section-header .boost-pfs-filter-collection-header {
+    font-weight: 700;
+    font-size: 88px;
+    line-height: 95%;
+    text-transform: uppercase;
+    color: white;
+    text-shadow:
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000;
+
+	}
+	/* Real outline for modern browsers */
+	@supports((text-stroke: 1px white) or (-webkit-text-stroke: 1px white)) {
+			.boost-pfs-filter-collection-header-wrapper .boost-pfs-section-header .boost-pfs-filter-collection-header {
+					color: transparent;
+					-webkit-text-stroke: 1px white;
+					text-stroke: 1px white;
+					text-shadow: none;
+			}
+	}
+	@media only screen and (max-width: 990px) {
+    .boost-pfs-filter-collection-header-wrapper.boost-pfs-filter-collection-image {
+        padding: 100px 0 60px;
+    }
+    .boost-pfs-filter-collection-header-wrapper .boost-pfs-section-header .boost-pfs-filter-collection-header {
+        font-size: 48px;
+    }
+	}
+	@media only screen and (max-width: 768px) {
+    .boost-pfs-filter-collection-header-wrapper.boost-pfs-filter-collection-image {
+        padding: 40px 0 30px;
+    }
+    .boost-pfs-filter-collection-header-wrapper .boost-pfs-section-header .boost-pfs-filter-collection-header {
+        font-size: 48px;
+    }
+	}
+	@media only screen and (max-width: 500px) {
+		.boost-pfs-filter-collection-header-wrapper .boost-pfs-section-header .boost-pfs-filter-collection-header {
+      font-size: 9vw;
+    	padding: 0 5px;
+    }
+	}
+
+{% endif %}
+
+{% if section.settings.collection_header_text_color != blank %}
+.boost-pfs-filter-collection-header-wrapper .boost-pfs-filter-collection-description,
+.boost-pfs-filter-collection-header-wrapper .boost-pfs-filter-collection-description p,
+.boost-pfs-filter-collection-header-wrapper .boost-pfs-filter-collection-header {
+  	color: {{ section.settings.collection_header_text_color }};
+}
+{% endif %}
+{% if section.settings.collection_header_bg_color != blank %}
+.boost-pfs-filter-collection-header-wrapper {
+  	background-color: {{ section.settings.collection_header_bg_color }};
+}
+{% endif %}
+
+{% if section.settings.product_item_title_color != blank or section.settings.product_item_title_font_size != blank  %}
+.boost-pfs-filter-product-item-title {
+	{% if section.settings.product_item_title_color != blank %}
+			color: {{ section.settings.product_item_title_color }};
+	{% endif %}
+
+	{% if section.settings.product_item_title_font != blank %}
+	{% assign product_item_title_font = section.settings.product_item_title_font %}
+	font-family: "{{ product_item_title_font.family }}", {{ product_item_title_font.fallback_families }};
+	font-weight: {{ product_item_title_font.weight }};
+	font-style: {{ product_item_title_font.style }};
+	{% endif %}
+
+	{% if section.settings.product_item_title_font_size != blank %}
+	font-size: {{ section.settings.product_item_title_font_size }}px;
+	{% endif %}
+}
+{% endif %}
+
+{% if section.settings.product_item_vendor_color != blank or section.settings.product_item_vendor_font_size != blank  %}
+.boost-pfs-filter-product-item-vendor {
+	{% if section.settings.product_item_vendor_color != blank %}
+	color: {{ section.settings.product_item_vendor_color }};
+	{% endif %}
+
+	{% if section.settings.product_item_vendor_font != blank %}
+	{% assign product_item_vendor_font = section.settings.product_item_vendor_font %}
+	font-family: "{{ product_item_vendor_font.family }}", {{ product_item_vendor_font.fallback_families }};
+	font-weight: {{ product_item_vendor_font.weight }};
+	font-style: {{ product_item_vendor_font.style }};
+	{% endif %}
+
+	{% if section.settings.product_item_vendor_font_size != blank %}
+	font-size: {{ section.settings.product_item_vendor_font_size }}px;
+	{% endif %}
+}
+{% endif %}
+{% if section.settings.product_item_price_color != blank or section.settings.product_item_price_font_size != blank  %}
+.boost-pfs-filter-product-item-price {
+	{% if section.settings.product_item_price_color != blank %}
+	color: {{ section.settings.product_item_price_color }};
+	{% endif %}
+
+	{% if section.settings.product_item_price_font != blank %}
+	{% assign product_item_price_font = section.settings.product_item_price_font %}
+	font-family: "{{ product_item_price_font.family }}", {{ product_item_price_font.fallback_families }};
+	font-weight: {{ product_item_price_font.weight }};
+	font-style: {{ product_item_price_font.style }};
+	{% endif %}
+
+	{% if section.settings.product_item_price_font_size != blank %}
+	font-size: {{ section.settings.product_item_price_font_size }}px;
+	{% endif %}
+}
+{% endif %}
+
+{% if section.settings.product_item_old_price_color != blank %}
+.boost-pfs-filter-product-item-price s {
+    color: {{ section.settings.product_item_old_price_color }};
+}
+{% endif %}
+
+{% if section.settings.product_item_sale_price_color != blank %}
+.boost-pfs-filter-product-item-price .boost-pfs-filter-product-item-sale-price {
+  	color: {{ section.settings.product_item_sale_price_color }};
+}
+{% endif %}
+
+{% if section.settings.product_item_des_color != blank or section.settings.product_item_des_font_size != blank %}
+.boost-pfs-filter-product-item-list .boost-pfs-filter-des {
+	{% if section.settings.product_item_des_color != blank %}
+	color: {{ section.settings.product_item_des_color }};
+	{% endif %}
+
+	{% if section.settings.product_item_des_font != blank %}
+	{% assign product_item_des_font = section.settings.product_item_des_font %}
+	font-family: "{{ product_item_des_font.family }}", {{ product_item_des_font.fallback_families }};
+	font-weight: {{ product_item_des_font.weight }};
+	font-style: {{ product_item_des_font.style }};
+	{% endif %}
+
+	{% if section.settings.product_item_des_font_size != blank %}
+	font-size: {{ section.settings.product_item_des_font_size }}px;
+	{% endif %}
+}
+{% endif %}
+
+{% if section.settings.product_item_label_bg_color != blank or section.settings.product_item_label_text_color != blank %}
+.boost-pfs-filter-product-item-label .sale,
+.boost-pfs-filter-product-item-label .tag {
+	color: #ff0;
+	{% if section.settings.product_item_label_bg_color != blank %}
+	background-color: {{ section.settings.product_item_label_bg_color }};
+	{% endif %}
+
+	{% if section.settings.product_item_label_text_color != blank %}
+	color: {{ section.settings.product_item_label_text_color }};
+	{% endif %}
+}
+{% endif %}
+
+/* banners */
+{% if section.settings.banner_1 %}
+	.banner_1{
+		background: url('{{ section.settings.banner_1 | img_url: "master" }}') no-repeat center center /cover;
+	}
+{% endif %}
+{% if section.settings.banner_2 %}
+	.banner_2{
+		background: url('{{ section.settings.banner_2 | img_url: "master" }}') no-repeat center center /cover;
+	}
+{% endif %}
+.drop-collection__container-big {
+		width: 50%;
+		display: flex;
+		text-decoration: none;
+}
+.drop-collection__container-small {
+		width: 25%;
+		display: flex;
+		text-decoration: none;
+}
+.banner_1, .banner_2, .banner_3 {
+		width: 100%;
+}
+.banner_1{
+	padding: 0 40px 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.banner_1__title{
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 43px;
+	letter-spacing: 0.15em;
+	margin-bottom: 16px;
+}
+.banner_1__cta{
+	background-color: #000;
+	color: #FFFFFF;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	text-decoration: none;
+	max-width: 261px;
+	width: 100%;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 24px;
+}
+.banner_2{
+	padding: 0 16px 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.banner_2__title{
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	text-transform: uppercase;
+}
+.banner_3{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.banner_3__img{
+	width: 100%;
+}
+.banner_3__content{
+	background: #F1EDE9;
+	border: 1px solid #F1EDE9;
+	padding: 24px 26px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+.banner_3__title{
+	font-weight: 700;
+	font-size: 26px;
+	line-height: 31px;
+	text-transform: uppercase;
+	margin-bottom: 8px;
+}
+.drop-collection__container-big,
+.drop-collection__container-small {
+    padding: 0% 1% 1% 1%;
+}
+@media only screen and (min-width: 1000px) {
+	.boost-pfs-filter-grid-width-4 {/* fixing 4grid issue on 1200px */
+			min-width: 290px;
+	}
+}
+@media only screen and (max-width: 1199px) {
+	.drop-collection__container-big {
+			width: 66.333%;
+	}
+
+	.drop-collection__container-small {
+			width: 33.333%;
+	}
+}
+@media only screen and (max-width: 990px) {
+	.drop-collection__container-big {
+			width: 100%;
+			height: 60vw;
+	}
+	.drop-collection__container-small {
+			width: 50%;
+	}
+}
+@media (max-width: 767px) {
+	.drop-collection__container-big{
+		padding: 0 0 16px;
+		height: 100vw;
+	}
+	.drop-collection__container-small {
+    padding: 0 16px 16px 16px;
+	}
+	.banner_1{
+		padding: 0 20px 40px;
+	}
+	.banner_1__title{
+		font-size: 22px;
+		line-height: 26px;
+		margin-bottom: 8px;
+	}
+	.banner_1__cta{
+		max-width: 141px;
+		margin-top: 16px;
+	}
+	.banner_2{
+		padding: 0 8px 8px;
+	}
+	.banner_2__title{
+		font-size: 11px;
+		line-height: 13px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.banner_3__content{
+		padding: 16px 8px;
+		font-size: 12px;
+		line-height: 14px;
+	}
+	.banner_3__title{
+		font-size: 18px;
+		line-height: 22px;
+	}
+	.boost-pfs-filter-product-item-grid .boost-pfs-filter-product-bottom {
+		padding: 8px 8.5px 0;
+	}
+	.boost-pfs-filter-product-item-grid .boost-pfs-filter-product-bottom .card__titleblock .title {
+    margin-bottom: 4px;
+}
+	.boost-pfs-filter-product-item-price {
+    padding-bottom: 0;
+	}
+	.product-card__reviews {
+    padding: 4px 8.3px 11px !important;
+	}
+	.quickshop-mobile .product-card__actions {
+    display: none;
+	}
+}
+</style>
+
+{% include 'breadcrumbs' %}
+<div class="container-max">
+{%- comment -%} COLLECTION HEADER {%- endcomment -%}
+<div class="boost-pfs-filter-collection-header-wrapper boost-pfs-filter-collection-image" >
+	<div class="boost-pfs-container-default-{{ layout_type }}">
+		<div class="boost-pfs-section-header">
+			<h1 class="boost-pfs-filter-collection-header h2">
+				<span role="text">
+					{{ collection.title }}
+				</span>
+			</h1>
+			{%- if section.settings.show_collection_des and collection.description != blank -%}
+			<div class="boost-pfs-filter-collection-description rte">
+				{{ collection.description }}
+			</div>
+			{%- endif -%}
+			
+		</div>
+	</div>
+</div>
+
+{% if collection.metafields.accentuate.inf_image and collection.metafields.accentuate.inf_image[0] %} 
+	{% if collection.metafields.accentuate.inf_image_mobile and collection.metafields.accentuate.inf_image_mobile[0] %}
+		{% assign inf_image_mobile = collection.metafields.accentuate.inf_image_mobile[0] %}
+	{% endif %}
+	<div class="influencer">
+		<div class="influencer-image {% if inf_image_mobile != blank %} influencer-image--desktop {% endif %}">
+			{% render 'responsive-image-ratio-acf', image: collection.metafields.accentuate.inf_image[0], ratio: 3.5 %}
+		</div>
+		{% if inf_image_mobile != blank %}
+			<div class="influencer-image influencer-image--mobile">
+				{% render 'responsive-image-ratio-acf', image: inf_image_mobile, ratio: 1.37 %}
+			</div>
+		{% endif %}
+		<div class="influencer-content">
+			{% if collection.metafields.accentuate.inf_title != blank %}
+			<h2 class="inf-title">{{ collection.metafields.accentuate.inf_title }}</h2>
+			{% endif %}
+			{% if collection.metafields.accentuate.inf_quote %}
+			<div class="inf-text">
+				{{collection.metafields.accentuate.inf_quote}}
+			</div>
+			{% endif %}
+
+			{% if collection.metafields.accentuate.social %}
+			<ul class="inf-socials">
+				{% for soc in collection.metafields.accentuate.social %}
+					<li><a target="_blank" href="{{ collection.metafields.accentuate.url[forloop.index0] }}">{% render 'svg-icons' with soc %}</a></li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}
+{%- comment -%} END COLLECTION HEADER {%- endcomment -%}
+
+{%- comment -%} TOOLBAR TOP MOBILE {%- endcomment -%}
+<div class="boost-pfs-filter-toolbar-top-mobile {% if hide_toolbar_sort_by_mobile %} boost-pfs-filter-toolbar-top-mobile-hide-sort-by {% endif %} {% if toolbar_filter_sticky_mobile %}boost-pfs-filter-toolbar-sticky-mobile{% endif %}">
+  <div class="boost-pfs-filter-toolbar-top-mobile-inner {% if show_toolbar_sort_by_mobile %} boost-pfs-filter-toolbar-show-sort-by-mobile {% endif %}">
+	<div class="boost-pfs-filter-tree-mobile-button">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+	{%- if show_toolbar_sort_by_mobile -%}
+    	<div class="boost-pfs-filter-top-sorting boost-pfs-filter-top-sorting-mobile boost-pfs-filter-custom-sorting">{%- include 'boost-pfs-filter-skeleton', type: 'button' -%}</div>
+    {% endif %}
+    
+  </div>
+</div>
+{%- comment -%} END TOOLBAR TOP MOBILE {%- endcomment -%}
+
+{%- comment -%} TOOLBAR {%- endcomment -%}
+<div class="boost-pfs-filter-default-toolbar {% if show_toolbar_view_as_mobile == false %} boost-pfs-filter-toolbar-top-mobile-hide-view-as {% endif %} {% if show_toolbar_product_count_mobile == false %} boost-pfs-filter-toolbar-top-mobile-hide-product-count {% endif %}">
+	<div class="boost-pfs-container-default-{{ layout_type }} boost-pfs-filter-default-toolbar-inner">
+    {% if show_toolbar_view_as or filter_layout == 'filter_layout_collapse' or filter_layout == 'filter_layout_slide'  %}
+		<div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-type boost-pfs-filter-{{ view_as_type }}">
+			{% if filter_layout == 'filter_layout_collapse' or filter_layout == 'filter_layout_slide'  %}
+			<button class="boost-pfs-filter-custom-filter-button"> 
+				<span>Filter</span>
+			</button>
+			{% endif %}
+			{%- if show_toolbar_view_as -%}
+				<div class="boost-pfs-filter-top-display-type">{%- include 'boost-pfs-filter-skeleton', width: 2 -%}</div>
+			{%- endif -%}
+		</div>
+    {%- endif -%}
+    {%- if show_toolbar_product_count -%}
+		<div class="boost-pfs-filter-toolbar-item boost-pfs-filter-toolbar-count">
+			<span class="boost-pfs-filter-total-product">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</span>
+		</div>
+    {%- endif -%}
+    {%- if show_toolbar_sort_by -%}
+		  <div class="boost-pfs-filter-toolbar-item boost-pfs-filter-custom-sorting boost-pfs-filter-top-sorting">{%- include 'boost-pfs-filter-skeleton', width: 1 -%}</div>
+    {%- endif -%}
+	</div>
+</div>
+{%- comment -%} END TOOLBAR {%- endcomment -%}
+
+<div class="boost-pfs-filter-wrapper {% if enable_filter_sticky %} boost-pfs-filter-tree-h-sticky-filter {% endif %} {% if filter_layout == 'filter_layout_collapse' %}boost-pfs-filter-layout-collapse {% endif %} {% if filter_layout == 'filter_layout_slide' %}boost-pfs-filter-layout-slide {% endif %}">
+	{%- if switch_layout_filter == 'switch_layout_filter_horizontal' -%}
+	<div class="boost-pfs-filter-tree-h-wrapper">
+		<div class="boost-pfs-container-default-{{ layout_type }}">
+			<div class="boost-pfs-filter-tree boost-pfs-filter-tree-h" data-is-desktop>
+				{%- include 'boost-pfs-filter-skeleton', type: 'filter-tree-h' -%}
+			</div>
+		</div>
+	</div>
+	<div class="boost-pfs-container-default-{{ layout_type }}">
+		<div class="boost-pfs-filter-refine-by-wrapper-h"></div>
+	</div>
+	{%- endif -%}
+	<div class="boost-pfs-container-default-{{ layout_type }}">
+		{%- if switch_layout_filter == 'switch_layout_filter_horizontal' -%}
+		<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v" data-is-mobile></div>
+		{%- endif -%}
+
+		{%- if switch_layout_filter != 'switch_layout_filter_horizontal' and filter_layout == 'filter_layout_slide' -%}
+		<div class="boost-pfs-filter-custom-drawer-overlay"></div>
+		{%- endif -%}
+
+		{%- if switch_layout_filter != 'switch_layout_filter_horizontal' -%}
+		<div class="boost-pfs-filter-left-col">
+			<div class="boost-pfs-filter-left-col-inner">
+				{%- if filter_layout == 'filter_layout_slide' -%}
+				<div class="boost-pfs-filter-custom-drawer-close"></div>
+				{% endif %}
+				<div class="boost-pfs-filter-refine-by-wrapper-v"></div>
+				<div class="boost-pfs-filter-tree boost-pfs-filter-tree-v">{% include 'boost-pfs-filter-skeleton', type: 'filter-tree' %}</div>
+			</div>
+		</div>
+		{%- endif -%}
+
+		{%- if switch_layout_filter != 'switch_layout_filter_horizontal' -%}
+		<div class="boost-pfs-filter-right-col">
+		{%- endif -%} 
+<div class="boost-pfs-filter-btn-load-previous-page-wrapper"></div>
+			<div class="boost-pfs-filter-products {% if section.settings.equal_height == 'auto' %}boost-pfs-filter-product-item-equal-height-auto {% endif %} {% if section.settings.show_item_swatch_tooltip %}boost-pfs-filter-product-item-show-swatch-tooltip {% endif %} {% if section.settings.show_product_label_image %}boost-pfs-filter-product-item-label-use-img{% endif %} boost-pfs-filter-product-item-label-type-{{ section.settings.product_label_type }} {% if section.settings.product_label_has_border_radius %} boost-pfs-filter-product-item-label-has-border{% endif %} boost-pfs-filter-product-item-show-details-{{ section.settings.show_details_when_hovering }} boost-pfs-filter-product-item-layout-{{ section.settings.product_item_layout }} boost-pfs-filter-product-item-label-{{ section.settings.product_item_label_position }} boost-pfs-filter-product-item-{{ section.settings.swatch_color_display_type }} boost-pfs-filter-swatch-shape-{{ section.settings.swatches_color_shape}} boost-pfs-filter-product-item-text-alignment-{{ section.settings.text_alignment}}" data-bc-sort="{{ collection.default_sort_by }}">
+				{%- for product in collection.products -%}
+				<!-- {{ forloop.index }} -->
+				<!-- {% if forloop.index == 5 %}
+				<a href="https://shopvitality.com/collections/cloudvolleyshort" class="drop-collection__container-big"><img src="https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Large-Product_8d1112e3-d76a-45e7-bf29-9a6abbe89b52.jpg?v=1656579859&height=1024"></a>
+				{% endif %} -->
+				{%- render 'boost-pfs-filter-product-item',
+					product: product,
+					products_per_row: products_per_row,
+					products_per_row_mobile: products_per_row_mobile,
+					show_details_when_hovering: show_details_when_hovering,
+					show_vendor: show_vendor,
+					show_price: show_price,
+					show_sold_out_label: show_sold_out_label,
+					show_sale_label: show_sale_label,
+					show_sale_percent: show_sale_percent,
+					product_label_type: product_label_type,
+					product_label_has_border_radius: product_label_has_border_radius,
+					active_image_swap: active_image_swap,
+					show_product_review: show_product_review,
+					display_item_swatch: display_item_swatch,
+					swatch_color_display_type: swatch_color_display_type,
+					swatch_color_event_change_image: swatch_color_event_change_image,
+					swatches_color_shape: swatches_color_shape,
+					display_item_swatch_size: display_item_swatch_size,
+					equal_height: equal_height,
+					ratio_width_height_other: ratio_width_height_other,
+					equal_height_crop_image_position: equal_height_crop_image_position,
+					show_label_by_tag: show_label_by_tag,
+					show_product_label_image: show_product_label_image,
+					product_label_image_sale: product_label_image_sale,
+					product_label_image_sold_out: product_label_image_sold_out,
+					product_item_type: product_item_type,
+					label_soldout: label_soldout,
+					label_sale: label_sale,
+					label_from: label_from,
+					label_toolbar_viewas: label_toolbar_viewas,
+					label_items_with_count_one: label_items_with_count_one,
+					label_items_with_count_other: label_items_with_count_other
+				-%}
+				{%- endfor -%}
+			</div>
+			<div class="boost-pfs-filter-bottom-pagination boost-pfs-filter-bottom-pagination-default">
+				{%- if paginate.pages > 1 -%}
+				{%- include 'boost-pfs-filter-pagination' -%}
+				{%- endif -%}
+			</div>
+			<div class="boost-pfs-filter-load-more"></div>
+
+		{%- if switch_layout_filter != 'switch_layout_filter_horizontal' -%}
+		</div>
+		{%- endif -%}
+	</div>
+	{%- comment -%} start-bc-most-popular-template {%- endcomment -%}
+	<div class="boost-pfs-most-popular-products-wrapper boost-pfs-widget-slider-wrapper">
+		<div class="boost-pfs-most-popular-products boost-pfs-widget-products owl-carousel"></div>
+	</div>
+	{%- comment -%} end-bc-most-popular-template {%- endcomment -%}
+	{%- comment -%} start-bc-recently-viewed-template {%- endcomment -%}
+	<div class="boost-pfs-recent-products-wrapper boost-pfs-widget-slider-wrapper">
+		<div class="boost-pfs-recent-products boost-pfs-widget-products owl-carousel"></div>
+	</div>
+	{%- comment -%} end-bc-recently-viewed-template {%- endcomment -%}
+</div>
+</div>
+{%- endpaginate -%}
+
+{%- render 'boost-pfs-theme-config',
+	layout_type: layout_type,
+	enable_filter_sticky: enable_filter_sticky,
+	view_as_type: view_as_type,
+	products_per_page: products_per_page,
+	products_per_row: products_per_row,
+	products_per_row_mobile: products_per_row_mobile,
+	show_details_when_hovering: show_details_when_hovering,
+	show_vendor: show_vendor,
+	show_price: show_price,
+	show_sold_out_label: show_sold_out_label,
+	show_sale_label: show_sale_label,
+  	show_sale_percent: show_sale_percent,
+	product_label_type: product_label_type,
+	product_label_has_border_radius: product_label_has_border_radius,
+	active_image_swap: active_image_swap,
+	show_product_review: show_product_review,
+	display_item_swatch: display_item_swatch,
+	swatch_color_display_type: swatch_color_display_type,
+	swatch_color_event_change_image: swatch_color_event_change_image,
+	swatches_color_shape: swatches_color_shape,
+	display_item_swatch_size: display_item_swatch_size,
+	equal_height: equal_height,
+	ratio_width_height_other: ratio_width_height_other,
+	equal_height_crop_image_position: equal_height_crop_image_position,
+	show_label_by_tag: show_label_by_tag,
+	show_product_label_image: show_product_label_image,
+	product_label_image_sale: product_label_image_sale,
+	product_label_image_sold_out: product_label_image_sold_out,
+	product_item_type: product_item_type,
+	label_soldout: label_soldout,
+	label_sale: label_sale,
+	label_from: label_from,
+	label_toolbar_viewas: label_toolbar_viewas,
+	label_items_with_count_one: label_items_with_count_one,
+	label_items_with_count_other: label_items_with_count_other
+-%}
+<script>
+	window.addEventListener("DOMContentLoaded", e=>{
+		setTimeout(function(){
+			let productCount = document.querySelectorAll('.boost-pfs-filter-product-item');
+			{% if section.settings.banner_1 !=blank %}
+				if(productCount.length > 4){
+					let firstImg = document.querySelector('.boost-pfs-filter-product-item:nth-child(4)');
+					firstImg.insertAdjacentHTML('afterend', `<div class="drop-collection__container-big">
+						<div class="banner_1">
+							<h3 class="banner_1__title">{{section.settings.banner_1_title}}</h3>
+							<div>{{section.settings.banner_1_text}}</div>
+							<a class="banner_1__cta" href="{{section.settings.banner_1_cta_url}}">{{section.settings.banner_1_cta}}</a>
+						</div>
+					</div>`);
+				}
+			{% endif %}
+			{% if section.settings.banner_2 !=blank %}
+				if(productCount.length > 14){
+					let secondImg = document.querySelector('.boost-pfs-filter-product-item:nth-child(14)');
+					secondImg.insertAdjacentHTML('afterend', `<a href="{{ section.settings.banner_2_url }}" class="drop-collection__container-small">
+						<div class="banner_2">
+							{%- if section.settings.banner_2_title != blank -%}<h3 class="banner_2__title">{{section.settings.banner_2_title}}</h3>{%- endif -%}
+						</div>	
+					</a>`);
+				}
+			{% endif %}
+			{% if section.settings.banner_3 %}
+				if(productCount.length > 19){
+					let thirdImg = document.querySelector('.boost-pfs-filter-product-item:nth-child(19)');
+					thirdImg.insertAdjacentHTML('afterend', `<a href="{{ section.settings.banner_3_url }}" class="drop-collection__container-small">
+						<div class="banner_3">
+							<img class="banner_3__img" src="{{ section.settings.banner_3 | img_url: 'master' }}" alt="{{ section.settings.banner_3.alt }}">
+							{%- if section.settings.banner_3_title != blank or section.settings.banner_3_text !=blank -%}
+							<div class="banner_3__content">
+								<h3 class="banner_3__title">{{section.settings.banner_3_title}}</h3>
+								<div>{{section.settings.banner_3_text}}</div>
+							</div>
+							{%- endif -%}
+						</div>	
+					</a>`);
+				}
+			{% endif %}
+		},2000);
+	})
+
+</script>
+
+{% schema %}
+ {
+	"name": "Collection pages",
+	"settings": [
+		{
+			"type": "header",
+			"content": "For Filter"
+		},
+		{
+			"type": "radio",
+			"id": "switch_layout_filter",
+			"label": "Switch Layout Filter",
+			"options": [
+				{
+					"value": "switch_layout_filter_vertical",
+					"label": "Vertical Filter"
+				},
+				{
+					"value": "switch_layout_filter_horizontal",
+					"label": "Horizonal Filter"
+				}
+			],
+			"default": "switch_layout_filter_vertical"
+		},
+    	{
+			"type": "checkbox",
+			"id": "enable_filter_sticky",
+			"label": "Enable Filter Sticky on Desktop",
+			"default": false
+		},
+    	{
+			"type": "checkbox",
+			"id": "toolbar_filter_sticky_mobile",
+			"label": "Enable Filter Toolbar Sticky on Mobile",
+			"default": true
+		},
+    	{
+			"type": "radio",
+			"id": "filter_layout",
+			"label": "Filter Layout",
+			"options": [
+				{
+					"value": "filter_layout_default",
+					"label": "Filter Layout Default"
+				},
+				{
+					"value": "filter_layout_collapse",
+					"label": "Filter Layout Collapse"
+				},
+				{
+					"value": "filter_layout_slide",
+					"label": "Filter Layout Slide (Only work on Vertical Layout)"
+				}
+			],
+			"default": "filter_layout_default"
+		},
+    	{
+			"type": "header",
+			"content": "For Layout Page"
+		},
+		{
+			"type": "radio",
+			"id": "layout_type",
+			"label": "Layout Type",
+			"options": [
+				{
+				"value": "box",
+				"label": "Box"
+				},
+				{
+				"value": "fullwidth",
+				"label": "Full Width"
+				}
+			],
+			"default": "box"
+		},
+		{
+			"type": "header",
+			"content": "Collection Header"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_collection_image",
+			"label": "Show Collection Image",
+			"default": true
+		},
+		{
+			"type": "image_picker",
+			"id": "collection_header_image",
+			"label": "Collection Header Image"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_collection_des",
+			"label": "Show Collection Description",
+			"default": true
+		},
+		{
+			"type": "color",
+			"id": "collection_header_bg_color",
+			"label": "Collection Header Background Color"
+		},
+		{
+			"type": "color",
+			"id": "collection_header_text_color",
+			"label": "Collection Header Text Color"
+		},
+    	{
+			"type": "header",
+			"content": "Toolbar"
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_view_as",
+			"label": "Show - View As",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_product_count",
+			"label": "Show - Product Count",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_sort_by",
+			"label": "Show - Sort By",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_view_as_mobile",
+			"label": "Show - View As - Mobile",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_product_count_mobile",
+			"label": "Show - Product Count - Mobile",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_toolbar_sort_by_mobile",
+			"label": "Show - Sort By - Mobile",
+			"default": true
+		},
+		{
+			"type": "radio",
+			"id": "view_as_type",
+			"label": "View As Type",
+			"options": [
+				{
+				"value": "view_as_type_grid_list",
+				"label": "Grid/List"
+				},
+				{
+				"value": "view_as_type_list_grid_multi_col",
+				"label": "List/Grid Multi Column (Only works on Desktop)"
+				}
+			],
+			"default": "view_as_type_grid_list"
+		},
+		{
+			"type": "header",
+			"content": "Product List"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_1",
+			"label": "First Banner"
+		},
+		{
+			"type": "text",
+			"id": "banner_1_title",
+			"label": "First Banner title"
+		},
+		{
+			"type": "richtext",
+			"id": "banner_1_text",
+			"label": "First Banner text"
+		},
+		{
+			"type": "text",
+			"id": "banner_1_cta",
+			"label": "First Banner cta",
+			"default": "SHOP NOW"
+		},
+		{
+			"type": "url",
+			"id": "banner_1_cta_url",
+			"label": "First Banner cta url"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_2",
+			"label": "Second Banner"
+		},
+		{
+			"type": "text",
+			"id": "banner_2_title",
+			"label": "Second Banner title"
+		},
+		{
+			"type": "url",
+			"id": "banner_2_url",
+			"label": "Second Banner url"
+		},
+		{
+			"type": "image_picker",
+			"id": "banner_3",
+			"label": "Third Banner"
+		},
+		{
+			"type": "text",
+			"id": "banner_3_title",
+			"label": "Third Banner title"
+		},
+		{
+			"type": "richtext",
+			"id": "banner_3_text",
+			"label": "Third Banner text"
+		},
+		{
+			"type": "url",
+			"id": "banner_3_url",
+			"label": "Third Banner url"
+		},
+		{
+			"type": "range",
+			"id": "products_per_page",
+			"label": "Products per page",
+			"min": 2,
+			"max": 50,
+			"step": 1,
+			"default": 24
+		},
+		{
+			"type": "range",
+			"id": "products_per_row",
+			"label": "Products per row on Desktop",
+			"min": 2,
+			"max": 6,
+			"step": 1,
+			"default": 3
+		},
+		{
+			"type": "range",
+			"id": "products_per_row_mobile",
+			"label": "Products per row on Mobile",
+			"min": 1,
+			"max": 3,
+			"step": 1,
+			"default": 2
+		},
+		{
+			"type": "header",
+			"content": "Product Item"
+		},
+		{
+			"type": "select",
+			"id": "product_item_type",
+			"label": "Product Item Type",
+			"options": [
+			{
+				"value": "grid",
+				"label": "Grid"
+			},
+			{
+				"value": "list",
+				"label": "List"
+			}],
+			"default": "grid"
+		},
+		{
+			"type": "select",
+			"id": "product_item_layout",
+			"label": "Product Item Layout",
+			"options": [
+				{
+					"value": "no-border",
+					"label": "No Border (Default)"
+				},
+				{
+					"value": "border-no-padding",
+					"label": "Border No Padding"
+				},
+				{
+					"value": "border-no-padding-img",
+					"label": "Border No Padding Image"
+				},
+				{
+					"value": "border-has-padding",
+					"label": "Border Has Padding"
+				}
+			],
+			"default": "no-border"
+		},
+		{
+			"type": "select",
+			"id": "text_alignment",
+			"label": "Text alignment",
+			"options": [
+				{
+					"value": "left",
+					"label": "Left"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "right",
+					"label": "Right"
+				}
+			],
+			"default": "left",
+			"info": "Use this setting for Product type Grid"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_details_when_hovering",
+			"label": "Show details when hovering",
+			"default": false,
+			"info": "This setting only works on Desktop"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_vendor",
+			"label": "Show product vendor",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_price",
+			"label": "Show price",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "active_image_swap",
+			"label": "Active image swap",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_product_review",
+			"label": "Show product review",
+			"default": false,
+			"info": "Use this setting when store has product reviews integration"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Label"
+		},
+		
+		{
+			"type": "checkbox",
+			"id": "show_sold_out_label",
+			"label": "Show sold out label",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_sale_label",
+			"label": "Show sale label",
+			"default": true
+		},
+    	{
+			"type": "checkbox",
+			"id": "show_sale_percent",
+			"label": "Show sale Percent",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "product_label_has_border_radius",
+			"label": "Has Border Radius",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_label_by_tag",
+			"label": "Enable the Custom Label By Tag",
+			"default": false,
+			"info": "Please refer [this link](https:\/\/help.boostcommerce.net\/article\/475-how-to-create-custom-label-by-tag-in-the-default-theme) to create a Custom Label By Tag!"
+		},
+		{
+			"type": "select",
+			"id": "product_item_label_position",
+			"label": "Product Label Position",
+			"default": "center",
+			"options": [
+			{
+				"value": "top_left",
+				"label": "Top Left"
+			},
+			{
+				"value": "top_right",
+				"label": "Top Right"
+			},
+			{
+				"value": "bottom_left",
+				"label": "Bottom Left"
+			},
+			{
+				"value": "bottom_right",
+				"label": "Bottom Right"
+			}],
+			"default": "top_left"
+		},
+		{
+			"type": "select",
+			"id": "product_label_type",
+			"label": "Product Label Type",
+			"options": [
+				{
+					"value": "rectangle",
+					"label": "Rectangle"
+				},
+				{
+					"value": "circle",
+					"label": "Circle"
+				}
+			],
+			"default": "rectangle"
+		},
+		{
+			"type": "color",
+			"id": "product_item_label_bg_color",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "product_item_label_text_color",
+			"label": "Text Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_product_label_image",
+			"label": "Use Product Label Image",
+			"default": false
+		},
+	 	{
+			"type": "image_picker",
+			"id": "product_label_image_sale",
+			"label": "Upload Product Label Sale"
+		},
+		{
+			"type": "image_picker",
+			"id": "product_label_image_sold_out",
+			"label": "Upload Product Label Sold Out "
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Title"
+		},
+		{
+			"type": "color",
+			"id": "product_item_title_color",
+			"label": "Title",
+			"default": "#3d4246"
+		},
+		{
+			"type": "font_picker",
+			"id": "product_item_title_font",
+			"label": "Font",
+			"default": "poppins_n6"
+		},
+		{
+			"type": "range",
+			"id": "product_item_title_font_size",
+			"label": "Product Item Title - Font Size",
+			"min": 10,
+			"max": 30,
+			"step": 1,
+			"default": 14,
+			"unit": "px"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Vendor"
+		},
+		{
+			"type": "color",
+			"id": "product_item_vendor_color",
+			"label": "Vendor",
+			"default": "#969595"
+		},
+		{
+			"type": "font_picker",
+			"id": "product_item_vendor_font",
+			"label": "Font",
+			"default": "poppins_n4"
+		},
+		{
+			"type": "range",
+			"id": "product_item_vendor_font_size",
+			"label": "Product Item Vendor - Font Size",
+			"min": 10,
+			"max": 30,
+			"step": 1,
+			"default": 12,
+			"unit": "px"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Price"
+		},
+		{
+			"type": "color",
+			"id": "product_item_price_color",
+			"label": "Price",
+			"default": "#222"
+		},
+		{
+			"type": "color",
+			"id": "product_item_old_price_color",
+			"label": "Old Price",
+			"default": "#969595"
+		},
+		{
+			"type": "color",
+			"id": "product_item_sale_price_color",
+			"label": "Sale Price",
+			"default": "#f30000"
+		},
+		{
+			"type": "font_picker",
+			"id": "product_item_price_font",
+			"label": "Font",
+			"default": "poppins_n4"
+		},
+		{
+			"type": "range",
+			"id": "product_item_price_font_size",
+			"label": "Product Item Price - Font Size",
+			"min": 10,
+			"max": 30,
+			"step": 1,
+			"default": 14,
+			"unit": "px"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Description"
+		},
+		{
+			"type": "color",
+			"id": "product_item_des_color",
+			"label": "Description Color",
+			"default": "#3a3a3a"
+		},
+		{
+			"type": "font_picker",
+			"id": "product_item_des_font",
+			"label": "Font",
+			"default": "poppins_n4"
+		},
+		{
+			"type": "range",
+			"id": "product_item_des_font_size",
+			"label": "Product Item Description - Font Size",
+			"min": 10,
+			"max": 30,
+			"step": 1,
+			"default": 14,
+			"unit": "px"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Swatch Color"
+		},
+		{
+			"type": "checkbox",
+			"id": "display_item_swatch",
+			"label": "Enable Display Item Swatch",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_item_swatch_tooltip",
+			"label": "Show Item Swatch Tooltip",
+			"default": true
+		},
+		{
+			"type": "radio",
+			"id": "swatch_color_display_type",
+			"label": "Display Type",
+			"options": [
+				{
+					"value": "swatch_color_display_type_color",
+					"label": "Color"
+				},
+				{
+					"value": "swatch_color_display_type_image_color",
+					"label": "Color Image"
+				},
+				{
+					"value": "swatch_color_display_type_image_product",
+					"label": "Product Image"
+				}
+			],
+			"default": "swatch_color_display_type_image_product",
+			"info": "Please refer [this link](https:\/\/help.boostcommerce.net\/article\/417-how-to-config-the-product-item-layout-in-our-default-theme#a5) about 3 display types of Color swatches!"
+		},
+		{
+			"type": "radio",
+			"id": "swatch_color_event_change_image",
+			"label": "Change Image When Hovering swatch icon",
+			"options": [
+				{
+					"value": "none",
+					"label": "None"
+				},
+				{
+					"value": "hover",
+					"label": "Hover"
+				},
+				{
+					"value": "click",
+					"label": "Click"
+				}
+			],
+			"default": "hover"
+		},
+		{
+			"type": "radio",
+			"id": "swatches_color_shape",
+			"label": "Swatch shape",
+			"options": [
+				{
+					"value": "circle",
+					"label": "Circle"
+				},
+				{
+					"value": "square",
+					"label": "Square"
+				}
+			],
+			"default": "circle"
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Swatch Size"
+		},
+		{
+			"type": "checkbox",
+			"id": "display_item_swatch_size",
+			"label": "Display Swatch Size",
+			"default": false
+		},
+		{
+			"type": "header",
+			"content": "Product Item - Equal Height"
+		},
+		{
+			"type": "select",
+			"id": "equal_height",
+			"label": "Product image aspect ratio (Width x Height)",
+			"options": [
+        {
+          "value": "false",
+          "label": "Disabled"
+        },
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "1:1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "2:3",
+          "label": "Portrait (2:3)"
+        },
+        {
+          "value": "4:3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "other",
+          "label": "Manual ratio below"
+        }
+			],
+			"default": "auto",
+			"info": "For best results [all product photos should be the same ratio](https:\/\/help.shopify.com\/manual\/productivity-tools\/image-editor#image-aspect-ratio)."
+		},
+		{
+			"type": "text",
+			"id": "ratio_width_height_other",
+			"label": "Example: 6:7",
+			"info": "If the ratios above is not suitable for your store, could you please enter your aspect ratio (Width x Height) in the form below?"
+		},
+		{
+			"type": "select",
+			"id": "equal_height_crop_image_position",
+			"label": "Equal Height Crop Image Position",
+			"options": [
+				{
+					"value": "top",
+					"label": "Top"
+				},
+				{
+					"value": "center",
+					"label": "Center"
+				},
+				{
+					"value": "bottom",
+					"label": "Bottom"
+				}
+			],
+			"default": "center"
+		}
+	]
+}
+{% endschema %}

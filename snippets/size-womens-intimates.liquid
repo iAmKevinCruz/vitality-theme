@@ -1,0 +1,22 @@
+{% if shop.metafields.accentuate.wi_sizepantbustwaisthip %}
+<div class="size-block">
+    <h4 class="title">{{ 'general.sizeguide.womensintimates' | t }}</h4>
+    <table style="width:100%">
+        <tr>
+        <th>{{ 'general.sizeguide.size' | t }}</th>
+        <th>{{ 'general.sizeguide.pant' | t }}</th>
+        <th>{{ 'general.sizeguide.bust' | t }}</th>
+        <th>{{ 'general.sizeguide.waist' | t }}</th>
+        <th>{{ 'general.sizeguide.hip' | t }}</th>
+        </tr>
+        {% for item in shop.metafields.accentuate.wi_sizepantbustwaisthip %}
+        {% assign sizes = item | split: ','%}
+        <tr>
+            {% for size in sizes %}
+                <td>{{size}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endif %}

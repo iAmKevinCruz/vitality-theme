@@ -1,0 +1,19 @@
+<div class="textus-page">
+    <div class="container-max">
+        {{ section.settings.code_snippet }}
+        {%- render 'smsbump_subscription_form_embed_34556' -%}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Text Us Page",
+      "settings": [
+            {
+                "type": "textarea",
+                "id": "code_snippet",
+                "label": "Code Snippet"			
+            }
+        ]
+  } 
+{% endschema %}

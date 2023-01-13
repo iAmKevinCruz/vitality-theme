@@ -1,0 +1,49 @@
+{% assign has_default_address_form = false %}
+{% for address in customer.addresses limit:addresses_limit %}
+	<div class="account-app-layout__widget account-app-layout__widget--mini">
+		<div class="account-app-widget-header account-app-widget-header--address h5">
+			{% if address == customer.default_address %}
+				{% assign has_default_address_form = true %}
+				<div class="account-app-widget-header h5">{{ 'customer.addresses.default' | t }}</div>
+			{% else %}
+				{{ 'customer.addresses.address' | t }} {{ address_number }}
+			{% endif %}
+		</div>
+
+		<div>
+			{% include 'address', address: address %}
+		</div>
+		<div class="small">
+			<a href="#addresses/{{ address.id }}">{{ 'customer.addresses.edit' | t }}</a>
+			<span> | </span>
+			<a href="#addresses/{{ address.id }}/delete">{{ 'customer.addresses.delete' | t }}</a>
+		</div>
+	</div>
+	{% assign address_number = address_number | plus: 1 %}
+
+	{% capture edit_form_html %}
+		{% render 'account-addresses-edit', address: address %}
+	{% endcapture %}
+
+	{% capture delete_form_html %}
+		{% render 'account-addresses-delete', address: address %}
+	{% endcapture %}
+
+	{% assign all_address_forms_html = all_address_forms_html | append: edit_form_html | append: delete_form_html %}
+{% endfor %}
+
+{% comment %}
+if there were no default address form loaded,
+load it now so that "Edit" link on the "overview" page works
+{% endcomment %}
+{% if has_default_address_form == false and customer.default_address %}
+	{% capture edit_form_html %}
+		{% render 'account-addresses-edit', address: customer.default_address %}
+	{% endcapture %}
+
+	{% capture delete_form_html %}
+		{% render 'account-addresses-delete', address: customer.default_address %}
+	{% endcapture %}
+
+	{% assign all_address_forms_html = all_address_forms_html | append: edit_form_html | append: delete_form_html %}
+{% endif %}

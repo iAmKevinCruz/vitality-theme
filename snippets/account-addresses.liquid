@@ -1,0 +1,51 @@
+{% assign all_address_forms_html = '' %}
+{% assign delete_forms_html = '' %}
+
+{% assign is_addresses_pagination = false %}
+{% if template == 'customers/addresses' %}
+	{% assign is_addresses_pagination = true %}
+{% endif %}
+
+{% assign previous_page = 0 %}
+{% if is_addresses_pagination %}
+	{% assign previous_page = current_page | minus: 1 %}
+{% endif %}
+
+{% assign addresses_limit = 12 %}
+{% assign address_number = addresses_limit | times: previous_page | plus: 1 %}
+
+
+<div class="account-app-layout__page" data-account-route="addresses" {% if is_addresses_pagination %} data-account-default-route {% endif %} style="display: none;">
+	{% if customer.addresses.size == 0 %}
+		<div class="account-app-layout__widget">
+			<div class="account-app-widget-header h5">
+				{{ 'customer.addresses.title' | t }}
+			</div>
+			<p>{{ 'customer.addresses.none' | t }}</p>
+		</div>
+		{% else %}
+			{% if is_addresses_pagination %}
+				{% paginate customer.addresses by addresses_limit %}
+					{% include 'account-addresses-item' %}
+					{% if paginate.pages > 1 %}
+						<div class="account-app-layout__widget">
+			         		{% include 'pagination' %}
+			         	</div>
+			        {% endif %}
+				{% endpaginate %}
+			{% else %}
+				{% include 'account-addresses-item' %}
+				{% if customer.addresses.size > addresses_limit %}
+					<div class="account-app-layout__widget">
+						{% render 'pagination-fake', base_route: routes.account_addresses_url %}
+					</div>
+				{% endif %}
+			{% endif %}
+		{% endif %}
+
+	<div class="account-app-layout__widget">
+		<a href="#addresses/new" class="primary-button">{{ 'customer.addresses.add_new' | t }}</a>
+	</div>
+</div>
+
+{{ all_address_forms_html }}

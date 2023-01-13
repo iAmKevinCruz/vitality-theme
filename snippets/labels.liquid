@@ -1,0 +1,31 @@
+
+{%- assign firstVariant = product.selected_or_first_available_variant -%}
+
+{%- if firstVariant.inventory_quantity != 0 and firstVariant.inventory_quantity < 5 -%}
+    {%- assign label = 'products.labels.almostgone' | t -%}
+{% endif %}
+{%- if  product.tags contains 'pfs:label-back-in-stock' -%}
+    {%- assign label = 'products.labels.backinstock' | t -%}
+{% endif %}
+{%- if  product.tags contains 'pfs:label-new' -%}
+    {%- assign label = 'products.labels.new' | t -%}
+{% endif %}
+{%- if variant.inventory_quantity == 0 -%}
+    {%- assign label = 'products.labels.getnotified' | t -%}
+{% endif %}
+{% comment %}
+{%- if firstVariant.inventory_quantity == 0 -%}
+    {%- assign label = 'products.labels.soldout' | t -%}
+{% endif %}
+{%- if firstVariant.inventory_quantity == 0 and  product.tags contains 'notifyme' -%}
+    {%- assign label = 'products.labels.getnotified' | t -%}
+{%- endif -%}
+{%- if firstVariant.inventory_quantity == 0 -%}
+    {%- unless  product.tags contains 'notifyme' -%}
+        {%- assign generalClass = 'soldout' -%}
+    {%- endunless -%}
+{%- endif -%}
+{% endcomment %}
+{%- if  product.tags contains 'coming soon' -%}
+    {%- assign label = 'products.labels.comingsoon' | t -%}
+{% endif %}

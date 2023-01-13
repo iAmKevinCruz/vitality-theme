@@ -1,0 +1,13 @@
+<div class="popup-modal" data-popup="precheckout-{{ modifier }}" >
+	<div class="popup-modal__wrapper">
+		<button data-popup-close="" type="button" class="popup-modal__close"></button>
+		<div class="popup-modal__content">
+			{{ settings.cart_precheckout_note }}
+			<div style="display:block; margin-top: 1rem">
+				<button class="primary-button" href="/checkout" name="checkout" type="submit">
+	                {{ 'cart.checkout' | t }}
+	            </button>
+            </div>
+		</div>
+	</div>
+</div>

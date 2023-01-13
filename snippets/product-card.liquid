@@ -1,0 +1,123 @@
+{%- assign label = '' -%}
+{%- assign generalClass = '' -%}
+
+{%- if variant.inventory_quantity > 0 and variant.inventory_quantity < 5 -%}
+    {%- assign label = 'products.labels.almostgone' | t -%}
+{% endif %}
+{%- if  product.tags contains 'pfs:label-back-in-stock' -%}
+    {%- assign label = 'products.labels.backinstock' | t  -%}
+{% endif %}
+{%- if  product.tags contains 'pfs:label-new' -%}
+    {%- assign label = 'products.labels.new' | t -%}
+{% endif %}
+{%- if variant.inventory_quantity == 0 -%}
+    {%- assign label = 'products.labels.getnotified' | t -%}
+{% endif %}
+{% comment %}
+{%- if variant.inventory_quantity == 0 -%}
+    {%- assign label = 'products.labels.soldout' | t -%}
+{% endif %}
+{%- if variant.inventory_quantity == 0 and  product.tags contains 'notifyme' -%}
+    {%- assign label = 'products.labels.getnotified' | t -%}
+{%- endif -%}
+{%- if variant.inventory_quantity == 0 -%}
+    {%- unless  product.tags contains 'notifyme' -%}
+        {%- assign generalClass = 'soldout' -%}
+    {%- endunless -%}
+{%- endif -%}
+{% endcomment %}
+{%- if  product.tags contains 'comingsoon' -%}
+    {%- assign generalClass = 'comingsoon' -%}
+    {%- assign label = 'products.labels.comingsoon' | t -%}
+{% endif %}
+
+
+<div class="product-card {{ generalClass }}">
+    {% form "product", product, class: 'quickShop' %}
+    <div class="product-card__image">
+        <div class="images">
+            <div class="main-image">
+                {%- include 'responsive-image' with image: product.featured_media, image_class: "", wrapper_class: "", max_width: 360, max_height: 580 -%}
+            </div>
+            <div class="hover-image">
+                {%- include 'responsive-image' with image: product.images[1], image_class: "", wrapper_class: "hover-image", max_width: 360, max_height: 580 -%}
+            </div>
+        </div>
+        
+        <a href="{{ variant.url }}" class="product-card__link"></a>
+        <div class="product-card__label">
+            {% if label != blank %}
+            <span>{{ label }}</span>
+            {% endif %}
+        </div>
+        <div class="product-card__wishlist">
+            <!-- include 'wishlist-button-collection' with '{{ product.id }}' -->
+        </div>
+        {% unless variant.inventory_quantity == 0 %}
+        
+        <input type="hidden" name="quantity" value="1" min="1">
+        <div class="product-card__actions {% if product.variants.size == 1 %}only-one{% endif %}">
+            {%- render 'hover-variants', product: product -%}
+            <button class="primary-button" style="display: none;" type="submit">{{ 'products.product.quickadd' | t }}</button>
+        </div>
+        
+        {% endunless %}
+    </div>
+    <div class="product-card__description card">
+        <div class="card__titleblock">
+           
+            <p class="h5 title"><a href="{{ variant.url }}">{{ product.title }}</a></p>
+        </div>
+        <div class="card__priceblock {% if variant.compare_at_price > 0 %}is-sale{% endif %}">
+            <span class="current-price">{{ variant.price | money_without_trailing_zeros }}</span>
+            <span class="old-price">{{ variant.compare_at_price | money_without_trailing_zeros }}</span>
+        </div>
+       
+    </div>
+    {%- if  product.tags contains 'label:final-sale'  -%}
+    <span class="sale-label sale-mob">Final sale</span>
+    {%- endif -%}
+    <div class="product-card__reviews">
+        {%- if  product.tags contains 'label:final-sale'  -%}
+        <span class="sale-label">Final sale</span>
+        {%- endif -%}
+        <a href="{{product.url}}#yotpoWidget" class="review-link"></a>
+        {% render 'yotpo-star-reviews-widget', product: product %}
+    </div>
+
+    {% unless variant.inventory_quantity == 0 and variant.available == true %}
+        <div class="quickshop-mobile">
+            <input type="hidden" name="quantity" value="1" min="1">
+
+            {%- if  product.tags contains 'label:final-sale'  -%}
+                <input type="hidden" name="properties[Labels]" value="Final Sale" />
+            {%- endif -%}
+
+            <div class="product-card__actions {% if product.variants.size == 1 %}only-one{% endif %}">
+                {%- render 'hover-variants', product: product, customSelectClass: 'hidden', customButtonClass: 'quickshop-button' -%}
+                <button class="primary-button" style="display: none;" type="submit">{{ 'products.product.quickadd' | t }}</button>
+            </div>
+        </div>
+    {% endunless %}
+    <div class="product-card__error error-note"></div>
+    <div class="product-notifyme visually-hidden">
+        <div class='klaviyo-product-container' id='klaviyo-data-handle-{{ product.handle }}' data-klaviyo-handle='{{ product.handle }}'>
+            <div class="klaviyo-button-container">
+            </div>
+          </div>
+      </div>
+
+      <notify-modal-opener data-modal="data-popup-modal" style="display: none;">
+        <button id="ProductPopup-notifyme" type="button" aria-haspopup="dialog" class="primary-button">{{ 'products.product.notify_me' | t }}</button>
+        <div data-popup-content style="display: none;">
+            <div class="notify-title">{{ product.title }}</div>
+            <p>{{ 'products.product.notify_me_text' | t }}</p>
+            <select name="variant">
+                {%- for variant in product.variants -%}
+                    <option value="{{ variant.id }}" {% if variant.available %}disabled{% endif %} {% if product.selected_or_first_available_variant.id == variant.id %} selected {% endif %} >{{ variant.title }}</option>
+                {%- endfor -%}
+            </select>
+        </div>
+      </notify-modal-opener>
+    {% endform %}
+</div>

@@ -1,0 +1,64 @@
+{% include 'footer' %}
+
+{% schema %}
+{
+  "name": {
+    "en": "Footer"
+  },
+  "tag": "footer",
+  "class": "footer",
+  "settings": [
+    {
+		"type": "header",
+		"content": "Vitality"
+	},
+	{
+		"type": "link_list",
+		"id": "footermenu",
+		"label": "Menu"
+	},
+	{
+      "type": "text",
+		"id": "copy",
+		"label": "Copyrights"		
+	},
+	{
+		"type": "text",
+		"id": "nl_title",
+		"label": "Newsletter Title"		
+	},
+	{
+		"type": "textarea",
+		"id": "nl_text",
+		"label": "Newsletter Text"		
+	},
+	{
+		"type": "textarea",
+		"id": "nl_form",
+		"label": "Newsletter Form"		
+	}		
+  ],
+  "blocks": [
+	{
+		"type": "socials",
+		"name": "Socials",
+		"settings": [
+			{
+				"type": "text",
+				"id": "social_icon",
+				"label": "Social SVG Icon"		
+			},
+			{
+				"type": "url",
+				"id": "social_url",
+				"label": "Social url"		
+			},
+			{
+				"type": "text",
+				"id": "social_label",
+				"label": "Social label"		
+			}
+		]
+	}
+  ]
+} {% endschema %}

@@ -1,0 +1,187 @@
+{%- style -%}
+.notify-modal {
+    box-sizing: border-box;
+   opacity: 0;
+   position: fixed;
+   visibility: hidden;
+   z-index: -1;
+   margin: 0 auto;
+   top: 0;
+   left: 0;
+   overflow: auto;
+   width: 100%;
+   background: #0003;
+   height: 100%;
+   border-radius: 3px;
+}
+
+.notify-modal[open] {
+   opacity: 1;
+   visibility: visible;
+   z-index: 101;
+}
+.notify-modal__close{
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+    color: #ccc;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    position: absolute;
+    top: 7px;
+    right: 15px;
+}
+.notify-modal__content {
+   background-color: #fff;
+   overflow: auto;
+   margin: 0 auto;
+   left: 50%;
+   transform: translateX(-50%);
+   margin-top: 5rem;
+   width: 100%;
+   max-width: 460px;
+   position: absolute;
+   top: 0;
+}
+.notify-modal__body{
+    padding: 2rem;
+}
+
+.notify-title{
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.5;
+    font-family: "nimbus-sans-extended",sans-serif;
+}
+.notify-modal__body select{
+    margin-top: 1rem
+}
+.notify-modal__body select, .notify-modal__body input{
+    width: 100%;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    height: 46px;
+    padding: 10px 16px;
+    line-height: 1.3333333;
+    margin-bottom: 1rem;
+    color: #000;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+}
+.notify-modal__body button{
+    width: 100%;
+}
+.alert-success{
+    background-color: #d3efcd;
+    border-color: #d3efcd;
+    color: #1B9500;font-size: 12px;
+    margin-top: 8px;
+    padding: 8px;
+    text-align: center;
+}
+{%- endstyle -%}
+  <notify-modal data-popup-modal class="notify-modal">
+    <div role="dialog" aria-label="" aria-modal="true" class="notify-modal__content" tabindex="-1">
+      <button data-popup-close type="button" class="notify-modal__close">×</button>
+      <div class="notify-modal__body">
+          <form method="post" action="/">
+            <div data-popup-body></div>
+            <input name="a" value="NuTc7j" type="hidden"/>
+            <input name="platform" value="shopify" type="hidden"/>
+            <input type="email" required name="email" placeholder="Email"/>
+            <button type="submit" class="primary-button klaviyo-form-submit">{{ 'products.product.notify_me' | t }}</button>
+            <div class="alert-success hidden" data-success>{{ 'products.product.notify_me_success' | t }}</div>
+          </form>
+      </div>
+    </div>
+  </notify-modal>
+
+<script>
+    /***
+ * Modal popup
+ */
+class ModalDialog extends HTMLElement {
+  constructor() {
+    super();
+    this.querySelector('[data-popup-close]').addEventListener(
+      'click',
+      this.hide.bind(this)
+    );
+    this.addEventListener('keyup', (event) => {
+      if (event.code?.toUpperCase() === 'ESCAPE') this.hide();
+    });
+    this.addEventListener('click', (event) => {
+      if (event.target.nodeName === 'MODAL-DIALOG') this.hide();
+    });
+    this.querySelector('form').addEventListener('submit', function(event){
+        event.preventDefault()
+        const successBlock = this.querySelector('[data-success]')
+        const button = this.querySelector('button[type="submit"]')
+      
+        const formData = new FormData(this);
+        const url = 'https://a.klaviyo.com/onsite/components/back-in-stock/subscribe'
+        button.classList.add('hidden')
+        fetch(url, {
+            method: 'post',
+            body: formData,
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.success){
+                successBlock.classList.remove('hidden')
+            }else{
+                button.classList.remove('hidden')
+            }
+        })
+        .catch((error) => {
+            button.classList.remove('hidden')
+            return new Error("Error: ", error);
+        });
+    })
+  }
+
+  show(opener) {
+    this.openedBy = opener;
+    document.body.classList.add('overflow-hidden');
+    this.setAttribute('open', '');
+  }
+
+  hide() {
+    document.body.classList.remove('overflow-hidden');
+    this.removeAttribute('open');
+    this.querySelector('[data-success]').classList.add('hidden')
+  }
+}
+customElements.define('notify-modal', ModalDialog);
+
+/***
+ * Modal button(opener)
+ */
+class ModalOpener extends HTMLElement {
+  constructor() {
+    super();
+
+    const button = this.querySelector('button');
+
+    if (!button) return;
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(`[${this.getAttribute('data-modal')}]`);
+        const content = this.querySelector('[data-popup-content]').innerHTML
+        const form = this.closest('form[action="/cart/add"]');
+        if (modal && form && content) {
+            const selectedVariant = form.querySelector('[name="id"]').value
+            modal.querySelector('[data-popup-body]').innerHTML = content
+            modal.querySelector('[name="variant"]').value = selectedVariant
+            modal.show(button)
+        };
+    });
+  }
+}
+customElements.define('notify-modal-opener', ModalOpener);
+</script>

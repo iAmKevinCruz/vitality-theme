@@ -1,0 +1,248 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+<head>
+{% include 'kiwiSizing' %}
+
+<script 
+        id="script_tag_id"
+        data-last-check-status-key="_prevCheckIsOk"
+        data-last-check-timestamp-key="_prevCheckTimestamp"
+        data-refresh-interval-ms="120000"
+        data-script-src="https://d2fj3s7h83rb61.cloudfront.net/Z7jtrrZFNA/bin"
+        data-app-info="1-1--1.1.11"
+        data-app-platform="1"
+        data-app-type="1"
+        data-app-version="1.1.11">
+    (function () {
+        var currentScript = document.currentScript;
+        var currentScriptDataset = currentScript.dataset;
+        var lastCheckStatusKey = currentScriptDataset.lastCheckStatusKey;
+        var lastCheckTimestampKey = currentScriptDataset.lastCheckTimestampKey;
+        var refreshIntervalMs = parseInt(currentScriptDataset.refreshIntervalMs, 10);
+        var scriptSrc = currentScriptDataset.scriptSrc;
+
+        if (lastCheckStatusKey && lastCheckTimestampKey && refreshIntervalMs && scriptSrc && !isNaN(refreshIntervalMs)) {
+            if (localStorage.getItem(lastCheckStatusKey) === null) {
+                localStorage.setItem(lastCheckStatusKey, String(false));
+            }
+            
+            if (localStorage.getItem(lastCheckTimestampKey) === null){
+                localStorage.setItem(lastCheckTimestampKey, String(0));
+            }
+
+            var locationHref = document.location.href;
+            var now = Date.now();
+            var lastCheckStatus = String(localStorage.getItem(lastCheckStatusKey)).toLowerCase() === 'true';
+            var lastCheckTimestamp = parseInt(localStorage.getItem(lastCheckTimestampKey), 10);
+
+            if (!isNaN(lastCheckTimestamp)) {
+                var needRefreshByInterval = now - lastCheckTimestamp > refreshIntervalMs;
+
+                if (needRefreshByInterval || lastCheckStatus) {
+                    var LOAD = 'load';
+                    var ERROR = 'error';
+                    var script = document.createElement('script');
+
+                    function scriptEventHandler(evt) {
+                        var target = evt.target;
+                        var evtType = evt.type;
+
+                        var currentCheckStatus = false;
+                        var currentCheckTimestamp = Date.now();
+
+                        if (evtType === LOAD) {
+                            currentCheckStatus = true;
+                        }
+
+                        localStorage.setItem(lastCheckStatusKey, String(currentCheckStatus));
+                        localStorage.setItem(lastCheckTimestampKey, String(currentCheckTimestamp));
+
+                        target.removeEventListener(LOAD, scriptEventHandler);
+                        target.removeEventListener(ERROR, scriptEventHandler);
+                    }
+
+                    if (!locationHref.match(/(\/checkouts\/|\/thank_you)/gi)) {
+                        script.defer = true;
+                    }
+
+                    script.addEventListener(LOAD, scriptEventHandler);
+                    script.addEventListener(ERROR, scriptEventHandler);
+
+                    script.src = scriptSrc;
+
+                    document.head.insertBefore(script, currentScript);
+                }
+            }
+        } else {
+            console.error('wrapper is not right configured');
+        }
+    })();
+</script>
+  <link rel="preconnect" href="https://storage.googleapis.com">
+  <link rel="preconnect" href="https://cdn.shopify.com">
+  <link rel="preconnect" href="https://use.typekit.net">
+  <link rel="preconnect" href="https://connect.facebook.net">
+  <link rel="preconnect" href="https://s.pinimg.com">
+  <link rel="preconnect" href="https://www.facebook.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://staticw2.yotpo.com">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=0">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+
+  <meta name="facebook-domain-verification" content="fjusl65axml2zwm0hso7mmafoctmvt" />
+  <meta name="facebook-domain-verification" content="2lcnonetd36agvfu567epwqxgtoo4e" />
+  <meta name="p:domain_verify" content="1948219663c45cddf54d9637a765dea7"/>
+  <meta name=“google-site-verification” content=“GiQ41xSaEokRDK-ZxkjJwmpkCvLTgc0aQd9v1I3aopo” />
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- render 'DY-scripts' -%}
+  {%- render 'header-custom-scripts' -%}
+  {%- render 'title-meta-tags' -%}
+  {%- render 'social-meta-tags' -%}
+
+  {{content_for_header}}
+  <link rel="stylesheet" href="https://use.typekit.net/qdn6czb.css">
+  {%- style -%}{%- render 'critical-css' -%}{%- endstyle -%}
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer="defer" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  {%- render 'boost-pfs-style' -%}
+
+  {%- render 'stylesheet', name: 'common' -%}
+  <script src="{{ 'common.min.js' | asset_url }}" defer="defer"></script>
+
+  {%- if template.name != blank -%}
+    {%- assign scssname = template.name | append: '.min.css' -%}
+    <link rel="preload" href="{{ scssname | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ scssname | asset_url }}"></noscript>
+  {%- endif -%}
+  
+  {{- 'option_selection.js' | shopify_asset_url | script_tag -}}
+
+  {%- capture snippet_content -%}{% render 'loyaltylion' %}{%- endcapture -%}
+  {%- if snippet_content contains "Liquid error" -%}
+    <div style="font-size: 30px; font-weight: bold; padding: 50px 80px; color: red;">
+      You must add to your local theme the file "snippets/loyaltylion.liquid"
+      copying it from the Shopify account's active theme.
+    </div>
+  {%- else -%}
+    {{- snippet_content -}}
+  {%- endif -%}
+  
+  {%- render 'globale-css-include' -%}
+  {%- render 'impact-head-script' -%}
+{% include 'analyzify-gtm-body' %}
+
+  <!-- Global site tag (gtag.js) - Google Ads: 734753091 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-734753091"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'AW-734753091', {'allow_enhanced_conversions': true});
+  </script>
+<!--
+  <script>window.WishlistKingEmbed={config:{customerId:"{{ customer.id }}",customerEmail:"{{ customer.email }}",shopName:"{{ shop.name | replace: '&amp;', '&' }}",shopDomain:"{{ shop.domain }}",shopPermanentDomain:"{{ shop.permanent_domain }}",shopCurrency:"{{ shop.currency }}",shopMoneyFormat:"{{ shop.money_format }}",shopCustomerAccountsEnabled:"{{ shop.customer_accounts_enabled }}"}}</script>
+  <script type="module">
+    if (window.WishlistKingEmbed) {
+      Promise.all([
+        import("{{ 'wishlist-king-settings.js' | asset_url }}"),
+        import("{{ 'wishlist-king.js' | asset_url }}"),
+      ])
+        .then(([{default: settings}, { createApp }]) => {
+          window.WishlistKing = createApp({
+            config: window.WishlistKingEmbed.config,
+            locale: JSON.parse('{{ 'app_wishlist-king' | t | replace: '&quot;', '"' | replace: '=&gt;', ':' }}'),
+            settings,
+          });
+        })
+        .catch((error) => {
+          console.warn("Failed to init Wishlist King app.", error.message);
+        });
+    }
+  </script>
+-->
+</head>
+  
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ request.page_type | handle }} template-{{ template.suffix }}">
+  {%- render 'body-custom-scripts' -%}
+  {%- section 'header' -%}
+
+  <main class="main-content" role="main">
+    {{ content_for_layout }}
+  </main>
+  {%- section 'footer' -%}
+    
+  <!-- Cart JSON -->
+  <script type="application/json" id="cart-json">{{ cart | json }}</script>
+    
+  {%- if template.name != blank -%}
+    {%- assign jsname = template.name | append: '-js.min.js' -%}
+    <script src="{{ jsname | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+
+  {%- render 'impact-body-script' -%}
+  {%- render 'boost-pfs' -%}
+  {%- render 'globale-js-include' -%}
+
+  {%- if template == 'gift_card' -%}
+    <script type="text/javascript">
+        /*============================================================================
+          Auto-select gift card code on click, based on ID passed to the function
+            - Use a different method depending on IE or others
+        ==============================================================================*/
+        function selectText(element) {
+          var doc = document,
+              text = doc.getElementById(element);
+    
+          if (doc.body.createTextRange) { // ms
+            var range = doc.body.createTextRange();
+            range.moveToElementText(text);
+            range.select();
+          } else if (window.getSelection) { // moz, opera, webkit
+            var selection = window.getSelection(),
+                range = doc.createRange();
+            range.selectNodeContents(text);
+            selection.removeAllRanges();
+            selection.addRange(range);
+          }
+        }
+      </script>
+    {%- endif -%}
+  {%- render 'klaviyo-notify-me' -%}
+  {%- render 'footer-custom-scripts' -%}
+    <script src="//cdn.codeblackbelt.com/js/modules/frequently-bought-together/main.min.js?shop=balance-athletica.myshopify.com" defer></script>
+
+  <script> (function(){ var s = document.createElement('script'); var h = document.querySelector('head') || document.body; s.src = 'https://acsbapp.com/apps/app/dist/js/app.js'; s.async = true; s.onload = function(){ acsbJS.init({ statementLink : '', footerHtml : '', hideMobile : false, hideTrigger : false, disableBgProcess : false, language : 'en', position : 'left', leadColor : '#146ff8', triggerColor : '#146ff8', triggerRadius : '50%', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerIcon : 'people', triggerSize : 'medium', triggerOffsetX : 20, triggerOffsetY : 20, mobile : { triggerSize : 'small', triggerPositionX : 'left', triggerPositionY : 'bottom', triggerOffsetX : 10, triggerOffsetY : 0, triggerRadius : '50%' } }); }; h.appendChild(s); })(); </script>
+  <!-- Gorgias privacy update -->
+  <script>
+    const brandName = 'Vitality'
+    const privacyPolicyLink = 'https://shopvitality.com/policies/privacy-policy'
+
+    const introMessage = `By using this chat feature, you consent to the recording and use of information about you and this chat session by ${brandName} or any authorized service provider acting solely on ${brandName}’s behalf. ${brandName} may use or disclose this information in accordance with its <a href="${privacyPolicyLink}" target="_blank">Privacy Policy<a>. If you do not consent to these terms, please do not use this chat feature and reach out to us via email. Your continued interaction with, or submission of information to, this chat feature will be deemed to be your acceptance of ${brandName}’s <a href="${privacyPolicyLink}" target="_blank">Privacy Policy<a>.`
+
+    GorgiasChat.init().then((GorgiasChat) => {
+      GorgiasChat.updateTexts({
+        "requireEmailCaptureIntro": "Hey there! " + introMessage,
+        "contactFormIntro": "Hey there! " + introMessage,
+        "contactFormSSPUnsuccessfulAskAdditionalMessage": "Hey there! " + introMessage,
+        "waitTimeLongNoEmail": "Thank you for your patience. " + introMessage,
+        "waitTimeMediumNoEmail": "Thanks for reaching out! Leave us your email and an agent will get back to you in about {waitTime} minutes. " + introMessage,
+        "waitTimeShortNoEmail": "Thanks for reaching out! " + introMessage
+      })
+
+      GorgiasChat.updateSSPTexts({
+        "sorryToHearThatEmailRequired": introMessage
+      })
+    })
+  </script>
+</body> 
+</html>

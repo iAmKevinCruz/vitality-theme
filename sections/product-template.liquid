@@ -1,0 +1,600 @@
+{% include 'breadcrumbs' %}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign swatchesEnabled = true -%}
+{%- assign comingsoon = "comingsoon" -%}
+{%- assign notifyme = "notifyme" -%}
+
+<div class="product {% if product.tags contains comingsoon %}comingsoon{% endif %}">
+    <div class="container-max product-container">
+        <div class="product__gallery">
+            {%- render 'model-selector' product: product -%}
+            <div class="swiper-container product-thumbnails">
+                <div class="swiper-wrapper">
+                    {%- for media in product.media -%}
+                    <div class="swiper-slide product-thumbnails__item">
+                        {% if media.media_type == 'video' %}
+                        <img 
+                            loading="lazy"
+                            src="{{ media.preview_image | img_url: 'x200'}}"
+                            sizes="auto" 
+                            alt="{{media.alt}}"
+                            width="99"
+                            height="160"
+                        >
+                        <span class="video-play">{%- render 'icon-play' -%}</span>
+                        {% else %}
+                        <img 
+                            loading="lazy"
+                            src="{{ media.src | img_url: 'x200'}}"
+                            sizes="auto" 
+                            alt="{{media.alt}}"
+                            width="99"
+                            height="160"
+                            >
+                        {% endif %}
+                    </div>
+                {%- endfor -%}
+                </div>
+            </div>
+            <div class="swiper-container product-images">
+                <div class="swiper-wrapper">
+                    {%- for media in product.media -%}
+                    <div class="swiper-slide product-images__item">
+                        {% if media.media_type == 'video' %}
+                            <img 
+                                loading="lazy"
+                                src="{{ media.preview_image | img_url: 'x1024'}}"
+                                sizes="auto" 
+                                alt="{{media.alt}}"
+                                width="557"
+                                height="700"
+                            >
+                            <span class="video-play" data-videosrc="{{ media.sources[1].url }}" data-videotype="{{ media.sources[1].mime_type }}">{%- render 'icon-play' -%}</span>
+                        {% else %}
+                            <div class="swiper-zoom-container">
+                                <figure class="zoom lazyload" data-zoomimg="{{ media.src | img_url: 'x2024'}}">
+                                    <img 
+                                    loading="lazy"
+                                    src="{{ media.src | img_url: 'x1024'}}"
+                                    sizes="auto" 
+                                    alt="{{media.alt}}"
+                                    width="557"
+                                    height="898"
+                                    >
+                                </figure>
+                            </div>
+                        {% endif %}
+                    </div>
+                {%- endfor -%}
+                </div>
+                {% if product.media.size > 1%}
+                    <div class="swiper-button-next swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-button-prev swiper-button">{%- render 'icon-carousel-arrow' -%}</div>
+                    <div class="swiper-pagination"></div>
+                {% endif %}
+            </div>
+        </div>
+       
+        <div class="product__details">
+            <div class="product-details">
+               
+                {%- liquid 
+                    assign title = product.title | split: '-'
+                    for t in title
+                        unless forloop.first == true
+                            assign colorName = colorName | append: t
+                        endunless
+                    endfor
+                    -%}
+                <h1 class="product-details__title h3">{{ title[0] }}<span class="title-color h4" style="display: block;">{{ colorName }}</span></h1>
+                <div class="product-details__price {% if current_variant.compare_at_price > 0 %}is-sale{% endif %}">
+                    <h5 class="price" data-price>{{ current_variant.price | money_without_trailing_zeros  }}</h5>
+                    {% if current_variant.compare_at_price > 0 %}
+                    <h5 class="compare-at-price" data-compare_at_price>{{ current_variant.compare_at_price | money_without_trailing_zeros  }}</h5>
+                    {% endif %}
+                    {%- if product.tags contains 'label:final-sale'  -%}
+                    <span class="sale-label">{{ 'products.labels.finalsale' | t }}</span>
+                    {%- endif -%}
+                </div>
+               
+                {%- render 'yotpo-star-reviews-widget', product: product -%}
+        
+                {%- form "product", product, id:'productForm', class:'product__form product-form' -%}
+                
+                    <div class="product-details__shopPay">
+                        {{ form | payment_terms }}
+                    </div>
+                  <div style="margin-top: 20px;">
+                    <catch-callout
+                      price="{{ current_variant.price }}"
+                      border-style="none-no-padding"
+                      or-prefix
+                      page-type="product"
+                      style="font-family: inherit;
+                             font-weight: 300;
+                             font-size: 0.875rem;
+                             --dark-color: black;
+                             -webkit-font-smoothing: inherit;"
+                    />
+                  </div>
+                    {% unless product.tags contains comingsoon %}
+                    <div class="product-details__swatches">
+                        {%- render 'color-swatches' -%}
+                        {%- unless product.variants.size == 1 and product.variants[0].title == "Default Title" -%}
+                        {%- for product_option in product.options_with_values -%}
+                            <div class="product-details__swatchitem" data-product-option-wrapper>
+                                {%- assign optionIndex = 'option' | append: forloop.index -%}
+                                
+                                {% if forloop.index == 1 %}
+                                    <div class="sizeguide-wrapper">
+                                        <h6 class="title" data-product-option-title>{{ product_option.name }}</h6>
+                                        {% unless product.tags contains 'hidesizeguide' %}
+                                        <a href="/pages/size-guide" data-sizeguide>{{ 'products.product.size_guide' | t }}</a>
+                                        {% endunless %}
+                                    </div>
+                                {% else %}
+                                    <h6 class="title" data-product-option-title>{{ product_option.name }}</h6>
+                                {% endif %}
+                                <fieldset class="option-select option-select--swatches swatch-position{{product_option.position}}" name="{{optionIndex}}" >
+                                    {% for value in product_option.values %}
+                                        {% if value != "Default Title" %}
+                                        <div class="product-form__field {% if current_variant[optionIndex] == value %}active{% endif %}">
+                                            <input class="product-option-select"  data-swatchitem type="radio" name="{{optionIndex}}" value="{{value}}" id="{{optionIndex}}-{{value}}" {% if current_variant[optionIndex] == value %} checked="checked" {% endif %}>
+                                            <label for="option{{index}}-{{value}}">
+                                                {{value}}
+                                            </label>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </fieldset>
+                            </div>
+                        {%- endfor -%}
+                        {%- endunless -%}
+                    </div>
+                    
+                    <div class="hidden">
+                        <select id="variant-select" name="id">
+                            {% for variant in product.variants %}
+                                <option {% if variant == current_variant %} selected="selected" {% endif %} value="{{ variant.id }}" data-available="{{ variant.available }}">{{ variant.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% endunless %}
+                    <div class="product-details__quantityblock">
+                        <h6 class="title">QTY</h6>
+                        <div class="quantity-wrapper qp-js">
+                            <div class="quantity-picker">
+                                <button class="quantity-picker__btn minus" type="button">{% render 'icon-minus' %}</button>
+                                <input name="quantity" type="number" value="1" class="value"/>
+                                <button class="quantity-picker__btn plus" type="button">{% render 'icon-plus' %}</button>
+                            </div>
+                            {% unless product.tags contains comingsoon %}
+                                <div class="shopPay-button">
+                                    {% if section.settings.enable_payment_button %}
+                                        {{ form | payment_button }}
+                                    {% endif %}
+                                </div>
+                            {% endunless %}
+                        </div>
+                    </div>
+                    <div class="product-details__error" id="product-error-note"></div>
+
+                    {%- if product.tags contains 'label:final-sale'  -%}
+                        <input type="hidden" name="properties[Labels]" value="Final Sale">
+                    {%- endif -%}
+             
+                    <div class="product-details__atc">
+                        {% unless product.tags contains comingsoon %}
+                            <button type="submit" class="primary-button addtocart-button">
+                                <span class="available">{{ 'products.product.add_cart' | t }}</span>
+                                <span class="soldout">{{ 'products.product.sold_out' | t }}</span>
+                            </button>
+                        {% else %}
+                            <button class="primary-button comingsoon-button disabled">
+                                <span>{{ 'products.product.comingsoon' | t }}</span>
+                            </button>
+                        {% endunless %}
+                        <a class="klaviyo-bis-trigger primary-button notifyme-button" href="#">{{ 'products.product.notify_me' | t }}</a>
+                        <!-- include 'wishlist-button-product' with '{{ product.id }}' -->
+                    </div>
+
+                {%- endform -%}
+                <div class="product-details__description">
+                    <ul class="accordion">
+                        {% if product.metafields.accentuate.description1 != blank %}
+                        <li class="accordion__item">
+                            <button data-accordion="trigger" class="accordion__trigger" data-open="1">
+                                
+                                {% if product.tags contains 'accessories' or product.tags contains 'gift-card'  %}
+                                    {{ 'products.descriptions.details' | t }}
+                                {% else %}
+                                    {{ 'products.descriptions.fit_and_feel' | t }}
+                                {% endif %}
+                            </button>
+                            <div data-accordion="content-container">
+                                <div data-accordion="content" class="accordion__content">
+                                {{ product.metafields.accentuate.description1}}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if product.metafields.accentuate.description2 != blank %}
+                        <li class="accordion__item">
+                            <button data-accordion="trigger" class="accordion__trigger">
+                                {{ 'products.descriptions.product_care' | t }}
+                            </button>
+                            <div data-accordion="content-container">
+                                <div data-accordion="content" class="accordion__content">
+                                    {{ product.metafields.accentuate.description2}}
+                                </div>
+                            </div>
+                        </li>
+                        {% endif %}
+                        
+                        <li class="accordion__item">
+                            <button data-accordion="trigger" class="accordion__trigger">{{ 'products.descriptions.shipping' | t }}</button>
+                            <div data-accordion="content-container">
+                                <div data-accordion="content" class="accordion__content">
+                                    {% if section.settings.shipping_text %}
+                                        {{ section.settings.shipping_text }}
+                                    {% else %}
+                                        {{ pages[section.settings.shipping_page].content | strip_html }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+    
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+
+<div class="sizeguide-modal popup-modal">
+    <div>
+        {%- assign type = product.type | downcase -%}
+
+        <button data-sizeguide-close type="button" class="size-guide-close"></button>
+        {%- if type == "women's intimates" -%}
+            {%- render 'size-womens-intimates' -%}
+        {%- elsif type == "women's bodysuits" -%}
+            {%- render 'size-womens-bodysuits' -%}
+        {%- elsif type == "women's hoodies/jackets" -%}
+            {%- render 'size-womens-hoodies' -%}
+        {%- elsif type == "women's dresses" -%}
+            {%- render 'size-womens-dresses' -%}
+        {%- elsif type == "women's tops" -%}
+            {%- render 'size-womens-tops' -%}
+        {%- elsif type == "women's bra" -%}
+            {%- render 'size-womens-bra' -%}
+        {%- elsif type == "women's bottoms" -%}
+            {%- render 'size-womens-bottoms' -%}
+        {%- elsif type == "men's tops" -%}
+            {%- render 'size-mens-tops' -%}
+        {%- elsif type == "men's hoodies/jackets" -%}
+            {%- render 'size-mens-hoodies' -%}
+        {%- elsif type == "men's bottoms" -%}
+            {%- render 'size-mens-bottoms' -%}
+        {%- endif -%}
+    </div>
+</div>
+
+<div class="video-modal popup-modal">
+    <div>
+        <video width="320" height="240" controls id="videoElem">
+            <source src="" type="">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+{% render 'product-recommendations', carousel_coll_lm: section.settings.related_limit, carousel_title: section.settings.related_title  %}
+<div class="product-details__description-mobile">
+    <ul class="accordion">
+        {% if product.metafields.accentuate.description1 != blank %}
+        <li class="accordion__item">
+            <button data-accordion="trigger" class="accordion__trigger" data-open="1">
+                {% if template.suffix contains 'vitality' %}
+                    {{ 'products.descriptions.materials' | t }}
+                {% elsif product.tags contains 'accessories' or product.tags contains 'gift-card'  %}
+                    {{ 'products.descriptions.details' | t }}
+                {% else %}
+                    {{ 'products.descriptions.fit_and_feel' | t }}
+                {% endif %}
+            </button>
+            <div data-accordion="content-container">
+                <div data-accordion="content" class="accordion__content">
+                {{ product.metafields.accentuate.description1}}
+                </div>
+            </div>
+        </li>
+        {% endif %}
+        {% if product.metafields.accentuate.description2 != blank %}
+        <li class="accordion__item">
+            <button data-accordion="trigger" class="accordion__trigger">
+                {% if template.suffix contains 'vitality' %}
+                    {{ 'products.descriptions.details' | t }}
+                {% else %}
+                    {{ 'products.descriptions.product_care' | t }}
+                {% endif %}
+            </button>
+            <div data-accordion="content-container">
+                <div data-accordion="content" class="accordion__content">
+                    {{ product.metafields.accentuate.description2}}
+                </div>
+            </div>
+        </li>
+        {% endif %}
+        
+        <li class="accordion__item">
+            <button data-accordion="trigger" class="accordion__trigger">{{ 'products.descriptions.shipping' | t }}</button>
+            <div data-accordion="content-container">
+                <div data-accordion="content" class="accordion__content">
+                    {% if section.settings.shipping_text %}
+                        {{ section.settings.shipping_text }}
+                    {% else %}
+                        {{ pages[section.settings.shipping_page].content | strip_html }}
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        
+    </ul>
+
+</div>
+{% if section.blocks != blank %}
+{%- for block in section.blocks -%}
+    {%- include 'half-media-text',
+        video: block.settings.half_video, 
+        image: block.settings.half_image, 
+        image_position: block.settings.half_image_p,  
+        title: block.settings.half_title,
+        title_tag: block.settings.half_title_tag,
+        text: block.settings.half_text,
+        button_text: block.settings.half_b_text,
+        button_url: block.settings.half_b_url,
+        text_color: block.settings.half_text_color,
+        bg_color: block.settings.half_bg_color
+    -%}
+{%- endfor -%}
+{% endif %}
+
+{%- render 'yotpo-widget' -%}
+
+<div class="product-quickshop {% if product.tags contains comingsoon %}comingsoon{% endif %}">
+    <div class="container-max">
+        {%- form "product", product, id:'productQuickshop', class: 'quickShop' -%}
+        <div class="product-quickshop__title">
+            <h2 class="h4">{{ title }}</h2>
+        </div>
+        <div class="product-quickshop__price">
+            <span data-quickshop-price>{{ product.price | money_without_trailing_zeros}}</span>
+        </div>
+        <div class="product-quickshop__variants">
+            {%- render 'select2-variants', product: product, allowDisabled: true -%}
+            
+        </div>
+        <div class="product-quickshop__button">
+            {%- if product.tags contains 'label:final-sale'  -%}
+                <input type="hidden" name="properties[Labels]" value="Final Sale">
+            {%- endif -%}
+            
+            {% unless product.tags contains comingsoon %}
+                <button class="primary-button add-to-cart-button" type="submit">
+                    <span class="available">{{ 'products.product.add_cart' | t }}</span>
+                    <span class="soldout">{{ 'products.product.sold_out' | t }}</span>
+                </button>
+            {% else %}
+                <button class="primary-button disabled">
+                    <span>{{ 'products.product.comingsoon' | t }}</span>
+                </button>
+            {% endunless%}
+            <a class="klaviyo-bis-trigger primary-button notifyme-button" href="#">{{ 'products.product.notify_me_short' | t }}</a>
+        </div>
+        {% endform %}
+    </div>
+</div>
+
+{%- unless product == empty -%}
+    <script type="application/json" id="ProductJson-{{ section.id }}">
+        {{ product | json }}
+    </script>
+{%- endunless -%}
+
+
+<!-- Structured Data -->
+{% render 'product-structured-data' %}
+<!-- Product JSON -->
+<script type="application/json" id="product-json">{{ product | json }}</script>
+
+{% schema %}
+{
+    "name": "Product Page",
+    "settings": [
+        {
+            "type":"header",
+            "content":"Breadcrumbs",
+            "info": "Global collection links"
+        },
+        {
+            "type": "collection",
+            "id": "men_collection",
+            "label": "Men Collection"
+        },
+        {
+            "type": "collection",
+            "id": "women_collection",
+            "label": "Women Collection"
+        },
+        {
+            "type":"header",
+            "content":"Related Products Carousel"
+        },
+        {
+            "type": "text",
+            "id": "related_title",
+            "label": "Related Products Title"
+        },
+        {
+            "type": "range",
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "id": "related_limit",
+            "label": "Related Products Limit",
+            "default": 15
+        },
+        {
+            "type":"header",
+            "content":"Shipping Global"
+        },
+        {
+            "type": "page",
+            "id": "shipping_page",
+            "label": "Shipping page"
+        },
+        {
+            "type": "richtext",
+            "id": "shipping_text",
+            "label": "Shipping text"
+        },
+        {
+            "type":"header",
+            "content":"Dynamic checkout button"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_payment_button",
+            "label": "Show dynamic checkout button",
+            "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+            "default": false
+        }
+    ],
+    "blocks" : [
+        {
+            "type": "menu",
+            "name": "Half Media & Text",
+            "settings": [
+                {
+                    "type": "header",
+                    "content": "Media Settings"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "half_image",
+                    "label": "Image"			
+                },
+                {
+                    "type": "select",
+                    "id": "half_image_p",
+                    "options": [
+                        { "value": "2", "label": "Right"},
+                        { "value": "1", "label": "Left"}
+                    ],
+                    "label": "Image Position alignment",
+                    "default": "1"
+                },
+                {
+                    "type": "text",
+                    "id": "half_video",
+                    "label": "Video Url (mp4)"			
+                },
+                {
+                    "type": "text",
+                    "id": "half_title",
+                    "label": "Title"
+                },
+                {
+                    "type": "radio",
+                    "id": "half_title_tag",
+                    "options": [
+                        { "value": "h2", "label": "Style 1"},
+                        { "value": "h3", "label": "Style 2"}
+                    ],
+                    "label": "Title Style"
+                },
+                {
+                    "type": "richtext",
+                    "id": "half_text",
+                    "label": "Text"
+                },
+                {
+                    "type": "text",
+                    "id": "half_b_text",
+                    "label": "Button Text",
+                    "default": "Shop Now"			
+                },
+                {
+                    "type": "url",
+                    "id": "half_b_url",
+                    "label": "Button Url"	
+                },
+                {
+                    "type": "color",
+                    "id": "half_text_color",
+                    "label": "Text Color",
+                    "default" : "#000"
+                },
+                
+                {
+                    "type": "color",
+                    "id": "half_bg_color",
+                    "label": "Text Background Color",
+                    "default": "#fff"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
+
+<script>
+    function klaviyoInit() {
+        var klaviyo = window.klaviyo || [];
+        klaviyo.init({
+            account: "NuTc7j",
+            platform: "shopify"
+        });
+        klaviyo.enable("backinstock", {
+            trigger: {
+            product_page_text: "Notify Me When Available",
+            product_page_class: "btn",
+            product_page_text_align: "center",
+            product_page_margin: "0px 5px",
+            product_page_width: "100%",
+            replace_anchor: false,
+            // include_on_tags: "notifyme",
+            },
+            modal: {
+            headline: "{product_name}",
+            body_content:
+                "Register to receive a notification when this item comes back in stock.",
+            email_field_label: "Email",
+            button_label: "Notify me when available",
+            subscription_success_label:
+                "You're in! We'll let you know when it's back.",
+            footer_content: "",
+            drop_background_color: "#000",
+            background_color: "#fff",
+            text_color: "#222",
+            button_text_color: "#fff",
+            button_background_color: "#000",
+            close_button_color: "#ccc",
+            error_background_color: "#fcd6d7",
+            error_text_color: "#C72E2F",
+            success_background_color: "#d3efcd",
+            success_text_color: "#1B9500",
+            font_family: '"nimbus-sans",sans-serif;',
+            headers_font_family: '"nimbus-sans-extended",sans-serif',
+            additional_styles: "",
+            },
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        klaviyoInit()
+    });
+</script>

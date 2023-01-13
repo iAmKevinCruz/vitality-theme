@@ -1,0 +1,120 @@
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        let breakpoint = window.matchMedia('(min-width:768px)');
+
+        // countdown logic
+        function getTimeRemaining(endtime) {
+
+            const splittedDate = endtime.split(".")
+
+            let endtimeNew = new Date(splittedDate[2], splittedDate[0] - 1, splittedDate[1])
+            const total = endtimeNew - new Date()
+
+
+            const seconds = Math.floor((total / 1000) % 60);
+            const minutes = Math.floor((total / 1000 / 60) % 60);
+            const hours = Math.floor((total / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(total / (1000 * 60 * 60 * 24));
+
+            return {
+                total,
+                days,
+                hours,
+                minutes,
+                seconds
+            };
+        }
+
+        const countdownEl = document.getElementById('event-countdown');
+
+        const daysSpan = countdownEl.querySelector('.countdown-days');
+        const hoursSpan = countdownEl.querySelector('.countdown-hours');
+        const minutesSpan = countdownEl.querySelector('.countdown-minutes');
+        const secondsSpan = countdownEl.querySelector('.countdown-seconds');
+
+        function initializeClock(endtime) {
+            const timeinterval = setInterval(updateClock, 1000);
+
+            function updateClock() {
+                const t = getTimeRemaining(endtime);
+
+                daysSpan.innerHTML = ('0' + t.days).slice(-2);
+                hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+                minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    // in case if the content will be empty
+                    daysSpan.innerHTML = "00";
+                    hoursSpan.innerHTML = "00"
+                    minutesSpan.innerHTML = "00"
+                    secondsSpan.innerHTML = "00"
+
+                    clearInterval(timeinterval);
+                }
+            }
+            updateClock();
+        }
+
+
+
+
+        initializeClock('{{ deadline }}');
+
+        function reduceCountdownNaming(x) {
+            if (x) {
+                daysSpan.nextElementSibling.innerHTML = "D"
+                hoursSpan.nextElementSibling.innerHTML = "H"
+                minutesSpan.nextElementSibling.innerHTML = "M"
+                secondsSpan.nextElementSibling.innerHTML = "S"
+            } else {
+                daysSpan.nextElementSibling.innerHTML = "Days"
+                hoursSpan.nextElementSibling.innerHTML = "Hours"
+                minutesSpan.nextElementSibling.innerHTML = "Minutes"
+                secondsSpan.nextElementSibling.innerHTML = "Seconds"
+            }
+        }
+
+        let breakpointChecker = function () {
+
+            if (breakpoint.matches === true) {
+                reduceCountdownNaming(false);
+                return;
+
+            } else if (breakpoint.matches === false) {
+                //
+                reduceCountdownNaming(true)
+            }
+        };
+
+        // keep an eye on viewport size changes
+        breakpoint.addEventListener("change", breakpointChecker);
+
+        // kickstart
+        breakpointChecker();
+    })
+
+
+</script>
+
+<div class="countdown" id="event-countdown">
+    <div class="countdown-part">
+        <span class="h2 countdown-days"></span>
+        <span class="countdown-part__name h5">Days</span>
+    </div>
+    <div class="h2">:</div>
+    <div class="countdown-part">
+        <span class="h2 countdown-hours"></span>
+        <span class="countdown-part__name h5">Hours</span>
+    </div>
+    <div class="h2">:</div>
+    <div class="countdown-part">
+        <span class="h2 countdown-minutes"></span>
+        <span class="countdown-part__name h5">Minutes</span>
+    </div>
+    <div class="h2">:</div>
+    <div class="countdown-part">
+        <span class="h2 countdown-seconds"></span>
+        <span class="countdown-part__name h5">Seconds</span>
+    </div>
+</div>

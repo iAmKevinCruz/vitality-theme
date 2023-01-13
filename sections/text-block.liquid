@@ -1,0 +1,24 @@
+{% render 'text-block', text: section.settings.textblock_text  %}
+{% schema %}
+{
+    "name": "Text Block",
+      "settings": 
+          [
+            {
+                "type": "header",
+                "content": "Text"
+            },
+            {
+                "type": "richtext",
+                "id": "textblock_text",
+                "label": "Text"
+            }
+          ],
+          "presets": [
+              {
+                  "name": "Text Block",
+                  "category": "Home Page"
+              }
+          ]
+  } 
+{% endschema %}

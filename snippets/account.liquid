@@ -1,0 +1,74 @@
+<div class="account-app-layout">
+  <div class="account-app-layout__header">
+    <div class="container text-center">
+      <p>
+        <span class="h3" style="display: block">{{ 'customer.account.welcome' | t }}, {{ customer.first_name }}</span>
+        {%- assign tier = false -%}
+        {%- for tag in customer.tags -%}
+          {%- if tag contains 'tier:' -%}
+            {%- assign tier = tag | replace : 'tier: ', '' -%}
+            {% if tier == "Friend" %}
+              {% assign tier_icon = "https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Tier1.svg?v=1667277932" %}
+            {% elsif tier == "Fam" %}
+              {% assign tier_icon = "https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Tier2.svg?v=1667277943" %}
+            {% else %}
+              {% assign tier_icon = "https://cdn.shopify.com/s/files/1/0005/7750/3289/files/Tier3.svg?v=1667277956" %}
+            {% endif %}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if tier -%}
+          <div class="account-tier">
+              {{ 'customer.account.your_tier' | t }}: <img src="{{ tier_icon }}" alt="tier"> <span>{{ tier }}</span>
+          </div>
+        {%- endif -%}
+        <span class="account-app-balance">
+            {{ 'customer.account.you_have_n_balance_points_html' | t: amount: '<span data-lion-points="approved"></span>' }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="account-app-layout__content">
+      <div class="account-app-layout__sidebar">
+        <div class="account-app-nav">
+          <div class="account-app-nav__selected" data-account-navigation-state>Navigation</div>
+          <ul data-account-navigation>
+            <li><a class="h6" data-account-link-state href="#overview">{{ 'customer.account.overview' | t }}</a></li>
+            <li><a class="h6" data-account-link-state href="#orders">{{ 'customer.orders.title' | t }}</a></li>
+            <li><a class="h6" data-account-link-state href="#addresses">{{ 'customer.addresses.title' | t }}</a></li>
+            <li><a class="h6" data-account-link-state href="#rewards">{{ 'customer.account.rewards' | t }}</a></li>
+            <li><a class="h6" data-account-link-state href="#wishlist">{{ 'customer.account.wishlist' | t }}</a></li>
+            <li><a class="h6" href="{{ routes.account_logout_url }}">{{ 'customer.account.logout' | t }}</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="account-app-layout__dashboard">
+
+        <div class="account-app-layout__page" data-account-route="overview" {% if template == 'customers/account' and current_page == 1 %} data-account-default-route {% endif %} style="display: none;">
+          {% include 'account-overview' %}
+        </div>
+
+        {% include 'account-order-history' %}
+
+        {% include 'account-addresses' %}
+
+        <div class="account-app-layout__page" data-account-route="addresses/new" style="display: none;">
+          {% include 'account-addresses-new' %}
+        </div>
+
+        <div class="account-app-layout__page" data-account-route="rewards" style="display: none;">
+          {% include 'account-rewards' %}
+        </div>
+
+        <div class="account-app-layout__page" data-account-route="wishlist" style="display: none;">
+          {% include 'account-wishlist' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %}
+{% include 'loyaltylion' %}
+{% endcomment %}

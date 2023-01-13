@@ -1,0 +1,123 @@
+{
+  "wrapper": "div",
+  "sections": {
+    "main": {
+      "type": "collection-alternate-dynamic",
+      "blocks": {
+        "d20ddbba-cef7-42d8-8557-8327b5a42d67": {
+          "type": "banner",
+          "settings": {
+            "banner_position": 6,
+            "banner": "shopify:\/\/shop_images\/Anissia-1.jpg",
+            "banner_overlay": 0,
+            "banner_subtitle": "",
+            "banner_title": "",
+            "banner_text": "",
+            "banner_cta": "",
+            "banner_cta_url": "",
+            "banner_text_color": "#ffffff"
+          }
+        },
+        "387119cb-3fa1-4c2c-98c6-e6deff4908ca": {
+          "type": "banner",
+          "settings": {
+            "banner_position": 11,
+            "banner": "shopify:\/\/shop_images\/Anissia-2.jpg",
+            "banner_overlay": 0,
+            "banner_subtitle": "",
+            "banner_title": "",
+            "banner_text": "",
+            "banner_cta": "",
+            "banner_cta_url": "",
+            "banner_text_color": ""
+          }
+        },
+        "1d832b3d-7615-44d7-bbf2-cd750e393652": {
+          "type": "banner",
+          "settings": {
+            "banner_position": 20,
+            "banner": "shopify:\/\/shop_images\/Anissia-3.jpg",
+            "banner_overlay": 0,
+            "banner_subtitle": "",
+            "banner_title": "",
+            "banner_text": "",
+            "banner_cta": "",
+            "banner_cta_url": "",
+            "banner_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "d20ddbba-cef7-42d8-8557-8327b5a42d67",
+        "387119cb-3fa1-4c2c-98c6-e6deff4908ca",
+        "1d832b3d-7615-44d7-bbf2-cd750e393652"
+      ],
+      "settings": {
+        "switch_layout_filter": "switch_layout_filter_vertical",
+        "enable_filter_sticky": true,
+        "toolbar_filter_sticky_mobile": true,
+        "filter_layout": "filter_layout_collapse",
+        "layout_type": "fullwidth",
+        "collection_header_image": "shopify:\/\/shop_images\/Header-Anissia-Page_a93ca9e5-cfd1-4046-b8dc-8898e2a56507.jpg",
+        "show_collection_des": true,
+        "collection_header_bg_color": "#ffffff",
+        "collection_header_text_color": "#ffffff",
+        "collection_header_text_striked": true,
+        "show_toolbar_view_as": false,
+        "show_toolbar_product_count": false,
+        "show_toolbar_sort_by": true,
+        "show_toolbar_view_as_mobile": false,
+        "show_toolbar_product_count_mobile": false,
+        "show_toolbar_sort_by_mobile": true,
+        "view_as_type": "view_as_type_grid_list",
+        "products_per_page": 24,
+        "products_per_row": 4,
+        "products_per_row_mobile": 2,
+        "product_item_type": "grid",
+        "product_item_layout": "no-border",
+        "text_alignment": "left",
+        "show_details_when_hovering": false,
+        "show_vendor": false,
+        "show_price": true,
+        "active_image_swap": true,
+        "show_product_review": false,
+        "show_sold_out_label": false,
+        "show_sale_label": false,
+        "show_sale_percent": false,
+        "product_label_has_border_radius": false,
+        "show_label_by_tag": false,
+        "product_item_label_position": "top_left",
+        "product_label_type": "rectangle",
+        "product_item_label_bg_color": "",
+        "product_item_label_text_color": "",
+        "show_product_label_image": false,
+        "product_item_title_color": "#3d4246",
+        "product_item_title_font": "poppins_n6",
+        "product_item_title_font_size": 14,
+        "product_item_vendor_color": "#969595",
+        "product_item_vendor_font": "poppins_n4",
+        "product_item_vendor_font_size": 12,
+        "product_item_price_color": "#222222",
+        "product_item_old_price_color": "#969595",
+        "product_item_sale_price_color": "#f30000",
+        "product_item_price_font": "poppins_n4",
+        "product_item_price_font_size": 14,
+        "product_item_des_color": "#202020",
+        "product_item_des_font": "poppins_n4",
+        "product_item_des_font_size": 14,
+        "display_item_swatch": true,
+        "show_item_swatch_tooltip": true,
+        "swatch_color_display_type": "swatch_color_display_type_image_product",
+        "swatch_color_event_change_image": "hover",
+        "swatches_color_shape": "circle",
+        "display_item_swatch_size": false,
+        "equal_height": "auto",
+        "ratio_width_height_other": "",
+        "equal_height_crop_image_position": "center"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

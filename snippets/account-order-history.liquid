@@ -1,0 +1,61 @@
+{% assign all_orders_html = '' %}
+{% assign orders_limit = 10 %}
+{% assign is_orders_pagination = false %}
+{% if template == 'customers/account' %}
+	{% assign is_orders_pagination = true %}
+{% endif %}
+
+
+<div class="account-app-layout__page" data-account-route="orders" {% if is_orders_pagination and current_page > 1 %} data-account-default-route="" {% endif %} style="display: none;"> 
+	<div class="account-app-layout__widget">
+		<div class="account-app-widget-header account-app-widget-header--order-history h5">{{ 'customer.orders.title' | t }}</div>
+
+		{% if customer.orders.size == 0 %}
+			<p>{{ 'customer.orders.none' | t }}</p>
+		{% else %}
+			{% if is_orders_pagination %}
+				{% paginate customer.orders by orders_limit %}
+					<div class="account-app-orders-table">
+						{% include 'account-order-history-table' %}
+						{% if paginate.pages > 1 %}
+				         	{% include 'pagination' %}
+				        {% endif %}
+					</div>
+		        {% endpaginate %}
+	        {% else %}
+	        	<div class="account-app-orders-table">
+					{% include 'account-order-history-table' %}
+			        {% if customer.orders.size > orders_limit  %}
+				        {% render 'pagination-fake', base_route: routes.account_url %}
+			        {% endif %}
+				</div>
+	        {% endif %}
+		{% endif %}
+	</div>
+</div>
+
+
+{{ all_orders_html }}
+
+{% comment %}
+To catch if user tries to open a product that is not loaded in the loop above
+{% endcomment %}
+<div class="account-app-layout__page" data-account-route="orders/*" style="display: none;">
+	<div class="account-app-layout__widget">
+		<div class="h5">{{ 'customer.orders.title' | t }}</div>
+	</div>
+	<div>Loading order data</div>
+</div>
+
+{% comment %}
+If this is a page of a specific order
+then add a page for the order and make it default
+{% endcomment %}
+{% if template == 'customers/order' %}
+	<div class="account-app-layout__page" data-account-route="orders/{{ customer_url_id }}" data-account-default-route=""  style="display: none;">
+		<div class="account-app-layout__widget account-app-layout__widget--order">
+			<div class="h5">{{ 'customer.order.title' | t: name: order.name }}</div>
+			{% render 'account-order', order: order %}
+		</div>
+	</div>
+{% endif %}

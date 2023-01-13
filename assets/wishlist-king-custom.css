@@ -1,0 +1,38 @@
+wishlist-link wk-button {
+  --spacing-left: .75rem;
+  --spacing-right: .1875rem;
+  --icon-size: 16px;
+  --icon-stroke-width: 1px;
+  --offset-y: -2px;
+}
+
+wishlist-link wk-badge.wk-floating {
+  --offset-x: 0px;
+  --offset-y: -2px;
+}
+
+.mob-main wishlist-link wk-button {
+  --spacing-left: 0;
+  --spacing-right: 0;
+  --offset-y: 0;
+  --icon-size: 16px;
+  --selected-icon-fill: transparent;
+}
+
+.mob-main wishlist-link wk-badge {
+  --pill-height: 18px;
+  --pill-font-weight: 300;
+  --pill-background-color: black;
+}
+
+.header__quickaccess wk-button .wk-button {
+  display: flex;
+}
+
+wishlist-product-card {
+  --image-aspect-ratio: 0.666;
+}
+
+wishlist-page .wk-header .wk-controls {
+  margin-top: 1em;
+}

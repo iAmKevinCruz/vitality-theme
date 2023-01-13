@@ -1,0 +1,72 @@
+<div class="container-max">
+  <div class="grid-container">
+    {% for block in section.blocks %}
+    <div class="grid-item double-image__block {{block.id}}">
+      {% include 'responsive-image' with image: block.settings.double_image, image_class: "",
+          wrapper_class: "", max_width: 920, max_height: 760 %}
+      <div class="double-image__text" style="color: {{ block.settings.double_text_color }};">
+        <h2 class="double-image__title">{{ block.settings.double_title }}</h2>
+        {% if block.settings.double_subtitle != blank %}
+          <div class="double-image__subtitle">{{ block.settings.double_subtitle }}</div>
+        {% endif %}
+        {% if block.settings.double_b_text != blank %}<a href="{{ block.settings.double_b_url }}" style="--sec-color: {% if  section.settings.double_text_color != blank %}{{ section.settings.double_text_color }}{% else %}#fff{% endif %}" class="double-image__link secondary-button">{{ block.settings.double_b_text }}</a>{% endif %}
+      </div>
+      <a href="{{ block.settings.double_b_url }}" class="double-image__generalurl"></a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Double Image with Text",
+      "class" : "double-image",
+      "tag" : "section",
+      
+      "blocks": [
+        {
+            "type": "image_block",
+            "name": "Image Block",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "double_image",
+                    "label": "Image"			
+                },
+                {
+                  "type": "text",
+                  "id": "double_title",
+                  "label": "Title"			
+                },
+                {
+                  "type": "richtext",
+                  "id": "double_subtitle",
+                  "label": "Subtitle"      
+                },
+                {
+                  "type": "text",
+                  "id": "double_b_text",
+                  "label": "Button Text"			
+                },
+                {
+                  "type": "url",
+                  "id": "double_b_url",
+                  "label": "Button Url"			
+                },
+                {
+                  "type": "color",
+                  "id": "double_text_color",
+                  "label": "Text Color",
+                  "default": "#fff"		
+                }
+            ]
+        }
+      ],
+      "presets": [
+          {
+              "name": "Double Image with Text",
+              "category": "Home Page"
+          }
+      ]
+  } 
+{% endschema %}

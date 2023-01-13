@@ -1,0 +1,30 @@
+{% assign image_ratio = 1.33 %}
+{% if modifier == 'hero' %}
+  {% assign image_ratio = 2.323 %}
+{% endif %}
+
+{% assign title_typography_class = 'h4' %}
+{% if modifier == 'hero' %}
+  {% assign title_typography_class = 'h2' %}
+{% endif %}
+
+<article class="article-card {% if modifier != blank %} article-card--{{modifier}} {% endif %}">
+  {% unless article.image == blank %}
+    <a class="article-card__image-container" href="{{ article.url }}">
+      {% render 'responsive-image-ratio' with image: article.image, ratio: image_ratio %}
+    </a>
+  {% endunless %}
+  <div class="container article-card__content {% if modifier != blank %} article-card__content--{{modifier}} {% endif %}">
+    <time class="h5 article-card__date {% if modifier != blank %} article-card__date--{{modifier}} {% endif %}" datetime="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.published_at | date: '%B %d. %Y' }}</time>
+    <h3 class="{{ title_typography_class }} article-card__title {% if modifier != blank %} article-card__title--{{modifier}} {% endif %}"><a href="{{ article.url }}">{{ article.title }}</a></h3>
+    <div class="article-card__description {% if modifier != blank %} article-card__description--{{modifier}} {% endif %}">
+      {% if article.excerpt.size > 0 %}
+        {{ article.excerpt | strip_html }}
+      {% else %}
+        {{ article.content | strip_html | truncate: 150 }}
+      {% endif %}
+    </div>
+    <a href="{{ article.url }}" class="secondary-button article-card__link {% if modifier != blank %} article-card__link--{{modifier}} {% endif %}" style="--sec-color: #000000">{{ 'blogs.article.read_more' | t }}</a>
+  </div>
+
+</article>

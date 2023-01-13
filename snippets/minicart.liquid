@@ -1,0 +1,68 @@
+<div class="minicart-wrapper {% if cart.item_count == 0 %}empty{% endif %}" data-minicart data-limitmsg="{{ 'cart.limit' | t }}">
+    <div class="overlay" data-minicart-close></div>
+    <div
+        aria-modal="true"
+        class="mini-cart"
+        data-minicart
+        role="dialog">
+        <div class="mini-cart__header">
+            <h3 class="title">{{ 'cart.title' | t }}</h3>
+            <p class="cart-info">{{ 'cart.cartinfo' | t }}</p>
+            <button class="close-button" data-minicart-close type="button"></button>
+        </div>
+        <form action="/cart" method="post" class="mini-cart__mainform">
+            <div class="mini-cart__body">
+                <div class="cart-items" data-minicart-items></div>
+                <!-- <div class="mini-cart__addons"></div> -->
+            </div>
+
+            <div class="mini-cart__footer">
+                <div class="mini-cart__f-titlesection">
+                    <h5 class="title">{{ 'cart.subtotal' | t }}</h5>
+                    <span class="h5 subtotal" data-minicart-subtotal>
+                        {{ cart.total_price | money }}
+                    </span>
+                </div>
+                <div class="mini-cart__f-info">
+                    <p>{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+                </div>
+                <div>
+                  <catch-callout
+                    price="{{ cart.total_price }}"
+                    border-style="none-no-padding"
+                    page-type="mini-cart"
+                    style="font-family: inherit;
+                           font-weight: 300;
+                           font-size: 1rem;
+                           --dark-color: black;
+                           -webkit-font-smoothing: inherit;
+                           margin-bottom: 8px;"
+                  />
+                </div>
+                <div class="mini-cart__f-buttons">
+                    <a class="primary-button-outlined" href="{{ routes.cart_url }}">
+                        {{ 'cart.gotocart' | t }}
+                    </a>
+                    {% if settings.cart_precheckout_note != blank %}
+                        <button class="primary-button" type="button" data-popup-trigger="precheckout-minicart">
+                            {{ 'cart.checkout' | t }}
+                        </button>
+                        {% render 'precheckout-popup', modifier: 'minicart' %}
+                    {% else %}
+                        <button class="primary-button" href="/checkout" name="checkout" type="submit">
+                            {{ 'cart.checkout' | t }}
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+        <div class="empty-cartnote">
+            <div>
+                <h4>{{ 'cart.emptynote' | t }}</h4>
+                <a class="primary-button" href=" {{ routes.all_products_collection_url }}"> {{ 'cart.shopnow' | t }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% render 'minicart-item' %}

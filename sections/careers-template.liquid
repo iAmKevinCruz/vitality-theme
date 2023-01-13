@@ -1,0 +1,41 @@
+<div class="careers-page">
+    <div class="container-max">
+        <div class="grid-container">
+            <div class="grid-item careers-page__image">
+                {% include 'responsive-image' with image: section.settings.cover_image, image_class: "",
+          wrapper_class: "", max_width: 720, max_height: 908 %}
+                <div class="content">
+                    <h1 class="title">{{ page.title }}</h1>
+                    <div class="description">{{ page.content }}</div>
+                </div>
+            </div>
+            <div class="grid-item careers-page__body">
+                <div class="careers">
+                    {% for title in page.metafields.accentuate.title %} 
+                    <div class="careers__item">
+                        <div class="date">{{ page.metafields.accentuate.date[forloop.index0]}}</div>
+                        <h2 class="title h4">{{ title }}</h2>
+                        <div class="text">{{ page.metafields.accentuate.description[forloop.index0]}}</div>
+                        <a href="{{ page.metafields.accentuate.buttonc_url[forloop.index0]}}" class="secondary-button" style="--sec-color: #000">{{ 'general.careers.apply' | t }}</a>
+                    </div>
+                    {% else %}
+                    <p style="text-align: center; padding: 30px;">{{ 'general.careers.novacancy' | t }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Careers Page",
+      "settings": [
+            {
+                "type": "image_picker",
+                "id": "cover_image",
+                "label": "Image"			
+            }
+        ]
+  } 
+{% endschema %}

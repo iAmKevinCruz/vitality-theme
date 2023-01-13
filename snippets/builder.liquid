@@ -1,0 +1,87 @@
+{% assign sections = shop.metafields.acf_settings.page_layouts | where: "id", page.id | first | map: "sections" | where: "visible" %}
+{% for section in sections %}
+  {% case section.name %}
+
+    {% when "hero_banner" %}
+
+    {%- include 'hero-banner-acf' with 
+        sectionId: page.metafields.accentuate.hero_img[section.index][0].id,
+        hero_img_mob: page.metafields.accentuate.hero_mobile_img[section.index][0], 
+        hero_img: page.metafields.accentuate.hero_img[section.index][0],
+        hero_video: page.metafields.accentuate.hero_video_[section.index][0],
+        hero_desktop_bg_height: page.metafields.accentuate.hero_desktop_bg_height[section.index],
+        hero_pre_title: page.metafields.accentuate.pre_title[section.index],
+        hero_title: page.metafields.accentuate.main_title[section.index],
+        hero_title_tag: page.metafields.accentuate.main_title_tag[section.index],
+        hero_text: page.metafields.accentuate.text[section.index],
+        hero_text_color: page.metafields.accentuate.text_color[section.index],
+        hero_b_text: page.metafields.accentuate.button_text[section.index],
+        hero_b_url: page.metafields.accentuate.button_url[section.index],
+        hero_cover_color: page.metafields.accentuate.cover_color[section.index],
+        hero_cover_opacity: page.metafields.accentuate.cover_opacity[section.index],
+        vertical_alignment: page.metafields.accentuate.vertical_alignment[section.index],
+        horizontal_alignment: page.metafields.accentuate.horizontal_alignment[section.index],
+        text_align: page.metafields.accentuate.text_alignment[section.index]
+    -%}
+
+    {% when "half_media_text" %}
+
+    {%- include 'half-media-text-acf', 
+        video: page.metafields.accentuate.half_video[section.index][0], 
+        image: page.metafields.accentuate.half_image[section.index][0], 
+        image_position: page.metafields.accentuate.half_image_p[section.index],  
+        image_size: page.metafields.accentuate.half_image_size[section.index],
+        image_not_stretch: page.metafields.accentuate.half_image_not_stretch[section.index],
+        title: page.metafields.accentuate.half_title[section.index],
+        title_tag: page.metafields.accentuate.half_title_tag[section.index],
+        text: page.metafields.accentuate.half_text[section.index],
+        button_text: page.metafields.accentuate.half_b_text[section.index],
+        button_url: page.metafields.accentuate.half_b_url[section.index],
+        text_color: page.metafields.accentuate.half_text_color[section.index],
+        bg_color: page.metafields.accentuate.half_bg_color[section.index],
+        half_text_width: page.metafields.accentuate.half_text_width[section.index]
+    -%}
+
+    {% when "products_carousel" %}
+
+    <section class="products-carousel">
+        {%- include 'products-carousel', 
+            carousel_coll: page.metafields.accentuate.carousel_collection[section.index], 
+            carousel_coll_lm: page.metafields.accentuate.carousel_collection_limit[section.index], 
+            carousel_title: page.metafields.accentuate.carousel_title[section.index],
+            carousel_b_text: page.metafields.accentuate.carousel_text[section.index]
+            -%}
+    </section>
+
+    {% when "text_blockb" %}
+
+    {% include 'text-block' with text: page.metafields.accentuate.text_block[section.index] %}
+
+    {% when "founders" %}
+
+    {% include 'founders' with 
+        title: page.metafields.accentuate.f_title[section.index],
+        text: page.metafields.accentuate.f_text[section.index],
+        bg_color: page.metafields.accentuate.f_background_color[section.index],
+        founder1_name: page.metafields.accentuate.founder_1_name[section.index],
+        founder1_title: page.metafields.accentuate.founder_1_title[section.index],
+        founder1_photo: page.metafields.accentuate.founder_1_photo[section.index][0],
+        founder2_name: page.metafields.accentuate.founder_2_name[section.index],
+        founder2_title: page.metafields.accentuate.founder_2_title[section.index],
+        founder2_photo: page.metafields.accentuate.founder_2_photo[section.index][0],
+        founder3_name: page.metafields.accentuate.founder_3_name[section.index],
+        founder3_title: page.metafields.accentuate.founder_3_title[section.index], 
+        founder3_photo: page.metafields.accentuate.founder_3_photo[section.index][0] 
+    %}
+
+    {% when "try_on_haul" %}
+    {% include 'tryonhaul-acf' with 
+        poster: page.metafields.accentuate.try_on_haul_poster[section.index][0],
+        video: page.metafields.accentuate.try_on_haul_video[section.index][0],
+        pretitle: page.metafields.accentuate.try_on_haul_pre_title[section.index],
+        title: page.metafields.accentuate.try_on_haul_title[section.index],
+        title_tag: page.metafields.accentuate.try_on_haul_title_tag[section.index] 
+    %}
+
+    {% endcase %}
+{% endfor %}

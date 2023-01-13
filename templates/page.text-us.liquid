@@ -1,0 +1,10 @@
+{% include 'smsbump_subscription_form_embed_34556' %}
+
+<!-- Track SMS signups for Facebook -->
+<script type="text/javascript">                                                               
+document.addEventListener('click', function (event) {
+  if (!event.target.matches('.smsb-subscribe-button, .smsb-subscribe-button *')) return;
+ fbq('track', 'Lead', {content_name: 'SMS signup - Text us page'});
+ ttq.track('SubmitForm', {content_name: 'SMS signup - Text us page'}); 
+}, false);  
+</script>

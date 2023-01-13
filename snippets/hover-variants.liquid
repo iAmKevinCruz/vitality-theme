@@ -1,0 +1,20 @@
+
+{%- unless product.tags contains "comingsoon" -%}
+<div class="hover-select" data-value="{{ product.selected_or_first_available_variant.id  }}">
+    <select name="id" class="select-tag" style="display: none;">
+        {%- for variant in product.variants -%}
+            <option data-price="{{ variant.price }}" value="{{ variant.id }}" class="select-tag-item" {% unless variant.available %}disabled{% endunless%} {% if product.selected_or_first_available_variant.id == variant.id %} selected {% endif %} >{{ variant.title }}</option>
+        {%- endfor -%}
+    </select>
+    {% if product.variants.size > 1 %}
+    <strong class="title {{ customButtonClass}}">{{ 'products.product.quickadd' | t }} +</strong>
+    <ul class="hover-select__list {{customSelectClass}}">
+        {%- for variant in product.variants -%}
+            <li class="hover-select__item add-to-cart-variant {% unless variant.available %}variant-disabled-notifyme{% endunless%}" data-pid="{{product.id}}" data-ptitle="{{product.title | remove: "'" | remove: '"'}}" data-ptype="{{ product.type }}" data-pprice="{{ product.variants.first.price | times: 0.01 }}" data-pbrand="{{product.vendor | remove: "'" | remove: '"'}}" data-pcollection="{{ product.collections.last.title | remove: "'" | remove: '"' }}" data-value="{{ variant.id }}">{{ variant.title }}</li>
+        {%- endfor -%}
+    </ul>
+    {% else %}
+        <span class="default-button add-to-cart-variant" data-pid="{{product.id}}" data-ptitle="{{product.title | remove: "'" | remove: '"'}}" data-ptype="{{ product.type }}" data-pprice="{{ product.variants.first.price | times: 0.01 }}" data-pbrand="{{product.vendor | remove: "'" | remove: '"'}}" data-pcollection="{{ product.collections.last.title | remove: "'" | remove: '"' }}" data-value="{{ product.selected_or_first_available_variant.id }}">{{ 'products.product.quickadd' | t }} +</span>
+    {% endif %}
+</div>
+{%- endunless -%}

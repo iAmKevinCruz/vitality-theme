@@ -1,0 +1,8 @@
+  <div class="product-card{% unless product.available %} product-card__sold-out{% endunless %}">
+    <h2 class="h4"> <a class="product-card__url" href="{{ product.url | within: collection }}">{{ product.title }}</a></h2>
+    {%- assign preview_image = product.featured_media.preview_image -%}
+    <div class="product-card__image">
+      {% include 'responsive-image' with image: preview_image, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 300, max_height: 200 %}
+    </div>
+    {% include 'product-price', variant: product.first_available_variant %}
+  </div>

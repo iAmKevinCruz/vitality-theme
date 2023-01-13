@@ -1,0 +1,57 @@
+<div class="article">
+	<div class="article__breadcrumbs">{% include 'breadcrumbs' %}</div>
+	<article>
+		<div class="container">
+			<time class="h5 article__date" datetime="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.published_at | date: '%B %d. %Y' }}</time>
+			<h1 class="h2 article__title">{{ article.title }}</h1>
+		</div>
+		<div class="article__image-container">
+			{% unless article.image == blank %}
+				{% include 'responsive-image-ratio' with image: article.image, ratio: 2.32 %}
+			{% endunless %}
+		</div>
+		<div class="container container-min">
+			{% if article.excerpt.size > 0 %}
+				<p class="article__excerpt h3">{{ article.excerpt | strip_html }}</p>
+			{% endif %}
+			<div class="article__content rte">
+				{{ article.content }}
+			</div>
+
+			{%- if article.tags.size > 0 -%}
+			    <div class="article__tags">
+			      	<ul aria-label="Tags">
+			      		{%- for tag in article.tags -%}
+			        		<li>
+			          			<a href="{{ blog.url }}/tagged/{{ tag | handle }}">
+			            			{{ tag }}
+			          			</a>
+			        		</li>
+			      		{%- endfor -%}
+			    	</ul>
+			    </div>
+			{%- endif -%}
+			<div class="article__share">
+				<div>{{ 'blogs.article.share' | t }}</div>
+				{% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+			</div>
+		</div>
+	</article>
+	<h2 class="h3 text-center">{{ 'blogs.article.related_articles' | t }}</h2>
+	<div class="article__related-articles">
+		{% assign related_article_counter = 0 %}
+		{% if article.metafields.accentuate.related_articles.size != blank %}
+			{% assign acf_related_articles = article.metafields.accentuate.related_articles | split: '|' %}
+			{% for related_article in acf_related_articles limit: 2 %}
+				{% render 'article-card', article: articles[related_article] %}
+				{% assign related_article_counter = related_article_counter | plus: 1 %}
+			{% endfor %}
+		{% endif %}
+		{% for related_article in blog.articles limit: 3 %}
+			{% if related_article.handle != article.handle and related_article_counter < 2 %}
+				{% render 'article-card', article: related_article %}
+				{% assign related_article_counter = related_article_counter | plus: 1 %}
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>

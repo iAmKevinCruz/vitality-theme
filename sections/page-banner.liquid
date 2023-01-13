@@ -1,0 +1,467 @@
+<div class="page-nav">
+  <ul class="page-menu">
+    {% for block in section.blocks %}
+      {% if block.type == "banner" %}
+        <li class="page-menu__item {% if forloop.first %}active{% endif %}" data-target="{{ block.id }}">{% render 'icon-carousel-arrow' %}{{ block.settings.banner_text }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when "banner" %}
+      {% if block.settings.banner_img != blank %}
+        <section>
+          <a href="{{ block.settings.banner_url }}" class="page-banner" id="{{ block.id }}">
+            <picture>
+              <source media="(max-width:768px)" srcset="{{ block.settings.banner_img_mob | img_url: 'master' }}">
+              <img src="{{ block.settings.banner_img | img_url: 'master' }}" alt="{{ block.settings.banner_img.alt }}">
+            </picture>
+            {% if block.settings.banner_text != blank %}
+              <h2 class="page-banner__text" style="color: {{ block.settings.banner_text_color }}; opacity: {{ block.settings.banner_text_opacity }}%;">{{ block.settings.banner_text }}</h2>
+            {% endif %}
+          </a>
+        </section>
+      {% endif %}
+    {% when "img_grid" %}
+      <section class="categories">
+        <h2 class="categories__tite">{{ block.settings.img_grid_title }}</h2>
+        <div class="category-grid">
+          {%- for i in (1..4) -%}
+            {%- case i -%}
+              {%- when 1 -%}
+                {%- assign img = block.settings.img_1  -%}
+                {%- assign img_mob = block.settings.img_1_mob -%}
+                {%- assign url = block.settings.img_1_url -%}
+                {%- assign text = block.settings.img_1_text -%}
+                {%- assign text_color = block.settings.img_1_text_color -%}
+                {%- assign text_opacity = block.settings.img_1_text_opacity -%}
+                {%- assign subtext = block.settings.img_1_subtext -%}
+                {%- assign btn_text = block.settings.img_1_btn_text -%}
+              {%- when 2 -%}
+                {%- assign img = block.settings.img_2  -%}
+                {%- assign img_mob = block.settings.img_2_mob -%}
+                {%- assign url = block.settings.img_2_url -%}
+                {%- assign text = block.settings.img_2_text -%}
+                {%- assign text_color = block.settings.img_2_text_color -%}
+                {%- assign text_opacity = block.settings.img_2_text_opacity -%}
+                {%- assign subtext = block.settings.img_2_subtext -%}
+                {%- assign btn_text = block.settings.img_2_btn_text -%}
+              {%- when 3 -%}
+                {%- assign img = block.settings.img_3  -%}
+                {%- assign img_mob = block.settings.img_3_mob -%}
+                {%- assign url = block.settings.img_3_url -%}
+                {%- assign text = block.settings.img_3_text -%}
+                {%- assign text_color = block.settings.img_3_text_color -%}
+                {%- assign text_opacity = block.settings.img_3_text_opacity -%}
+                {%- assign subtext = block.settings.img_3_subtext -%}
+                {%- assign btn_text = block.settings.img_3_btn_text -%}
+              {%- when 4 -%}
+                {%- assign img = block.settings.img_4  -%}
+                {%- assign img_mob = block.settings.img_4_mob -%}
+                {%- assign url = block.settings.img_4_url -%}
+                {%- assign text = block.settings.img_4_text -%}
+                {%- assign text_color = block.settings.img_4_text_color -%}
+                {%- assign text_opacity = block.settings.img_4_text_opacity -%}
+                {%- assign subtext = block.settings.img_4_subtext -%}
+                {%- assign btn_text = block.settings.img_4_btn_text -%}
+            {%- endcase -%}
+            
+            {% if img != blank %}
+              <{% if btn_text == blank %}a href="{{ url }}"{% else %}div{% endif %} class="category-grid__img">
+                <picture>
+                  {% if img_mob != blank %}
+                    <source media="(max-width:768px)" srcset="{{ img_mob | img_url: 'master' }}">
+                  {% endif %}
+                  <img src="{{ img | img_url: 'master' }}" alt="{{ img.alt }}">
+                </picture>
+                <div class="category-grid__text">
+                  {% if text != blank %}
+                    <h3 class="category-grid__title" style="color: {{ text_color }}; opacity: {{ text_opacity }};">{{ text }} </h3>
+                  {% endif %}
+                  {% if subtext != blank %}
+                    <p class="category-grid__subtitle" style="color: {{ text_color }}; opacity: {{ text_opacity }};">{{ subtext }} </p>
+                  {% endif %}
+                  {% if btn_text != blank %}
+                    <a href="{{ url }}" class="secondary-button">{{ btn_text }} </a>
+                  {% endif %}
+                </div>
+              </{%- if btn_text == blank -%}a{%- else -%}div{%- endif -%}>
+            {% endif %}
+          {%- endfor -%}
+        </div>
+      </section>
+    {% when "card" %}
+      <section class="card {% if forloop.rindex == 2 %}card--last{% endif %}">
+        <div class="card__container">
+          {% if block.settings.card_img != blank %}
+            <img src="{{ block.settings.card_img | img_url: 'master' }}" alt="{{ block.settings.card_img.alt }}" class="card__img">
+          {% endif %}
+          <div class="card__info">
+            <div class="card__title">{{ block.settings.card_title }}</div>
+            <div class="card__cta">
+              {% render 'icon-carousel-arrow' %}
+              <a href="{{ block.settings.card_cta_url }}">{{ block.settings.card_cta }}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% when "carousel" %}
+      <section class="products-carousel">
+        {%- include 'products-carousel', 
+          carousel_coll: block.settings.carousel_coll, 
+          carousel_coll_lm: block.settings.carousel_coll_lm, 
+          carousel_title: block.settings.carousel_title,
+          carousel_b_text: block.settings.carousel_b_text
+        -%}
+      </section>
+    {% when "cta" %}
+      <div class="page-cta text-center">
+        <a href="{{ block.settings.url }}" class="primary-button-outlined">{{ block.settings.text }}</a>
+      </div>
+  {% endcase %}
+{% endfor %}
+
+<script>
+  document.querySelectorAll(".page-menu .page-menu__item").forEach(el=>{
+    el.addEventListener("click", function (e) {
+      document.querySelector(".page-menu__item.active").classList.remove("active")
+      this.classList.add("active");
+      window.location.href = window.location.origin + window.location.pathname + `#${this.getAttribute("data-target")}`
+    })
+  })
+</script>
+
+{% schema %}
+{
+  "name": "Gender category",
+  "class": "geder-category",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header"
+    }	
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Full width banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_img",
+          "label": "Banner image desktop"		
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_img_mob",
+          "label": "Banner image mobile"		
+        },
+        {
+          "type": "text",
+          "id": "banner_text",
+          "label": "Banner text",
+          "default": "Title"	
+        },
+        {
+          "type": "color",
+          "id": "banner_text_color",
+          "label": "Banner text color"		
+        },
+        {
+          "type": "range",
+          "id": "banner_text_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100,
+          "unit": "%",
+          "label": "Banner text opacity"		
+        },
+        {
+          "type": "url",
+          "id": "banner_url",
+          "label": "Banner url"		
+        }
+      ]
+	  },
+    {
+      "type": "img_grid",
+      "name": "Image columns",
+      "settings": [
+        {
+          "type": "text",
+          "id": "img_grid_title",
+          "label": "Image columns title",
+          "default": "Title"	
+        },
+        {
+          "type": "image_picker",
+          "id": "img_1",
+          "label": "1st image desktop"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_1_mob",
+          "label": "1st image mobile"		
+        },
+        {
+          "type": "text",
+          "id": "img_1_text",
+          "label": "1st image title"		
+        },
+        {
+          "type": "text",
+          "id": "img_1_subtext",
+          "label": "1st image subtitle"		
+        },
+        {
+          "type": "color",
+          "id": "img_1_text_color",
+          "label": "1st image text color"
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100,
+          "id": "img_1_text_opacity",
+          "label": "1st image text opacity"
+        },
+        {
+          "type": "text",
+          "id": "img_1_url",
+          "label": "1st image url"		
+        },
+        {
+          "type": "text",
+          "id": "img_1_btn_text",
+          "label": "1st image button text"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_2",
+          "label": "2nd image desktop"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_2_mob",
+          "label": "2nd image mobile"		
+        },
+        {
+          "type": "text",
+          "id": "img_2_text",
+          "label": "2nd image text"		
+        },
+        {
+          "type": "text",
+          "id": "img_2_subtext",
+          "label": "2nd image subtitle"		
+        },
+        {
+          "type": "color",
+          "id": "img_2_text_color",
+          "label": "2nd image text color"
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100,
+          "id": "img_2_text_opacity",
+          "label": "2nd image text opacity"
+        },
+        {
+          "type": "text",
+          "id": "img_2_url",
+          "label": "2nd image url"		
+        },
+        {
+          "type": "text",
+          "id": "img_2_btn_text",
+          "label": "2nd image button text"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_3",
+          "label": "3rd image desktop"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_3_mob",
+          "label": "3rd image mobile"		
+        },
+        {
+          "type": "text",
+          "id": "img_3_text",
+          "label": "3rd image text"		
+        },
+        {
+          "type": "text",
+          "id": "img_3_subtext",
+          "label": "3rd image subtitle"		
+        },
+        {
+          "type": "color",
+          "id": "img_3_text_color",
+          "label": "3rd image text color"
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100,
+          "id": "img_3_text_opacity",
+          "label": "3rd image text opacity"
+        },
+        {
+          "type": "text",
+          "id": "img_3_url",
+          "label": "3rd image url"		
+        },
+        {
+          "type": "text",
+          "id": "img_3_btn_text",
+          "label": "3rd image button text"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_4",
+          "label": "4th image desktop"		
+        },
+        {
+          "type": "image_picker",
+          "id": "img_4_mob",
+          "label": "4th image mobile"		
+        },
+        {
+          "type": "text",
+          "id": "img_4_text",
+          "label": "4th image text"		
+        },
+        {
+          "type": "text",
+          "id": "img_4_subtext",
+          "label": "4th image subtitle"		
+        },
+        {
+          "type": "color",
+          "id": "img_4_text_color",
+          "label": "4th image text color"
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 100,
+          "id": "img_4_text_opacity",
+          "label": "4th image text opacity"
+        },
+        {
+          "type": "text",
+          "id": "img_4_url",
+          "label": "4th image url"		
+        },
+        {
+          "type": "text",
+          "id": "img_4_btn_text",
+          "label": "4th image button text"		
+        }
+      ]
+	  },
+    {
+      "type": "card",
+      "name": "Image card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "card_img",
+          "label": "Card image"
+        },
+        {
+          "type": "richtext",
+          "id": "card_title",
+          "label": "Card title",
+          "default": "<p>We made too many</p>"	
+        },
+        {
+          "type": "text",
+          "id": "card_cta",
+          "label": "Card CTA",
+          "default": "Shop now"	
+        },
+        {
+          "type": "url",
+          "id": "card_cta_url",
+          "label": "Card CTA url"		
+        }       
+      ]
+	  },
+    {
+      "type": "carousel",
+      "name": "Carousel",
+      "settings": [
+        {
+          "type": "text",
+          "id": "carousel_title",
+          "label": "Title",
+          "default": "New arrivals"		
+        },
+        {
+          "type": "collection",
+          "id": "carousel_coll",
+          "label": "Collection"			
+        },
+        {
+          "type": "range",
+          "min": 4,
+          "max": 20,
+          "step": 1,
+          "id": "carousel_coll_lm",
+          "label": "Products Quantity",
+          "default": 15
+        },
+        {
+          "type": "number",
+          "id": "carousel_desk",
+          "label": "Desktop Carousel Visible Items #",
+          "default": 4			
+        },
+        {
+          "type": "number",
+          "id": "carousel_mob", 
+          "label": "Mobile Carousel Visible Items #",
+          "default": 2			
+        },
+        {
+          "type": "text",
+          "id": "carousel_b_text",
+          "label": "Button Text",
+          "default": "Shop Now"		
+        }
+      ]
+	  },
+    {
+      "type": "cta",
+      "name": "CTA",
+      "settings": [
+        {
+          "type": "url",
+          "id": "url",
+          "label": "CTA url"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "CTA text",
+          "default": "Shop All"
+        }     
+      ]
+	  }
+  ]
+}
+{% endschema %}

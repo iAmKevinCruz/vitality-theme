@@ -1,0 +1,72 @@
+
+<!-- DY -->
+
+<link rel="preconnect" href="//cdn.dynamicyield.com">
+<link rel="preconnect" href="//st.dynamicyield.com">
+<link rel="preconnect" href="//rcom.dynamicyield.com">
+<link rel="dns-prefetch" href="//cdn.dynamicyield.com">
+<link rel="dns-prefetch" href="//st.dynamicyield.com">
+<link rel="dns-prefetch" href="//rcom.dynamicyield.com">
+
+<script>window.DY = window.DY || {};</script>
+
+{% if template == 'index' %}
+
+  <script> DY.recommendationContext = {type: 'HOMEPAGE'}; </script>
+
+{% elsif template == 'product.vitality'
+  or template == 'product'
+  or template == 'product.boost-pfs-quickview-option'
+  or template == 'product.boost-pfs-quickview'
+%}
+
+  <script>   DY.recommendationContext = {type: 'PRODUCT', data: ['{{ product.variants[0].id }}']}; </script>
+
+{% elsif template == 'collection'
+  or template == 'collection.vitality'
+  or template == 'collection.boost-pfs-original'
+%}
+
+  {% if current_tags %}
+    {% capture DY_category_url %}{{ collection.title }}/{{ current_tags | join: "+"}}{% endcapture %}
+  {% else %}
+  {% capture DY_category_url %}{{ collection.title }}{% endcapture %}
+  {% endif %}
+
+  <script> DY.recommendationContext = {type: 'CATEGORY', data: ["{{ DY_category_url }}"]};</script>
+
+{% elsif template == 'cart' %}
+
+  {% assign uniqueProductIds = cart.items | map: 'id'| uniq | join: ',' %}
+  <script> DY.recommendationContext = {type: 'CART', data: "{{ uniqueProductIds }}".split(',')}; </script>
+
+{% else %}
+
+  <script> DY.recommendationContext = {type: 'OTHER'}; </script>
+
+{% endif %}
+
+<script type="text/javascript" src="//cdn.dynamicyield.com/api/8777378/api_dynamic.js" defer="defer"></script>
+<script type="text/javascript" src="//cdn.dynamicyield.com/api/8777378/api_static.js" defer="defer"></script>
+
+{%- if customer -%}
+<script>
+    if(!sessionStorage.getItem("shopify_customer")){
+        sessionStorage.setItem("shopify_customer", "{{ customer.id }}");
+        DY.API("event", {
+            name: "Login",
+            properties: {
+                dyType: "login-v1",
+                cuid: '{{ customer.id }}',
+                cuidType: 'userId',
+                hashedEmail: DYO.dyhash.sha256("{{ customer.email }}".toLowerCase())
+            }
+        });
+    }
+</script>
+{%- else -%}
+<script>
+   sessionStorage.removeItem("shopify_customer")
+</script>
+{%- endif -%} 
+<!-- End of DY -->

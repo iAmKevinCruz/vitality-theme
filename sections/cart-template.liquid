@@ -1,0 +1,156 @@
+<div class="cart" data-section-id="{{ section.id }}" data-ajax-enabled="{{ section.settings.cart_ajax_enable }}">
+    <div class="container container-min {% if cart.item_count == 0 %}empty{% endif %}">
+      <h1 class="h2 cart__title">{{ 'cart.title' | t }}</h1>
+      {% if cart.item_count > 0 %}
+      <form action="/cart" method="post">
+        <div class="cart___main cart-main">
+          <div class="cart-main__row cart-item titles-row">
+            <h2 class="h6">{{ 'cart.product' | t }}</h2>
+            <h2></h2>
+            <h2 class="h6">{{ 'cart.price' | t }}</h2>
+            <h2 class="h6">{{ 'cart.qty' | t }}</h2>
+            <h2 class="h6">{{ 'cart.total' | t }}</h2>
+          </div>
+              {% for item in cart.items %}
+                <div class="cart-main__row cart-item">
+                    <div class="cart-item__image">
+                      <a href="{{ item.url }}">
+                      {% include 'responsive-image' with image: item.image, image_class: "", wrapper_class: "", max_width: 100, max_height: 160 %}
+                      </a>
+                    </div>
+                    <div class="cart-item__name">
+                      <h3 class="h5 product-title"><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+
+                      {%- if item.product.tags contains 'label:final-sale'  -%}
+                        <div>
+                          <span class="sale-label">{{ 'products.labels.finalsale' | t }}</span>
+                        </div>
+                      {%- endif -%}
+
+                      {% unless item.product.has_only_default_variant %}
+                      <ul>
+                        {%- for option in item.options_with_values -%}
+                          <li>{{ option.name }}: {{ option.value }}</li> 
+                          {% assign itemSize = option.value %}                  
+                        {%- endfor -%}
+                        <li></li>
+                      </ul>
+                      {% endunless %}
+
+                      {%- capture properties -%}
+                        {%- for property in item.properties -%}
+                          {%- unless property.first == 'Labels' -%}
+                            <li>{{ property.first }}: {{ property.last }}</li>
+                          {%- endunless -%}
+                        {%- endfor -%}
+                      {%- endcapture -%}
+                      {% unless properties == '' %}
+                        <ul>
+                          {{ properties }}
+                        </ul>
+                      {% endunless %}
+
+                      <div class="cart-item__mobile">
+                        <div class="quantity-picker qp-js">
+                            <button class="quantity-picker__btn minus" type="button">-</button>
+                            <input name="updates[]" size="4" min="1" data-value="{{ item.quantity }}" data-id="{{ item.id }}" data-price="{{item.price | money_without_currency}}" data-size="{{itemSize}}" id="updates_{{ item.id }}" type="number" value="{{ item.quantity }}" class="value"/>
+                            <button class="quantity-picker__btn plus" type="button">+</button>
+                        </div>
+                        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="remove">{{ 'cart.remove' | t }}</a>
+                      </div>
+
+                      <div class="error-placeholder"></div>
+                    </div>
+                    
+                    <div class="cart-item__price">
+                      {% if item.original_price > item.final_price %}
+                      <h5 class="original-price">{{ item.original_price | money }}</h5>
+                      {% endif %}
+                      <h5 class="final-price">{{ item.final_price | money }}</h5>
+                    </div>
+                    <div class="cart-item__quantity">
+                      <div class="quantity-picker qp-js">
+                          <button class="quantity-picker__btn minus" type="button">-</button>
+                          <input name="updates[]" size="4" min="0"  data-value="{{ item.quantity }}" data-id="{{ item.id }}" data-price="{{item.price | money_without_currency}}" data-size="{{itemSize}}" id="updates_{{ item.id }}" type="number" value="{{ item.quantity }}" class="value"/>
+                          <button class="quantity-picker__btn plus" type="button">+</button>
+                      </div>
+                    </div>
+                    <div class="cart-item__total">
+                      <h5 class="line-total">{{item.final_line_price  | money }}</h5>
+                      <div class="cart-item__remov cart__remove" data-vid={{item.variant_id }}>
+                        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="remove">{{ 'cart.remove' | t }}</a>
+                      </div>
+                    </div>
+                </div>
+              {% endfor %}
+              
+              <div class="cart__bottom">
+                <div class="cart-bottom">
+                  <div class="cart-bottom__title">
+                    <h4>{{ 'cart.subtotal' | t }}</h4>
+                    <span>{{ cart.total_price | money }}</span>
+                  </div> 
+                  {%- capture taxes_shipping_checkout -%}
+                    {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
+                      {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- elsif shop.taxes_included -%}
+                      {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                    {%- elsif shop.shipping_policy.body != blank -%}
+                      {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                    {%- else -%}
+                      {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                    {%- endif -%}
+                  {%- endcapture -%}
+                  <div class="cart-bottom__shipping">{{ taxes_shipping_checkout }}</div>
+                  <div>
+                    <catch-callout
+                      price="{{ cart.total_price }}"
+                      border-style="none-no-padding"
+                      page-type="cart"
+                      style="font-family: inherit;
+                             font-weight: 300;
+                             font-size: 0.875rem;
+                             --dark-color: black;
+                             -webkit-font-smoothing: inherit;
+                             margin-bottom: 8px;"
+                    />
+                  </div>
+
+                  {% if settings.cart_precheckout_note != blank %}
+                    <button class="cart-checkout primary-button" type="button" data-popup-trigger="precheckout-cartpage">
+                      {{ 'cart.checkout' | t }}
+                    </button>
+                    {% render 'precheckout-popup', modifier: 'cartpage' %}
+                  {% else %}
+                    <input type="submit" name="checkout" value="Checkout" class="cart-checkout primary-button" />
+                  {% endif %}
+                </div>
+              </div>
+        </div>
+      </form>
+      {% else %}
+        <h4>{{ 'cart.emptynote' | t }}</h4>
+        <a class="primary-button" href=" {{ routes.all_products_collection_url }}">{{ 'cart.shopnow' | t }}</a>
+      {% endif %}
+    </div>
+</div>
+{% schema %}
+{
+  "name": "Cart page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cart_title",
+      "label": "Cart Title",
+      "default": "My Bag"
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_ajax_enable",
+      "label": "Enable automatic cart updates",
+      "info": "Updates the cart as soon as customer changes are made",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

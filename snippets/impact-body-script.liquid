@@ -1,0 +1,13 @@
+
+{% assign customer_id = '' %}
+{% assign customer_email = '' %}
+{% if customer %}
+  {% assign customer_id = customer.id %}
+  {% assign customer_email = customer.email | sha1 %}
+{% endif %}
+<script type="text/javascript">
+  ire('identify', {customerId: '{{ customer_id }}', customerEmail: '{{ customer_email }}'});
+  var urlParams = new URLSearchParams(window.location.search);
+  var irclickid = urlParams.get('irclickid');
+  if (irclickid) document.cookie = 'irclickid=' + irclickid + ';path=/;max-age=14400';
+</script>

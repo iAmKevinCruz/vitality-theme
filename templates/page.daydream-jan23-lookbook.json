@@ -1,0 +1,477 @@
+{
+  "wrapper": "div",
+  "sections": {
+    "main": {
+      "type": "page-banner",
+      "blocks": {
+        "fe089a3a-4fdf-40ed-bc22-929993c40061": {
+          "type": "banner",
+          "settings": {
+            "banner_img": "shopify:\/\/shop_images\/dd-Lookbook-Hero.jpg",
+            "banner_img_mob": "shopify:\/\/shop_images\/dd-Lookbook-Mobile-Hero.jpg",
+            "banner_text": "Daydream Lookbook",
+            "banner_text_color": "#ffffff",
+            "banner_text_opacity": 0,
+            "banner_url": ""
+          }
+        },
+        "a3017af9-f619-4803-937f-1b442a646a45": {
+          "type": "img_grid",
+          "settings": {
+            "img_grid_title": "Better Fit, Better Feel",
+            "img_1": "shopify:\/\/shop_images\/dd-2-image-column.jpg",
+            "img_1_mob": "shopify:\/\/shop_images\/dd-2-mobile-image-column.jpg",
+            "img_1_text": "",
+            "img_1_subtext": "",
+            "img_1_text_color": "#ffffff",
+            "img_1_text_opacity": 100,
+            "img_1_url": "",
+            "img_1_btn_text": "",
+            "img_2": "shopify:\/\/shop_images\/dd-1-image-column.jpg",
+            "img_2_mob": "shopify:\/\/shop_images\/dd-1-mobile-image-column.jpg",
+            "img_2_text": "",
+            "img_2_subtext": "",
+            "img_2_text_color": "#ffffff",
+            "img_2_text_opacity": 100,
+            "img_2_url": "",
+            "img_2_btn_text": "",
+            "img_3_text": "",
+            "img_3_subtext": "",
+            "img_3_text_color": "#ffffff",
+            "img_3_text_opacity": 100,
+            "img_3_url": "",
+            "img_3_btn_text": "",
+            "img_4_text": "",
+            "img_4_subtext": "",
+            "img_4_text_color": "",
+            "img_4_text_opacity": 100,
+            "img_4_url": "",
+            "img_4_btn_text": ""
+          }
+        },
+        "097ca267-a8a4-4e32-8ae1-422725fbbb38": {
+          "type": "img_grid",
+          "settings": {
+            "img_grid_title": "LAUNCHING JANUARY 19, at 10 AM MST",
+            "img_1_text": "",
+            "img_1_subtext": "",
+            "img_1_text_color": "",
+            "img_1_text_opacity": 100,
+            "img_1_url": "",
+            "img_1_btn_text": "",
+            "img_2_text": "",
+            "img_2_subtext": "",
+            "img_2_text_color": "",
+            "img_2_text_opacity": 100,
+            "img_2_url": "",
+            "img_2_btn_text": "",
+            "img_3_text": "",
+            "img_3_subtext": "",
+            "img_3_text_color": "",
+            "img_3_text_opacity": 100,
+            "img_3_url": "",
+            "img_3_btn_text": "",
+            "img_4_text": "",
+            "img_4_subtext": "",
+            "img_4_text_color": "",
+            "img_4_text_opacity": 100,
+            "img_4_url": "",
+            "img_4_btn_text": ""
+          }
+        },
+        "0a779113-22f1-4693-87b0-20a8b3dfdf9b": {
+          "type": "card",
+          "settings": {
+            "card_img": "shopify:\/\/shop_images\/image-card-dayrdream_efe26800-8add-4bf4-9857-f4507d29e485.jpg",
+            "card_title": "<p>SIGN UP FOR EARLY ACCESS<\/p>",
+            "card_cta": "Sign Up",
+            "card_cta_url": "https:\/\/shopvitality.attn.tv\/p\/EEb\/landing-page"
+          }
+        },
+        "6b9ea05a-6c13-4a80-832f-e9e5c3796c66": {
+          "type": "img_grid",
+          "settings": {
+            "img_grid_title": "behind the design",
+            "img_1": "shopify:\/\/shop_images\/DESIGN-BANNER.jpg",
+            "img_1_mob": "shopify:\/\/shop_images\/mobile-DESIGN-BANNER.jpg",
+            "img_1_text": "New & Improved",
+            "img_1_subtext": "Experience Daydream for the first time...all over again",
+            "img_1_text_color": "",
+            "img_1_text_opacity": 100,
+            "img_1_url": "https:\/\/shopvitality.com\/blogs\/vitality-blog\/behind-the-design-ep-2-daydream",
+            "img_1_btn_text": "READ MORE",
+            "img_2_text": "",
+            "img_2_subtext": "",
+            "img_2_text_color": "",
+            "img_2_text_opacity": 100,
+            "img_2_url": "",
+            "img_2_btn_text": "",
+            "img_3_text": "",
+            "img_3_subtext": "",
+            "img_3_text_color": "",
+            "img_3_text_opacity": 100,
+            "img_3_url": "",
+            "img_3_btn_text": "",
+            "img_4_text": "",
+            "img_4_subtext": "",
+            "img_4_text_color": "",
+            "img_4_text_opacity": 100,
+            "img_4_url": "",
+            "img_4_btn_text": ""
+          }
+        },
+        "54129537-df5b-46f2-bfd8-93e0b0a21f94": {
+          "type": "banner",
+          "disabled": true,
+          "settings": {
+            "banner_img": "shopify:\/\/shop_images\/Frame_12_1.jpg",
+            "banner_img_mob": "shopify:\/\/shop_images\/Frame_12_1.jpg",
+            "banner_text": "Men's",
+            "banner_text_color": "#ffffff",
+            "banner_text_opacity": 0,
+            "banner_url": "https:\/\/shopvitality.com\/collections\/all\/Men"
+          }
+        },
+        "92f063e8-2790-4cec-b19c-8d548d0ffe41": {
+          "type": "carousel",
+          "disabled": true,
+          "settings": {
+            "carousel_title": "New arrivals",
+            "carousel_coll": "all-black-everything-men",
+            "carousel_coll_lm": 15,
+            "carousel_desk": 4,
+            "carousel_mob": 2,
+            "carousel_b_text": "Shop Now"
+          }
+        },
+        "b496aee9-1ab0-4966-b1fb-57a8ec2d9476": {
+          "type": "img_grid",
+          "disabled": true,
+          "settings": {
+            "img_grid_title": "Men's Tops",
+            "img_1": "shopify:\/\/shop_images\/Mens-Tees-Desktop.jpg",
+            "img_1_mob": "shopify:\/\/shop_images\/Mens-Tees-Mobile.jpg",
+            "img_1_text": "Tees",
+            "img_1_subtext": "",
+            "img_1_text_color": "#ffffff",
+            "img_1_text_opacity": 100,
+            "img_1_url": "https:\/\/shopvitality.com\/collections\/mens-tops\/tee-shirt",
+            "img_1_btn_text": "",
+            "img_2": "shopify:\/\/shop_images\/Rectangle_133_6.jpg",
+            "img_2_mob": "shopify:\/\/shop_images\/Rectangle_133_6.jpg",
+            "img_2_text": "Tanks",
+            "img_2_subtext": "",
+            "img_2_text_color": "#ffffff",
+            "img_2_text_opacity": 100,
+            "img_2_url": "https:\/\/shopvitality.com\/collections\/mens-tops\/men+tank",
+            "img_2_btn_text": "",
+            "img_3": "shopify:\/\/shop_images\/Rectangle_133_7.jpg",
+            "img_3_mob": "shopify:\/\/shop_images\/Rectangle_133_7.jpg",
+            "img_3_text": "Hoodies",
+            "img_3_subtext": "",
+            "img_3_text_color": "#ffffff",
+            "img_3_text_opacity": 100,
+            "img_3_url": "https:\/\/shopvitality.com\/collections\/mens-tops\/Hoodie",
+            "img_3_btn_text": "",
+            "img_4": "shopify:\/\/shop_images\/Rectangle_133_8.jpg",
+            "img_4_mob": "shopify:\/\/shop_images\/Rectangle_133_8.jpg",
+            "img_4_text": "Jackets",
+            "img_4_subtext": "",
+            "img_4_text_color": "#ffffff",
+            "img_4_text_opacity": 100,
+            "img_4_url": "https:\/\/shopvitality.com\/collections\/men\/jackets",
+            "img_4_btn_text": ""
+          }
+        },
+        "70649851-50ba-4f1c-a4ba-9c4c493f35bd": {
+          "type": "img_grid",
+          "disabled": true,
+          "settings": {
+            "img_grid_title": "Men's Bottoms",
+            "img_1": "shopify:\/\/shop_images\/Rectangle_137_2.jpg",
+            "img_1_mob": "shopify:\/\/shop_images\/Rectangle_137_2.jpg",
+            "img_1_text": "Joggers",
+            "img_1_subtext": "",
+            "img_1_text_color": "#ffffff",
+            "img_1_text_opacity": 100,
+            "img_1_url": "",
+            "img_1_btn_text": "",
+            "img_2": "shopify:\/\/shop_images\/Rectangle_134_1.jpg",
+            "img_2_mob": "shopify:\/\/shop_images\/Rectangle_134_1.jpg",
+            "img_2_text": "shorts",
+            "img_2_subtext": "",
+            "img_2_text_color": "#ffffff",
+            "img_2_text_opacity": 100,
+            "img_2_url": "",
+            "img_2_btn_text": "",
+            "img_3_text": "",
+            "img_3_subtext": "",
+            "img_3_text_color": "",
+            "img_3_text_opacity": 100,
+            "img_3_url": "",
+            "img_3_btn_text": "",
+            "img_4_text": "",
+            "img_4_subtext": "",
+            "img_4_text_color": "",
+            "img_4_text_opacity": 100,
+            "img_4_url": "",
+            "img_4_btn_text": ""
+          }
+        },
+        "f11eedda-215b-43e5-8bf8-6c5ba78eb2dd": {
+          "type": "img_grid",
+          "disabled": true,
+          "settings": {
+            "img_grid_title": "Optional title",
+            "img_1": "shopify:\/\/shop_images\/local_-_DSC03383.jpg",
+            "img_1_text": "We Made Too Many",
+            "img_1_subtext": "optional subhead",
+            "img_1_text_color": "#ffffff",
+            "img_1_text_opacity": 100,
+            "img_1_url": "#",
+            "img_1_btn_text": "optional button",
+            "img_2": "shopify:\/\/shop_images\/local-DSC03444-Edit.jpg",
+            "img_2_text": "Shop All",
+            "img_2_subtext": "Optional subhead",
+            "img_2_text_color": "#000000",
+            "img_2_text_opacity": 100,
+            "img_2_url": "#",
+            "img_2_btn_text": "Optional button",
+            "img_3_text": "",
+            "img_3_subtext": "",
+            "img_3_text_color": "",
+            "img_3_text_opacity": 100,
+            "img_3_url": "",
+            "img_3_btn_text": "",
+            "img_4_text": "",
+            "img_4_subtext": "",
+            "img_4_text_color": "",
+            "img_4_text_opacity": 100,
+            "img_4_url": "",
+            "img_4_btn_text": ""
+          }
+        },
+        "f3d527cc-5ff4-4548-b377-c458b20a4fde": {
+          "type": "cta",
+          "disabled": true,
+          "settings": {
+            "url": "https:\/\/shopvitality.com\/collections\/all",
+            "text": "Shop All"
+          }
+        }
+      },
+      "block_order": [
+        "fe089a3a-4fdf-40ed-bc22-929993c40061",
+        "a3017af9-f619-4803-937f-1b442a646a45",
+        "097ca267-a8a4-4e32-8ae1-422725fbbb38",
+        "0a779113-22f1-4693-87b0-20a8b3dfdf9b",
+        "6b9ea05a-6c13-4a80-832f-e9e5c3796c66",
+        "54129537-df5b-46f2-bfd8-93e0b0a21f94",
+        "92f063e8-2790-4cec-b19c-8d548d0ffe41",
+        "b496aee9-1ab0-4966-b1fb-57a8ec2d9476",
+        "70649851-50ba-4f1c-a4ba-9c4c493f35bd",
+        "f11eedda-215b-43e5-8bf8-6c5ba78eb2dd",
+        "f3d527cc-5ff4-4548-b377-c458b20a4fde"
+      ],
+      "settings": {
+      }
+    },
+    "898bfe6f-da30-41e6-bcf5-5e7d21f6585b": {
+      "type": "text-block",
+      "settings": {
+        "textblock_text": "<p>As soon as we launched our Daydream line it became an instant Vitality customer favorite. Daydream fabric is engineered for comfort and flexibility, with a buttery softness, next-to-naked feel, and light compression that make it ideal for everyday wear and low-impact activities like yoga.<\/p><p><br\/>Even still, we felt we could do better. This January ‘23 drop brings new and improved Daydream pieces that have the same obsession-worthy softness and comfort but a few subtle upgrades to the construction and fit. New Daydream leggings and shorts have a flat-sewn  yoke seam to keep the waistband flat against the body, and we’ve revised the size grading at specific measurement points to ensure that the new Daydream pieces fit everyBODY like a glove. <br\/><br\/>This drop will also include three new colorways: Arctic Sky, Navy Sky, and Blackberry Rose (available for the Daydream V Bra, Volley Short, and Pant), plus classic Midnight (available for all five styles).<\/p>"
+      }
+    },
+    "a60cdecb-9a9d-4476-8d6f-bd795c7f0d9d": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_img": "shopify:\/\/shop_images\/fabric-banner.jpg",
+        "hero_img_mob": "shopify:\/\/shop_images\/fabric-mobile-banner.jpg",
+        "hero_video": "",
+        "hero_pre_title": "",
+        "hero_title": "",
+        "hero_title_tag": "h1",
+        "hero_text": "",
+        "hero_b_text": "",
+        "hero_b_url": "",
+        "hero_text_color": "#000000",
+        "hero_cover_color": "",
+        "hero_cover_opacity": 0,
+        "text_align": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment": "center"
+      }
+    },
+    "a03049e7-7815-4cf9-b708-2b7464ba1bc5": {
+      "type": "half-media-text",
+      "settings": {
+        "half_image": "shopify:\/\/shop_images\/50-v-bra_e9e27567-f26e-4a31-bc96-0b137cf80704.gif",
+        "half_image_p": "1",
+        "half_video": "",
+        "half_title": "DAYDREAM V BRA",
+        "half_title_tag": "h2",
+        "half_text": "<p>V neck sports bra with adjustable contrast cross back straps and removable padding to support your needs.<br\/><br\/>Ultra-soft and flexible underbust band hugs the body without digging in.<br\/><br\/>Low support and compression to move with you through every phase of your day.<\/p>",
+        "half_b_text": "",
+        "half_b_url": "",
+        "half_text_color": "#000000",
+        "half_bg_color": "#ffffff",
+        "half_text_width": false
+      }
+    },
+    "93ed926b-b955-4c18-b31b-c26ec1789a86": {
+      "type": "products-carousel",
+      "settings": {
+        "carousel_title": "",
+        "carousel_coll": "daydream-v-bras-january-2023",
+        "carousel_coll_lm": 15,
+        "carousel_desk": 4,
+        "carousel_mob": 2,
+        "carousel_b_text": ""
+      }
+    },
+    "c6c02cad-f921-4b24-97c5-75b5827f2ee5": {
+      "type": "half-media-text",
+      "settings": {
+        "half_image": "shopify:\/\/shop_images\/50-square-bra.jpg",
+        "half_image_p": "2",
+        "half_video": "",
+        "half_title": "DAYDREAM SQUARE BRA",
+        "half_title_tag": "h2",
+        "half_text": "<p>Square neck sports bra with adjustable back straps and removable padding to support your needs.<br\/><br\/>Ultra-soft and flexible underbust band hugs the body without digging in.<br\/><br\/>Low support and compression to move with you through every phase of your day.<\/p>",
+        "half_b_text": "",
+        "half_b_url": "",
+        "half_text_color": "#000000",
+        "half_bg_color": "#ffffff",
+        "half_text_width": false
+      }
+    },
+    "ed3e1a61-b443-44e5-8fe8-ca764fc2558f": {
+      "type": "products-carousel",
+      "settings": {
+        "carousel_title": "",
+        "carousel_coll": "daydream-square-bras-january-2023",
+        "carousel_coll_lm": 15,
+        "carousel_desk": 4,
+        "carousel_mob": 2,
+        "carousel_b_text": ""
+      }
+    },
+    "3d6993df-bcfd-41c8-92ef-7b334d6c8495": {
+      "type": "half-media-text",
+      "settings": {
+        "half_image": "shopify:\/\/shop_images\/50-volley.gif",
+        "half_image_p": "1",
+        "half_video": "",
+        "half_title": "DAYDREAM VOLLEY SHORT",
+        "half_title_tag": "h2",
+        "half_text": "<p>High-waisted, double-lined crossover waistband provides support and holds short in place without digging in.<br\/><br\/>Glute Contour Seam™ defines the waist and accentuates the glutes for definition where you want it.<br\/><br\/>Anti-cameltoe design with no front seam for coverage where you need it.<br\/><br\/>Short is designed to hit at upper thigh with dynamic graded inseams to ensure the perfect fit for your body.<\/p>",
+        "half_b_text": "",
+        "half_b_url": "",
+        "half_text_color": "#000000",
+        "half_bg_color": "#ffffff",
+        "half_text_width": false
+      }
+    },
+    "d91aaaf8-859c-46b9-a9c6-8231c1b129f5": {
+      "type": "products-carousel",
+      "settings": {
+        "carousel_title": "",
+        "carousel_coll": "daydream-volley-shorts-january-2023",
+        "carousel_coll_lm": 15,
+        "carousel_desk": 4,
+        "carousel_mob": 2,
+        "carousel_b_text": ""
+      }
+    },
+    "6f97e450-0220-4089-9f90-c72d82e0ea7c": {
+      "type": "half-media-text",
+      "settings": {
+        "half_image": "shopify:\/\/shop_images\/50-biker.jpg",
+        "half_image_p": "2",
+        "half_video": "",
+        "half_title": "DAYDREAM BIKER SHORT",
+        "half_title_tag": "h2",
+        "half_text": "<p>High-waisted, double-lined crossover waistband provides support and holds short in place without digging in.<br\/><br\/>Glute Contour Seam™ defines the waist and accentuates the glutes for definition where you want it.<br\/><br\/>Anti-cameltoe design with no front seam for coverage where you need it.<br\/><br\/>Short is designed to hit at lower thigh with dynamic graded inseams to ensure the perfect fit for your body.<\/p>",
+        "half_b_text": "",
+        "half_b_url": "",
+        "half_text_color": "#000000",
+        "half_bg_color": "#ffffff",
+        "half_text_width": false
+      }
+    },
+    "00b474f4-6200-40c4-8fb8-1aee7f95ec37": {
+      "type": "products-carousel",
+      "settings": {
+        "carousel_title": "",
+        "carousel_coll": "daydream-biker-shorts-2023",
+        "carousel_coll_lm": 15,
+        "carousel_desk": 4,
+        "carousel_mob": 2,
+        "carousel_b_text": ""
+      }
+    },
+    "4dfea2ed-8fec-43b5-9196-d789f12662c7": {
+      "type": "half-media-text",
+      "settings": {
+        "half_image": "shopify:\/\/shop_images\/50-pant.gif",
+        "half_image_p": "1",
+        "half_video": "",
+        "half_title": "DAYDREAM PANT",
+        "half_title_tag": "h2",
+        "half_text": "<p>High-waisted, double-lined crossover waistband provides support and holds legging in place without digging in.<br\/><br\/>Glute Contour Seam™ defines the waist and accentuates the glutes for definition where you want it.<br\/><br\/>Anti-cameltoe design with no front seam for coverage where you need it.<\/p>",
+        "half_b_text": "",
+        "half_b_url": "",
+        "half_text_color": "#000000",
+        "half_bg_color": "#ffffff",
+        "half_text_width": false
+      }
+    },
+    "f62f416c-7568-4301-b29c-01201f39e113": {
+      "type": "products-carousel",
+      "settings": {
+        "carousel_title": "",
+        "carousel_coll": "daydream-pants-january-2023",
+        "carousel_coll_lm": 15,
+        "carousel_desk": 4,
+        "carousel_mob": 2,
+        "carousel_b_text": ""
+      }
+    },
+    "e5384109-c30c-4931-8261-8a0ae81d34ed": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_img": "shopify:\/\/shop_images\/dd-bottom-banner.jpg",
+        "hero_img_mob": "shopify:\/\/shop_images\/dd-bottom-mobile-banner_b2184186-3af1-4ea3-9bbd-5ae07466a133.jpg",
+        "hero_video": "",
+        "hero_pre_title": "",
+        "hero_title": "",
+        "hero_title_tag": "h1",
+        "hero_text": "",
+        "hero_b_text": "",
+        "hero_b_url": "",
+        "hero_text_color": "#000000",
+        "hero_cover_color": "",
+        "hero_cover_opacity": 0,
+        "text_align": "center",
+        "vertical_alignment": "center",
+        "horizontal_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "898bfe6f-da30-41e6-bcf5-5e7d21f6585b",
+    "a60cdecb-9a9d-4476-8d6f-bd795c7f0d9d",
+    "a03049e7-7815-4cf9-b708-2b7464ba1bc5",
+    "93ed926b-b955-4c18-b31b-c26ec1789a86",
+    "c6c02cad-f921-4b24-97c5-75b5827f2ee5",
+    "ed3e1a61-b443-44e5-8fe8-ca764fc2558f",
+    "3d6993df-bcfd-41c8-92ef-7b334d6c8495",
+    "d91aaaf8-859c-46b9-a9c6-8231c1b129f5",
+    "6f97e450-0220-4089-9f90-c72d82e0ea7c",
+    "00b474f4-6200-40c4-8fb8-1aee7f95ec37",
+    "4dfea2ed-8fec-43b5-9196-d789f12662c7",
+    "f62f416c-7568-4301-b29c-01201f39e113",
+    "e5384109-c30c-4931-8261-8a0ae81d34ed"
+  ]
+}
